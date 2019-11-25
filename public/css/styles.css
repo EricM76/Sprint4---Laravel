@@ -1,9 +1,14 @@
+
 .menu{
-    background-color: Indigo;
+    background-color: rgb(23, 47, 151);
 }
 li{
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 a{
     font-size: 1em;
+}
+.w-100{
+    width: 100%;
+    height: 20vw;
 }

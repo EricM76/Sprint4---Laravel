@@ -30,7 +30,7 @@
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img class="img-fluid" src="images/logo.png" alt="" width="100px">
+                    <img class="img-fluid" src="images/logo-sm.png" alt="" width="100px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -54,16 +54,22 @@
                                 </li>
                             @endif
                         @else
-                        <ul class="nav justify-content-center mr-5">
-                            <li class="nav-item p-1">
+                        <form class="form-horizontal" action="">
+                            <div class="form-group mr-3">
+                            <label class="text-white" for="">Buscar Producto</label>
+                            <input class="form-control-sm" type="text">
+                            </div>
+                        </form>
+                        <ul class="nav my-2">
+                            <li class="nav-item pl-2">
                                 <a class="nav-link active text-light" href="#"><i class="fas fa-home mr-1"></i>Inicio</a>
                             </li>
 
-                            <li class="nav-item p-1">
+                            <li class="nav-item pl-2">
                                 <a class="nav-link text-light" href="#"><i class="fas fa-heart mr-1"></i>Favoritos</a>
                             </li>
 
-                            <li class="nav-item p-1 dropdown">
+                            <li class="nav-item pl-2 dropdown">
                                 <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Categorias</a>
                                 <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
@@ -72,6 +78,10 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Separated link</a>
                                 </div>
+                            </li>
+
+                            <li class="nav-item pl-2">
+                                <a class="nav-link text-light" href="#"><i class="fas fa-handshake mr-1"></i>Truekear</a>
                             </li>
                         </ul>
 
@@ -102,7 +112,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
