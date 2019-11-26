@@ -56,7 +56,7 @@
                         @else
                         <form class="form-horizontal" action="">
                             <div class="form-group mr-3">
-                            <label class="text-white" for="">Buscar Producto</label>
+                            <label class="text-white" for="">Buscar</label>
                             <input class="form-control-sm" type="text">
                             </div>
                         </form>
@@ -81,7 +81,7 @@
                             </li>
 
                             <li class="nav-item pl-2">
-                                <a class="nav-link text-light" href="#"><i class="fas fa-handshake mr-1"></i>Truekear</a>
+                                <a class="nav-link text-light" href="{{('/publicar')}}"><i class="fas fa-handshake mr-1"></i>Truekear</a>
                             </li>
                         </ul>
 
