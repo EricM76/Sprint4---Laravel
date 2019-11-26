@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/css/all.css">
     <link rel="stylesheet" href="/css/solid.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/posteo.css">
 </head>
 <body>
     <div id="app ">
@@ -81,7 +82,7 @@
                             </li>
 
                             <li class="nav-item pl-2">
-                                <a class="nav-link text-light" href="{{('/publicar')}}"><i class="fas fa-handshake mr-1"></i>Truekear</a>
+                                <a class="nav-link text-light" href="{{('/publicar')}}"><i class="fas fa-bullhorn mr-1"></i>Postear</a>
                             </li>
                         </ul>
 

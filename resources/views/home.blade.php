@@ -50,5 +50,46 @@
         </a>
       </div>
     </section>
+    <section>
+            {{-- <div class="row d-flex justify-content-center">
+
+        @foreach ($productos as $producto)
+        <div class="card col-3 m-2" style="width: 18rem;">
+        <img src="/storage/images/products/{{$producto['image1']}}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{$producto['title']}}</h5>
+            <p class="card-text">{{$producto['description']}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+        @endforeach
+</div> --}}
+   <div class="row d-flex justify-content-center mt-4">
+@foreach ($productos as $producto)
+<div class="col-md-3 col-sm-6">
+
+        <div class="product-grid6">
+            <div class="product-image6">
+                <a href="">
+                    <img class="pic-1" src="/storage/images/products/{{$producto['image1']}}" >
+                </a>
+            </div>
+            <div class="product-content">
+            <h3 class="title"><a href=""></a>{{$producto['title']}}</h3>
+            <div class="price"> {{$producto['value']}} truekoins
+                </div>
+            </div>
+            <ul class="social">
+                <li><a href="" data-tip="Más información"><i class="fa fa-search"></i></a></li>
+                <li><a href="" data-tip="Agregar a Favoritos"><i class="fa fa-star"></i></a></li>
+                <li><a href="" data-tip="Contactar"><i class="fa fa-handshake"></i></a></li>
+            </ul>
+        </div>
+
+    </div>
+    @endforeach
+</div>
+    </section>
 </div>
 @endsection
