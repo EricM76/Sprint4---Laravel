@@ -5,7 +5,7 @@
 
 <div class="col-sm-12 col-md-12 col-lg-8">
     <div class="card ">
-        <div class="card-header text-white bg-primary">{{ __('Registro de Usuario') }}</div>
+        <div class="card-header text-white bg-primary">{{ __('Publicar un Trueke') }}</div>
 
         <div class="card-body">
             <form action="/publicar" method="POST" enctype="multipart/form-data" id="producto">

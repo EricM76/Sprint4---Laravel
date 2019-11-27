@@ -27,7 +27,6 @@
 </head>
 <body>
     <div id="app ">
-
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -63,7 +62,7 @@
                         </form>
                         <ul class="nav my-2">
                             <li class="nav-item pl-2">
-                                <a class="nav-link active text-light" href="#"><i class="fas fa-home mr-1"></i>Inicio</a>
+                            <a class="nav-link active text-light" href={{'/home'}}><i class="fas fa-home mr-1"></i>Inicio</a>
                             </li>
 
                             <li class="nav-item pl-2">
@@ -73,11 +72,12 @@
                             <li class="nav-item pl-2 dropdown">
                                 <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Categorias</a>
                                 <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                    @foreach ($categorias as $categoria)
+                                <a class="dropdown-item" href="#">{{$categoria['name']}}</a>
+                                    @endforeach
+
+                                {{-- <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a> --}}
                                 </div>
                             </li>
 
@@ -99,8 +99,8 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
-                                    <a class="dropdown-item" href="">
-                                       {{ __('Perfil') }}
+                                    <a class="dropdown-item" href="{{('/cuenta')}}">
+                                       {{ __('Mi Cuenta') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

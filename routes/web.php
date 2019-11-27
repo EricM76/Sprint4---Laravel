@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/publicar','PublicarController');
+
+Route::resource('/cuenta','CuentaController');
