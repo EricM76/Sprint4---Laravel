@@ -42,7 +42,7 @@ class CuentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -64,7 +64,7 @@ class CuentaController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -74,11 +74,69 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $datos, $id)
     {
-        //
+        $reg = User::find($id);
+        if ($datos['nombre']==null) {
+           $datos['nombre'] = $reg -> name;
+        }
+        if ($datos['apellido']==null) {
+           $datos['apellido'] = $reg -> surname;
+        }
+        if ($datos['fecha']==null) {
+           $datos['fecha'] = $reg -> birth;
+        }
+        if ($datos['genero']==null) {
+           $datos['genero'] = $reg -> gender;
+        }
+        if ($datos['domicilio']==null) {
+           $datos['domicilio'] = $reg -> home;
+        }
+        if ($datos['telefono']==null) {
+           $datos['telefono'] = $reg -> phone;
+        }
+        if ($datos['celular']==null) {
+           $datos['celular'] = $reg -> mobile;
+        }
+
+        $rules = [
+            "nombre" => 'required|string',
+            "apellido" => 'required|string',
+            "fecha" => 'required|date',
+        ];
+
+
+        $this->validate($datos,$rules);
+
+
+
+        $reg -> name = $datos['nombre'];
+        $reg -> surname = $datos['apellido'];
+        $reg -> birth = $datos['fecha'];
+        $reg -> gender = $datos['genero'];
+        $reg -> home = $datos['domicilio'];
+        $reg -> phone = $datos['telefono'];
+        $reg -> mobile = $datos['celular'];
+
+        $reg -> save();
+
+        return redirect()->back();
     }
 
+    public function update2(Request $datos, $id)
+    {
+       $this->validate($datos,$rules);
+
+        $reg = User::find($id);
+
+        $reg -> home = $datos['domicilio'];
+        $reg -> phone = $datos['telefono'];
+        $reg -> mobile = $datos['celular'];
+
+        $reg -> save();
+
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *

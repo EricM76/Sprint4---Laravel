@@ -22,3 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/publicar','PublicarController');
 
 Route::resource('/cuenta','CuentaController');
+
+Route::put('/cuenta','CuentaController@update');
+
+Route::put('/cuenta','CuentaController@update2');
+
