@@ -61,15 +61,24 @@
                                         <option value="sin especificar">sin especificar</option>
                                         </select>
                                     </div>
+
                                 </div>
                                 <div class="row d-flex justify-content-center mt-3">
-                                <a href="{{'/home'}}"><button class="btn btn-secondary m-2" type="button">Cancelar </button></a>
-                                    <button class="btn btn-primary m-2" type="submit">Aceptar</button>
+
+                                <a href="{{'/home'}}"><button class="btn btn-secondary m-2" type="button">Cerrar </button></a>
+                                <button class="btn btn-primary m-2" type="submit">Aceptar</button>
+                                @if (session('mensaje'))
+                                <alert class="alert alert-success m-1">{{session('mensaje')}}</alert>
+                                @endif
                                 </div>
+                                </div>
+                                <div class="row">
 
                             </div>
+
                         </div>
                     </form>
+
                     </div>
 
                     <div class="tab-pane fade" id="nav-contacto" role="tabpanel" aria-labelledby="nav-contacto-tab">

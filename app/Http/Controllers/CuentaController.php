@@ -120,23 +120,9 @@ class CuentaController extends Controller
 
         $reg -> save();
 
-        return redirect()->back();
+        return redirect()->back()->with('mensaje','Datos actualizados');
     }
 
-    public function update2(Request $datos, $id)
-    {
-       $this->validate($datos,$rules);
-
-        $reg = User::find($id);
-
-        $reg -> home = $datos['domicilio'];
-        $reg -> phone = $datos['telefono'];
-        $reg -> mobile = $datos['celular'];
-
-        $reg -> save();
-
-        return redirect()->back();
-    }
     /**
      * Remove the specified resource from storage.
      *
