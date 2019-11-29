@@ -120,7 +120,7 @@ class CuentaController extends Controller
 
         $reg -> save();
 
-        return redirect()->back()->with('mensaje','Datos actualizados');
+        return redirect()->back();
     }
 
     /**

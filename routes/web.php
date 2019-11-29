@@ -25,5 +25,4 @@ Route::resource('/cuenta','CuentaController');
 
 Route::put('/cuenta','CuentaController@update');
 
-Route::put('/cuenta','CuentaController@update2');
 
