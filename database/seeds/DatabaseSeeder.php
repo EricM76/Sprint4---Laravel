@@ -11,6 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(categorias::class);
+        $this->call(categorias::class);
     }
 }
