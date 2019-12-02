@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Category;
+use Illuminate\Support\Facades\Auth;
 
 
 class CuentaController extends Controller
@@ -51,9 +52,14 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($avatar)
     {
-        //
+        $id = Auth::user()->id;
+        $registro = User::find($id);
+        $registro -> profile = $avatar;
+        $registro -> save();
+        return redirect()->back();
+
     }
 
     /**
@@ -62,8 +68,13 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($avatar)
     {
+
+        dd($avatar);
+        $registro = User::find(Auth::user()->id);
+        // dd($registro);
+        $registro -> profile = $avatar;
 
     }
 

@@ -26,19 +26,30 @@
                         @csrf
                         @method('PUT')
                         <div class="row">
-                            <div class="col-4">
-                                <img class="img-fluid" src="storage/image/profiles/{{Auth::user()->profile}}" alt="">
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                @if (Auth::user()->profile==null)
+                                <div class="d-flex justify-content-center">
+                                <a class="mt-5" href="" data-toggle="modal" data-target="#avatar">agregar imagen de perfil</a>
+                                </div>
+                                @else
+                                <div class="text-center">
+                                <a class="mt-2" href="" data-toggle="modal" data-target="#avatar"><img class="img-fluid" src="storage/images/avatar/{{Auth::user()->profile}}" alt="">
+                               </a>
+                                </div>
+                                @endif
+
+
                             </div>
-                            <div class="col-8">
+                            <div class="col-sm-12 col-md-6 col-lg-8">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-lg-6">
                                         <label class="col-form-label-sm" for="">Nombre:</label>
                                         <input class="form-control" type="text" value="{{Auth::user()->name}}" name="nombre">
                                         @if ($errors->nombre)
                                         <p class="text-danger small">{{$errors->first('nombre')}}</p>
                                         @endif
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-lg-6">
                                         <label class="col-form-label-sm" for="">Apellido:</label>
                                         <input class="form-control" type="text" value="{{Auth::user()->surname}}" name="apellido">
                                         @if ($errors->apellido)
@@ -92,11 +103,11 @@
                                         <label class="col-form-label-sm" for="">Domicilio:</label>
                                         <input class="form-control" type="text" value="{{Auth::user()->home}}" name="domicilio">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="col-form-label-sm" for="">Telefono:</label>
                                         <input class="form-control" type="text" value="{{Auth::user()->phone}}" name="telefono">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <label class="col-form-label-sm" for="">Celular:</label>
                                         <input class="form-control" type="text" value="{{Auth::user()->mobile}}" name="celular">
                                     </div>
@@ -125,5 +136,5 @@
         </div>
     </div>
 </div>
-
+@include('layouts.profile')
 @endsection

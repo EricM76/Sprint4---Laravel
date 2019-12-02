@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/publicar','PublicarController');
 
+Route::put('/cuenta/{avatar}', 'CuentaController@show');
+
 Route::resource('/cuenta','CuentaController');
 
 Route::put('/cuenta','CuentaController@update');
@@ -28,3 +30,5 @@ Route::put('/cuenta','CuentaController@update');
 Route::post('/home','HomeController@busqueda');
 
 Route::get('/busqueda','busquedaController@index');
+
+
