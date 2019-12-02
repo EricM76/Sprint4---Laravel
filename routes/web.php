@@ -26,3 +26,5 @@ Route::resource('/cuenta','CuentaController');
 Route::put('/cuenta','CuentaController@update');
 
 Route::post('/home','HomeController@busqueda');
+
+Route::get('/busqueda','busquedaController@index');

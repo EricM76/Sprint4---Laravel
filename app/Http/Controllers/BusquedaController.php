@@ -11,9 +11,11 @@ class BusquedaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $busca)
     {
-        //
+      $categorias = Category::all();
+      $productos = Product::where('title','LIKE',"%{$busca->get('busca')}%")->get();
+      return view('busqueda', compact('categorias','productos'));
     }
 
     /**

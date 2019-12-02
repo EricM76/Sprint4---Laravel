@@ -15,5 +15,20 @@
               <th scope="col">valor</th>
             </tr>
           </thead>
-        
-    </section>
+          <tbody>
+              @foreach ($productos as $producto)
+            <td>
+              <a href="">
+                  <img class="pic-1" src="/storage/images/products/{{$producto['image1']}}" width="150px">
+              </a>
+              </td>
+              <td>{{$producto['title']}}></td>
+              <td>{{$producto['description']}}</td>
+              <td>{{$producto['value']}}</td>
+            </tr>
+              @endforeach
+          </tbody>
+         </table>
+         </div>
+      </section>
+    @endsection
