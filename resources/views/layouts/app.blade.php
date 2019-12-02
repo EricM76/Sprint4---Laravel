@@ -54,10 +54,11 @@
                                 </li>
                             @endif
                         @else
-                        <form class="form-horizontal" action="">
+                        <form class="form-horizontal" action="/home" method="post">
+                          {{csrf_field()}}
                             <div class="form-group mr-3">
-                            <label class="text-white" for="">Buscar</label>
-                            <input class="form-control-sm" type="text">
+                            <input class="form-control-sm" type="text" name="busca">
+                            <button class="btn-sm btn-danger" type="submit" name="button">Buscar</button>
                             </div>
                         </form>
                         <ul class="nav my-2">

@@ -30,4 +30,10 @@ class HomeController extends Controller
 
         return view('home', compact('productos','categorias'));
     }
+    public function busqueda(Request $busca){
+      // dd($busca['busca']);
+      $categorias = Category::all();
+      $productos = Product::where('title','LIKE',"%{$busca->get('busca')}%")->get();
+      return view('busqueda', compact('categorias','productos'));
+   }
 }
