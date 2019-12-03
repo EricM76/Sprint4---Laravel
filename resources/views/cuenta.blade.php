@@ -33,7 +33,7 @@
                                 </div>
                                 @else
                                 <div class="text-center">
-                                <a class="mt-2" href="" data-toggle="modal" data-target="#avatar"><img class="img-fluid" src="storage/images/avatar/{{Auth::user()->profile}}" alt="">
+                                <a class="mt-2" href="" data-toggle="modal" data-target="#avatar"><img class="img-fluid" src="public/storage/images/avatar/{{Auth::user()->profile}}" alt="">
                                </a>
                                 </div>
                                 @endif

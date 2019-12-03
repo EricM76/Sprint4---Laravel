@@ -13,7 +13,7 @@
         <!-- genera la variable con el id recibido -->
 
         <!-- abre la pagina cambiarAvatar pasando el nombre del archivo para el campo 'avatar' y el id correspondiente por $_GET-->
-            <a href="/cuenta/perfilDesconocido.png"><img src="storage/images/avatar/perfilDesconocido.png" style="width:80px"></a>
+            <a href="/cuenta/perfilDesconocido.png"><img src="/storage/images/avatar/perfilDesconocido.png" style="width:80px"></a>
             <a href="/cuenta/perfilHombre.png"><img src="storage/images/avatar/perfilHombre.png" style="width:80px"></a>
             <a href="/cuenta/perfilMujer.png"><img src="storage/images/avatar/perfilMujer.png" style="width:80px"></a>
             <a href="/cuenta/avatar01.png"><img src="storage/images/avatar/avatar01.png" style="width:80px"></a>
@@ -43,14 +43,16 @@
 
           <div class="d-flex mt-5">
             <div class="d-flex justify-content-center col-12">
-              <form class="form" action="cambiarAvatar.php" method="POST" enctype="multipart/form-data">
+              <form class="form" action="/cuenta" method="POST" enctype="multipart/form-data">
+              {{ csrf_field() }}
+              {{-- @method("PUT") --}}
                 <h5 class="mt-3">O sube tu propia imagen</h5>
                 <div class="input-group mt-3">
                   <div class="custom-file">
                     <input id="inputGroupFile01" type="file" class="custom-file-input" name="imagen">
                     <label class="custom-file-label" for="inputGroupFile01">elegir foto de perfil</label>
                   </div>
-                  <button class="btn btn-primary ml-2" value="" type="submit" name="id">Aceptar</button>
+                  <button class="btn btn-primary ml-2" type="submit">Aceptar</button>
                 </div>
               </form>
             </div>

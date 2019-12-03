@@ -41,9 +41,17 @@ class CuentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $img)
     {
 
+        $id = Auth::user()->id;
+        $registro = User::find($id);
+        $ruta = $img -> file('imagen') -> store('/public/images/avatar');
+        $img = basename($ruta);
+        $registro -> profile = $img;
+        $registro -> save();
+
+        return redirect()->back();
     }
 
     /**
@@ -54,6 +62,7 @@ class CuentaController extends Controller
      */
     public function show($avatar)
     {
+        // dd($avatar);
         $id = Auth::user()->id;
         $registro = User::find($id);
         $registro -> profile = $avatar;
@@ -68,13 +77,9 @@ class CuentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($avatar)
+    public function edit(Request $id)
     {
 
-        dd($avatar);
-        $registro = User::find(Auth::user()->id);
-        // dd($registro);
-        $registro -> profile = $avatar;
 
     }
 
@@ -87,6 +92,7 @@ class CuentaController extends Controller
      */
     public function update(Request $datos, $id)
     {
+        // dd($datos);
         $reg = User::find($id);
         if ($datos['nombre']==null) {
            $datos['nombre'] = $reg -> name;
@@ -128,10 +134,11 @@ class CuentaController extends Controller
         $reg -> home = $datos['domicilio'];
         $reg -> phone = $datos['telefono'];
         $reg -> mobile = $datos['celular'];
+        $reg -> profile = $reg -> profile;
 
         $reg -> save();
 
-        return redirect()->back();
+        return redirect('/home');
     }
 
     /**
