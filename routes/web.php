@@ -31,6 +31,6 @@ Route::put('/cuenta/{avatar}', 'CuentaController@show');
 
 Route::post('/home','HomeController@busqueda');
 
-Route::get('/detallePro/{id}','HomeController@detalle');
+Route::get('/detalleproducto/{id}','HomeController@detalle');
 
 Route::get('/busqueda','busquedaController@index');

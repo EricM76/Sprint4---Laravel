@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class BusquedaController extends Controller
 {
@@ -47,7 +48,8 @@ class BusquedaController extends Controller
      */
     public function show($id)
     {
-        //
+        $categorias = Category::all();
+        return view('home2',compact('categorias'));
     }
 
     /**
