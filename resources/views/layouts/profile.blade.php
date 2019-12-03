@@ -13,7 +13,7 @@
         <!-- genera la variable con el id recibido -->
 
         <!-- abre la pagina cambiarAvatar pasando el nombre del archivo para el campo 'avatar' y el id correspondiente por $_GET-->
-            <a href="/cuenta/perfilDesconocido.png"><img src="/storage/images/avatar/perfilDesconocido.png" style="width:80px"></a>
+            <a href="/cuenta/perfilDesconocido.png"><img src="storage/images/avatar/perfilDesconocido.png" style="width:80px"></a>
             <a href="/cuenta/perfilHombre.png"><img src="storage/images/avatar/perfilHombre.png" style="width:80px"></a>
             <a href="/cuenta/perfilMujer.png"><img src="storage/images/avatar/perfilMujer.png" style="width:80px"></a>
             <a href="/cuenta/avatar01.png"><img src="storage/images/avatar/avatar01.png" style="width:80px"></a>

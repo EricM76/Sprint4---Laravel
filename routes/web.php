@@ -21,11 +21,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/publicar','PublicarController');
 
-Route::put('/cuenta/{avatar}', 'CuentaController@show');
+Route::post('/cuenta','CuentaController@edit');
 
 Route::resource('/cuenta','CuentaController');
 
 Route::put('/cuenta','CuentaController@update');
+
+Route::put('/cuenta/{avatar}', 'CuentaController@show');
 
 Route::post('/home','HomeController@busqueda');
 
