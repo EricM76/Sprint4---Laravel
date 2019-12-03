@@ -92,7 +92,7 @@
                             <li class="nav-item dropdown m-2">
 
 
-                                <a id="navbarDropdown" class="nav-link text-light dropdown-toggle m-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="display:inline"><img src="images/unknown.png" alt="" width="50px">
+                                <a id="navbarDropdown" class="nav-link text-light dropdown-toggle m-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="display:inline"><img src="storage/images/avatar/{{Auth::user()->profile}}" alt="" width="50px">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

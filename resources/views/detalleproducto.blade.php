@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-  <link rel="stylesheet" href="css/posteo2.css">
+  <!-- <link rel="stylesheet" href="css/posteo2.css"> -->
   <div class="container">
-    <div class="card mt-1 pt-4">
+    <div class="card2 mt-1 pt-4">
       <div class="container-fluid">
         <div class="wrapper row">
           <div class="preview col-sm-12 col-md-12 col-lg-6">
