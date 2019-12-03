@@ -31,7 +31,7 @@
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img class="img-fluid" src="images/logo-sm.png" alt="" width="100px">
+                    <img class="img-fluid" src="/images/logo-sm.png" alt="" width="100px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -92,7 +92,7 @@
                             <li class="nav-item dropdown m-2">
 
 
-                                <a id="navbarDropdown" class="nav-link text-light dropdown-toggle m-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="display:inline"><img src="storage/images/avatar/{{Auth::user()->profile}}" alt="" width="50px">
+                                <a id="navbarDropdown" class="nav-link text-light dropdown-toggle m-1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="display:inline"><img src="/storage/images/avatar/{{Auth::user()->profile}}" alt="" width="50px">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

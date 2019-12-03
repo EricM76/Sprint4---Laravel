@@ -48,8 +48,7 @@ class BusquedaController extends Controller
      */
     public function show($id)
     {
-        $categorias = Category::all();
-        return view('home2',compact('categorias'));
+
     }
 
     /**

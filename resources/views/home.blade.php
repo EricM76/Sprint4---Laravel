@@ -81,7 +81,7 @@
                 </div>
             </div>
             <ul class="social">
-                <li><a href="" data-tip="Más información"><i class="fa fa-search"></i></a></li>
+                <li><a href="/detalleproducto/{{$producto->id}}" data-tip="Más información"><i class="fa fa-search"></i></a></li>
                 <li><a href="" data-tip="Agregar a Favoritos"><i class="fa fa-star"></i></a></li>
                 <li><a href="" data-tip="Contactar"><i class="fa fa-handshake"></i></a></li>
             </ul>
