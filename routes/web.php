@@ -29,6 +29,6 @@ Route::put('/cuenta','CuentaController@update');
 
 Route::post('/home','HomeController@busqueda');
 
+Route::get('/detallePro/{id}','HomeController@detalle');
+
 Route::get('/busqueda','busquedaController@index');
-
-

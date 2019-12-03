@@ -71,7 +71,7 @@
 
         <div class="product-grid6">
             <div class="product-image6">
-                <a href="">
+                <a href="/detallePro/{{$producto->id}}">
                     <img class="pic-1" src="/storage/images/products/{{$producto['image1']}}" >
                 </a>
             </div>

@@ -27,9 +27,16 @@ class HomeController extends Controller
     {
         $categorias = Category::all();
         $productos = Product::all();
-
         return view('home', compact('productos','categorias'));
     }
+
+    public function detalle($id){
+      $categorias = Category::all();
+      $productos = Product::find($id);
+      $vac= compact('productos','categorias');
+      return view('detalleproducto',$vac);
+    }
+
     public function busqueda(Request $busca){
       // dd($busca['busca']);
       $categorias = Category::all();

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/css/solid.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/posteo.css">
+    <link rel="stylesheet" href="/css/posteo2.css">
 </head>
 <body>
     <div id="app ">
