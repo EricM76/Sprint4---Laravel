@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
 
 class BusquedaController extends Controller
 {
@@ -18,7 +19,12 @@ class BusquedaController extends Controller
       $productos = Product::where('title','LIKE',"%{$busca->get('busca')}%")->get();
       return view('busqueda', compact('categorias','productos'));
     }
-
+    public function indexCat($id)
+    {
+      $categorias = Category::all();
+      $productos = Product::where('category_id','LIKE', $id )->get();
+      return view('detalleCategoria',compact('productos','categorias'));
+    }
     /**
      * Show the form for creating a new resource.
      *

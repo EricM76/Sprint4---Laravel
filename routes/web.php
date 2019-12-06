@@ -34,3 +34,5 @@ Route::post('/home','HomeController@busqueda');
 Route::get('/detalleproducto/{id}','HomeController@detalle');
 
 Route::get('/busqueda','busquedaController@index');
+
+Route::get('/detalleCategoria/{id}','busquedaController@indexCat');

@@ -16,6 +16,7 @@
             </tr>
           </thead>
           <tbody>
+
               @foreach ($productos as $producto)
             <td>
               <a href="/detalleproducto/{{$producto->id}}">
@@ -31,4 +32,6 @@
          </table>
          </div>
       </section>
-    @endsection
+
+
+@endsection

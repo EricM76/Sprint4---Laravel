@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="/css/posteo2.css">
 </head>
 <body>
+  {{-- @dd($categorias); --}}
     <div id="app ">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
@@ -72,10 +73,11 @@
                             </li>
 
                             <li class="nav-item pl-2 dropdown">
-                                <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Categorias</a>
+                                <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Categorias</a>
                                 <div class="dropdown-menu">
+
                                     @foreach ($categorias as $categoria)
-                                <a class="dropdown-item" href="#">{{$categoria['name']}}</a>
+                                <a class="dropdown-item" href="/detalleCategoria/{{$categoria['id']}}">{{$categoria->name}}</a>
                                     @endforeach
 
                                 {{-- <div class="dropdown-divider"></div>
