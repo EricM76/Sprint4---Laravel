@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="/css/posteo2.css">
 </head>
 <body>
-  {{-- @dd($categorias); --}}
     <div id="app ">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
@@ -100,7 +99,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
                                     </a>
                                     <a class="dropdown-item" href="{{('/cuenta')}}">

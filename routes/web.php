@@ -36,3 +36,7 @@ Route::get('/detalleproducto/{id}','HomeController@detalle');
 Route::get('/busqueda','busquedaController@index');
 
 Route::get('/detalleCategoria/{id}','BusquedaController@indexCat');
+
+Route::get('/admin.index', 'AdminController@index');
+
+Route::get('/admin.create', 'AdminController@create');

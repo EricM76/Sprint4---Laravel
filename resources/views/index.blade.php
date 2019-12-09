@@ -89,7 +89,17 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                    <a href="{{ url('/home') }}"><button class="btn btn-outline-primary">Sitio Web</button></a>
+                    <a href="{{ url('/home') }}"><button class="btn btn-outline-primary">Volver al Sitio</button></a>
+
+                    <a  href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><button class="btn btn-outline-primary">{{ __('Administrador') }} </button>
+
+                    </a>
+                    <form id="logout-form" action="#" method="GET" style="display: none;">
+                        @csrf
+                    </form>
+
                     @else
 
                         <a href="{{ route('login') }}"><button class="btn btn-outline-primary">Iniciar Sesion</button></a>
@@ -107,6 +117,10 @@
             <a class="m-1" href="" data-toggle="modal" data-target="#condiciones">Condiciones</a>
             <a class="m-1" href=""data-toggle="modal" data-target="#datos">Politica de datos</a>
             <a class="m-1" href=""data-toggle="modal" data-target="#cookies">Policita de cookies</a>
+        </div>
+        <div class="container text-center">
+            <a class="m-1 text-danger" href="{{'/admin.index'}}">Acceso administradores</a>
+
         </div>
         <div class="modal fade" id="questions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
