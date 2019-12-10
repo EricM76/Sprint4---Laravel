@@ -126,6 +126,7 @@
         <main class="">
             @yield('content')
         </main>
-    </div>
+    </div>7
+    @yield('js')
 </body>
 </html>

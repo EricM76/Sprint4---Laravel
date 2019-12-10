@@ -20,8 +20,8 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-8">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
+                               <p class="invalid-feedback" id="errorNombr"></p>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -34,8 +34,8 @@
                             <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Apellido') }}</label>
 
                             <div class="col-md-8">
-                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
-
+                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}"  autocomplete="surname" autofocus>
+                                 <p class="invalid-feedback" id="errorAp"></p>
                                 @error('surname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,7 +48,8 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
 
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+                                <p class="invalid-feedback" id="errorEmail"></p>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -62,7 +63,8 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-8">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                                 <p class="invalid-feedback" id="errorContra"></p>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -76,7 +78,8 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
 
                             <div class="col-md-8">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                 <p class="invalid-feedback" id="errorConCon"></p>
                             </div>
                         </div>
 
@@ -84,7 +87,8 @@
                             <label for="birth" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
 
                             <div class="col-md-4">
-                                <input id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}" required autocomplete="birth" autofocus>
+                                <input id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}"  autocomplete="birth" autofocus>
+                                  <p class="invalid-feedback" id="errorDate"></p>
 
                                 @error('birth')
                                     <span class="invalid-feedback" role="alert">
@@ -129,4 +133,10 @@
         </div>
 
 </div>
+@endsection
+
+@section('js')
+  <script src="js/register.js" type="application/javascript">
+
+  </script>
 @endsection
