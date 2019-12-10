@@ -52,9 +52,16 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+
+                                <button id="btn" type="submit" class="btn btn-primary">
                                     {{ __('Iniciar Sesión') }}
                                 </button>
+                                @if ($_GET)
+                                <script>
+                                    var btn = document.getElementById('btn');
+                                    btn.setAttribute('class','btn btn-secondary');
+                                </script>
+                                @endif
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -68,4 +75,9 @@
             </div>
         </div>
     </div>
+    <script>
+    window.onload = function(){
+
+    }
+    </script>
 @endsection

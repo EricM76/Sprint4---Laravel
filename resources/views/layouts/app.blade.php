@@ -27,6 +27,13 @@
     <link rel="stylesheet" href="/css/posteo2.css">
 </head>
 <body>
+    @if ($_GET)
+        <style>
+        .menu{
+            background-color: dimgray;
+        }
+        </style>
+    @endif
     <div id="app ">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">

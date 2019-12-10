@@ -83,7 +83,7 @@
                         <div class="form-group row">
                             <label for="birth" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
 
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <input id="birth" type="date" class="form-control @error('birth') is-invalid @enderror" name="birth" value="{{ old('birth') }}" required autocomplete="birth" autofocus>
 
                                 @error('birth')
@@ -92,13 +92,35 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-4">
+                                <input id="code" type="text" class="form-control @error('password') is-invalid @enderror" name="code" required value="codigo validador" hidden>
+
+                                @error('code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            @if ($_GET)
+                                <script>
+                                var code = document.getElementById('code');
+                                code.removeAttribute('hidden','false');
+                                </script>
+                            @endif
+
+
+
                         </div>
 
                         <div class="form-group row mb-0 d-flex justify-content-end">
                             <div class="col-md-5 offset-md-4">
-                                <button type="submit" class="btn btn-outline-primary">
+                                <button id="btn" type="submit" class="btn btn-outline-primary">
                                     {{ __('Registrarse') }}
                                 </button>
+                                <script>
+                                    var btn = document.getElementById('btn');
+                                    btn.setAttribute('class','btn btn-secondary');
+                                </script>
                             </div>
                         </div>
                     </form>

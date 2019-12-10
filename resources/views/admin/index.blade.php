@@ -17,7 +17,7 @@
                 src: url(../fonts/Nunito-Regular.ttf);
             }
             html, body {
-                background-color: DarkSlateGray;
+                background-color: dimgray;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -93,19 +93,25 @@
                     <a href="{{ '/admin.index'}}"><button class="btn btn-outline-light">Administrador</button></a>
                     @else
 
-                        <a href="{{ route('login') }}"><button class="btn btn-outline-light">Iniciar Sesion</button></a>
-
-                        <a class="btn btn-outline-light" href="{{ route('login') }}"
+                        <a class="" href="{{ route('login') }}"
                             onclick="event.preventDefault();
-                            document.getElementById('login-form').submit();">   {{ __('Iniciar Sesion') }}
+                            document.getElementById('login-form').submit();">   <button class="btn btn-outline-light">{{ __('Iniciar Sesion') }}</button>
                         </a>
-                        <form id="login-form" action="{{ route('login') }}" method="POST" style="display: none;">
+                        <form id="login-form" action="{{ route('login') }}" method="GET" style="display: none;">
                             @csrf
-                            {{-- <input type="text" name="admin" value="yes"> --}}
+                            <input type="text" name="admin" value="yes">
                         </form>
 
                         @if (Route::has('register'))
-                        <a href="{{ route('register') }}"><button class="btn btn-outline-light">Registrarse</button></a>
+
+                        <a class="" href="{{ route('register') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('register-form').submit();">   <button class="btn btn-outline-light">{{ __('Registrarse') }}</button>
+                        </a>
+                        <form id="register-form" action="{{ route('register') }}" method="GET" style="display: none;">
+                            @csrf
+                            <input type="text" name="admin" value="yes">
+                        </form>
                         @endif
                     @endauth
                 </div>
