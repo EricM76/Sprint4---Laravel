@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/homeAdmin', function(){
+    return view('/homeAdmin');
+});
+
 Route::resource('/publicar','PublicarController');
 
 Route::post('/cuenta','CuentaController@edit');

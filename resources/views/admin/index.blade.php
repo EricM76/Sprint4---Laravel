@@ -93,14 +93,8 @@
                     <a href="{{ '/admin.index'}}"><button class="btn btn-outline-light">Administrador</button></a>
                     @else
 
-                        <a class="" href="{{ route('login') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('login-form').submit();">   <button class="btn btn-outline-light">{{ __('Iniciar Sesion') }}</button>
-                        </a>
-                        <form id="login-form" action="{{ route('login') }}" method="GET" style="display: none;">
-                            @csrf
-                            <input type="text" name="admin" value="yes">
-                        </form>
+                    <a href="{{ route('loginAdmin') }}"><button class="btn btn-outline-light">Iniciar Sesion</button></a>
+
 
                         @if (Route::has('register'))
 
