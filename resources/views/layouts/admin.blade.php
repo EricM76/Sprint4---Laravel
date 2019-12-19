@@ -61,37 +61,8 @@
                                 </li>
                             @endif -->
                         @else
-                        <form class="form-horizontal" action="/home" method="post">
-                          {{csrf_field()}}
-                            <div class="form-group mr-3">
-                            <input class="form-control-sm" type="text" name="busca">
-                            <button class="btn-sm btn-danger" type="submit" name="button">Buscar</button>
-                            </div>
-                        </form>
-                        <ul class="nav my-2">
-                            <li class="nav-item pl-2">
-                            <a class="nav-link active text-light" href={{'/home'}}><i class="fas fa-home mr-1"></i>Inicio</a>
-                            </li>
-
-                            <li class="nav-item pl-2">
-                                <a class="nav-link text-light" href="#"><i class="fas fa-heart mr-1"></i>Favoritos</a>
-                            </li>
-
-                            <li class="nav-item pl-2 dropdown">
-                                <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Categorias</a>
-                                <div class="dropdown-menu">
 
 
-
-                                {{-- <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a> --}}
-                                </div>
-                            </li>
-
-                            <li class="nav-item pl-2">
-                                <a class="nav-link text-light" href="{{('/publicar')}}"><i class="fas fa-bullhorn mr-1"></i>Postear</a>
-                            </li>
-                        </ul>
 
 
                             <li class="nav-item dropdown m-2">

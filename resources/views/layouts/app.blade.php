@@ -37,7 +37,7 @@
     <div id="app ">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <img class="img-fluid" src="/images/logo-sm.png" alt="" width="100px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -53,14 +53,14 @@
                     <ul class="navbar-nav ml-auto mr-2 align-items-end">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link text-light" href="{{ route('login') }}"><button type="button" class="btn btn-outline-light">{{ __('Inicar Sesion') }}</button></a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link text-light" href="{{ route('register') }}"><button type="button" class="btn btn-outline-light">{{ __('Registrase') }}</button></a>
                                 </li>
-                            @endif
+                            @endif -->
                         @else
                         <form class="form-horizontal" action="/home" method="post">
                           {{csrf_field()}}

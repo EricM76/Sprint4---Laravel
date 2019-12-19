@@ -89,7 +89,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                    <a href="{{ url('/home') }}"><button class="btn btn-outline-light">Volver al Sitio</button></a>
+                    <a href="{{ url('/homeAdmin') }}"><button class="btn btn-outline-light">Volver al Sitio</button></a>
                     <a href="{{ '/admin.index'}}"><button class="btn btn-outline-light">Administrador</button></a>
                     @else
 
@@ -107,6 +107,8 @@
                             <input type="text" name="admin" value="yes">
                         </form>
                         @endif
+
+                    <a href="{{ url('/') }}"><button class="btn btn-outline-light">Inicio</button></a>
                     @endauth
                 </div>
             @endif
