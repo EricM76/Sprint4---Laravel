@@ -119,7 +119,7 @@
             <a class="m-1" href=""data-toggle="modal" data-target="#cookies">Policita de cookies</a>
         </div>
         <div class="container text-center">
-            <a class="m-1 text-danger" href="{{'/admin.index'}}">Acceso administradores</a>
+            <a class="m-1 text-danger" href="{{'/admin'}}">Acceso administradores</a>
 
         </div>
         <div class="modal fade" id="questions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

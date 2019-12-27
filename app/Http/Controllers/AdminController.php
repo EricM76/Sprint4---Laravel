@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Administrator;
+use App\Code;
+use App\User;
+use App\Product;
 
 class AdminController extends Controller
 {
@@ -13,7 +19,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('/admin.index');
+
+        return view('/admin.index',compact('ususarios'));
     }
 
     /**
@@ -21,9 +28,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function form()
     {
-        return view('/admin.create');
+        return view('/admin/register');
     }
 
     /**
@@ -32,9 +39,32 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $datos)
     {
-        //
+       $code = Code::find(1);
+       if (password_verify ( $datos['code'] , $code['code'] )) {
+        $rules = [
+            "fullName" => 'required|string',
+            "userName" => 'required|string',
+            "email" => 'required|string',
+            "password" => 'required|string',
+            "birth" => 'required|string',
+        ];
+
+        $this->validate($datos,$rules);
+
+        $admin = new Administrator();
+
+        $admin -> fullName = $datos['fullName'];
+        $admin -> userName = $datos['userName'];
+        $admin -> email = $datos['email'];
+        $admin -> password = bcrypt($datos['password']);
+        $admin -> birth = $datos['birth'];
+
+        $admin -> save();
+       }else{
+           dd('el código es incorrecto');
+       }
     }
 
     /**
@@ -43,9 +73,24 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $datos)
     {
-        //
+
+       $reg = Administrator::where('userName',$datos['userName'])->first();
+
+      if ($reg != null) {
+        if (Hash::check($datos['password'], $reg['password'])) {
+            session_start();
+            $_SESSION['userAdmin'] = $reg["userName"];
+            $userAdmin = $_SESSION['userAdmin'];
+            $idAdmin = $reg['id'];
+            return view('/homeAdmin',compact('userAdmin','idAdmin'));
+        }else{
+            dd('no coicide');
+        };
+      }else{
+          dd('el usuario no se encuentra registrado');
+        }
     }
 
     /**
@@ -79,6 +124,28 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        session_start();
+        session_destroy();
+        return redirect('/');
+    }
+
+    public function users(){
+        session_start();
+        $usuarios = User::all();
+        $userAdmin = $_SESSION['userAdmin'];
+        $reg = Administrator::where('userName',$userAdmin)->first();
+        $idAdmin = $reg['id'];
+            return view('/admin.users',compact('userAdmin','idAdmin','usuarios'));
+
+    }
+    public function posteos($id){
+        session_start();
+        $usuario = User::find($id);
+        $productos = Product::where('user_id',$usuario->id)->get();
+        $userAdmin = $_SESSION['userAdmin'];
+        $reg = Administrator::where('userName',$userAdmin)->first();
+        $idAdmin = $reg['id'];
+            return view('/admin.posteos',compact('userAdmin','idAdmin','productos','usuario'));
+
     }
 }

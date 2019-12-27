@@ -96,7 +96,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <input id="code" type="text" class="form-control @error('password') is-invalid @enderror" name="code" required value="codigo validador" hidden>
 
                                 @error('code')
@@ -110,7 +110,7 @@
                                 var code = document.getElementById('code');
                                 code.removeAttribute('hidden','false');
                                 </script>
-                            @endif
+                            @endif -->
 
 
 

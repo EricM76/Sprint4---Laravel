@@ -15,9 +15,17 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/admin.index', function () {
-    return view('admin.index');
-});
+Route::get('/admin', 'AdminController@index');
+Route::post('/admin', 'AdminController@show');
+
+Route::get('/adminReg','AdminController@form');
+Route::post('/adminReg','AdminController@store');
+
+Route::get('/cerrarAdmin/{id}','AdminController@destroy');
+
+Route::get('/admin.users','AdminController@users');
+
+Route::get('/admin.posteos/{id}','AdminController@posteos');
 
 Auth::routes();
 
@@ -45,6 +53,5 @@ Route::get('/busqueda','busquedaController@index');
 
 Route::get('/detalleCategoria/{id}','BusquedaController@indexCat');
 
-Route::get('/admin.index', 'AdminController@index');
-
-Route::get('/admin.create', 'AdminController@create');
+Route::get('/admin.codes','CodesController@index');
+Route::post('/admin.codes','CodesController@store');

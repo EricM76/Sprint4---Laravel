@@ -1,125 +1,92 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/app.css">
-        <script src="/js/app.js" charset="utf-8"></script>
-       <title>SocialTruek</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/app.css">
 
-        <!-- Fonts -->
-        <!-- <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"> -->
 
-        <!-- Styles -->
-        <style>
-            @font-face{
-                font-family: Nunito;
-                src: url(../fonts/Nunito-Regular.ttf);
-            }
-            html, body {
-                background-color: dimgray;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 80vh;
-                margin: 0;
-            }
+    <title>Document</title>
+</head>
+<body>
+<div class="container-fluid d-flex justify-content-center mt-5">
+        <div class="col-sm-12 col-md-10 col-lg-6">
+            <div class="card">
+                <div class="menu card-header text-white bg-secondary" >{{ __('Login Administradores') }}</div>
 
-            .full-height {
-                height: 20vh;
-            }
+                <div class="card-body">
+                    <form method="POST" action="{{ '/admin' }}">
+                        @csrf
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                        <div class="form-group row">
+                            <label for="userName" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
 
-            .position-ref {
-                position: relative;
-            }
+                            <div class="col-md-6">
+                                <input id="userName" type="userName" class="form-control @error('userName') is-invalid @enderror" name="userName" value="{{ old('userName') }}" required autocomplete="userName" autofocus>
 
-            .top-right {
-                position: relative;
-                right: 0px;
-                top: 18px;
-            }
+                                @error('userName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-            .content {
-                margin-top: 15vh;
-                text-align: center;
-            }
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
-            .title {
-                font-size: 84px;
-            }
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <a class="btn btn-link" href="#">
+                                {{ __('Olvidó su contraseña?') }}
+                                </a>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-            .links > a {
-                color: #636b6f;
-                padding: 1vw;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-            .btn{
-                padding: 5px 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="content">
-            <div class=" flex-center">
-                <div class="col-sm-12">
-                    <img class="img-fluid" src="images/logo.png" alt="" width="350vw">
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Recuerdame') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+
+                                <button id="btn" type="submit" class="btn btn-success">
+                                    {{ __('Iniciar Sesión') }}
+                                </button>
+
+                                <a class="btn btn-link" href="{{'/adminReg'}}">
+                                {{ __('No está registrado?') }}
+                                </a>
+
+
+                            </div>
+
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                    <a href="{{ url('/homeAdmin') }}"><button class="btn btn-outline-light">Volver al Sitio</button></a>
-                    <a href="{{ '/admin.index'}}"><button class="btn btn-outline-light">Administrador</button></a>
-                    @else
+    </div>
+    <script>
+    window.onload = function(){
 
-                    <a href="{{ route('loginAdmin') }}"><button class="btn btn-outline-light">Iniciar Sesion</button></a>
-
-
-                        @if (Route::has('register'))
-
-                        <a class="" href="{{ route('register') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('register-form').submit();">   <button class="btn btn-outline-light">{{ __('Registrarse') }}</button>
-                        </a>
-                        <form id="register-form" action="{{ route('register') }}" method="GET" style="display: none;">
-                            @csrf
-                            <input type="text" name="admin" value="yes">
-                        </form>
-                        @endif
-
-                    <a href="{{ url('/') }}"><button class="btn btn-outline-light">Inicio</button></a>
-                    @endauth
-                </div>
-            @endif
-        </div>
-
-        <!-- <div class="container text-center">
-            <a class="m-1" href="" data-toggle="modal" data-target="#questions">Preguntas frecuentes</a>
-            <a class="m-1" href="" data-toggle="modal" data-target="#condiciones">Condiciones</a>
-            <a class="m-1" href=""data-toggle="modal" data-target="#datos">Politica de datos</a>
-            <a class="m-1" href=""data-toggle="modal" data-target="#cookies">Policita de cookies</a>
-        </div> -->
-
-    </body>
+    }
+    </script>
+</body>
 </html>
+

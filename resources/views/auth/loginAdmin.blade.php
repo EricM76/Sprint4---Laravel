@@ -1,22 +1,31 @@
-@extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/app.css">
 
-@section('content')
-    <div class="container-fluid d-flex justify-content-center mt-5">
+
+    <title>Document</title>
+</head>
+<body>
+<div class="container-fluid d-flex justify-content-center mt-5">
         <div class="col-sm-12 col-md-10 col-lg-6">
             <div class="card">
-                <div class="menu card-header text-white">{{ __('Login Administradores') }}</div>
+                <div class="menu card-header text-white bg-secondary" >{{ __('Login Administradores') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('loginAdmin') }}">
+                    <form method="POST" action="{{ '/loginAdmin' }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="userName" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="useName" type="userName" class="form-control @error('userName') is-invalid @enderror" name="userName" value="{{ old('userName') }}" required autocomplete="userName" autofocus>
 
-                                @error('email')
+                                @error('userName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -74,4 +83,6 @@
 
     }
     </script>
-@endsection
+</body>
+</html>
+
