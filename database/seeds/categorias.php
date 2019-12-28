@@ -36,5 +36,11 @@ class categorias extends Seeder
         DB::table('categories')->insert([
             'name' => "libros"
         ]);
+        DB::table('categories')->insert([
+            'name' => "rodados"
+        ]);
+        DB::table('categories')->insert([
+            'name' => "celulares"
+        ]);
     }
 }

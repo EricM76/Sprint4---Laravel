@@ -9,6 +9,7 @@ use App\Administrator;
 use App\Code;
 use App\User;
 use App\Product;
+use App\Category;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        return view('/admin.index',compact('ususarios'));
+        return view('/admin.index');
     }
 
     /**
@@ -84,7 +85,8 @@ class AdminController extends Controller
             $_SESSION['userAdmin'] = $reg["userName"];
             $userAdmin = $_SESSION['userAdmin'];
             $idAdmin = $reg['id'];
-            return view('/homeAdmin',compact('userAdmin','idAdmin'));
+            $categorias = Category::all();
+            return view('/homeAdmin',compact('userAdmin','idAdmin','categorias'));
         }else{
             dd('no coicide');
         };
@@ -93,28 +95,9 @@ class AdminController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   public function home(){
+       dd('home');
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -135,7 +118,8 @@ class AdminController extends Controller
         $userAdmin = $_SESSION['userAdmin'];
         $reg = Administrator::where('userName',$userAdmin)->first();
         $idAdmin = $reg['id'];
-            return view('/admin.users',compact('userAdmin','idAdmin','usuarios'));
+        $categorias = Category::all();
+            return view('/admin.users',compact('userAdmin','idAdmin','usuarios','categorias'));
 
     }
     public function posteos($id){
@@ -145,7 +129,20 @@ class AdminController extends Controller
         $userAdmin = $_SESSION['userAdmin'];
         $reg = Administrator::where('userName',$userAdmin)->first();
         $idAdmin = $reg['id'];
-            return view('/admin.posteos',compact('userAdmin','idAdmin','productos','usuario'));
+        $categorias = Category::all();
+            return view('/admin.posteos',compact('userAdmin','idAdmin','productos','usuario','categorias'));
+
+    }
+
+    public function categorias($id){
+        session_start();
+        $categoria = Category::where('id',$id)->first();
+        $productos = Product::where('category_id',$id)->get();
+        $userAdmin = $_SESSION['userAdmin'];
+        $reg = Administrator::where('userName',$userAdmin)->first();
+        $idAdmin = $reg['id'];
+        $categorias = Category::all();
+            return view('/admin.categorias',compact('userAdmin','idAdmin','productos','categoria','categorias'));
 
     }
 }

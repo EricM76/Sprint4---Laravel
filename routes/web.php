@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/admin.codes','CodesController@index');
+Route::post('/admin.codes','CodesController@store');
+
 Route::get('/admin', 'AdminController@index');
 Route::post('/admin', 'AdminController@show');
 
@@ -27,13 +30,13 @@ Route::get('/admin.users','AdminController@users');
 
 Route::get('/admin.posteos/{id}','AdminController@posteos');
 
+Route::get('/admin.categorias/{id}','AdminController@categorias');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/homeAdmin', function(){
-    return view('/homeAdmin');
-});
+Route::get('/homeAdmin', 'HomeController@home');
 
 Route::resource('/publicar','PublicarController');
 
@@ -53,5 +56,4 @@ Route::get('/busqueda','busquedaController@index');
 
 Route::get('/detalleCategoria/{id}','BusquedaController@indexCat');
 
-Route::get('/admin.codes','CodesController@index');
-Route::post('/admin.codes','CodesController@store');
+

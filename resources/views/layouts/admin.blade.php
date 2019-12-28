@@ -19,9 +19,6 @@
             <div class="row collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav ml-5">
-                    <li class="nav-item">
-                    <a class="nav-link active text-light" href="#"><i class="fas fa-home mr-1"></i>Inicio</a>
-                    </li>
 
                     <li class="nav-item pl-2">
                     <a class="nav-link text-light" href="/admin.users"><i class="fas fa-heart mr-1"></i>Usuarios</a>
@@ -31,9 +28,9 @@
                         <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Categorias</a>
                         <div class="dropdown-menu">
 
-                            {{-- @foreach ($categorias as $categoria)
-                        <a class="dropdown-item" href="/detalleCategoria/{{$categoria['id']}}">{{$categoria->name}}</a>
-                            @endforeach --}}
+                            @foreach ($categorias as $categoria)
+                            <a class="dropdown-item" href="/admin.categorias/{{$categoria['id']}}">{{$categoria->name}}</a>
+                            @endforeach
 
                         {{-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Separated link</a> --}}
