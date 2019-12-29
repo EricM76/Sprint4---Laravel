@@ -27,13 +27,7 @@
     <link rel="stylesheet" href="/css/posteo2.css">
 </head>
 <body>
-    @if ($_GET)
-        <style>
-        .menu{
-            background-color: dimgray;
-        }
-        </style>
-    @endif
+
     <div id="app ">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
@@ -104,13 +98,18 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="cuenta?id=nav-home-tab">
+                                       {{ __('Mis Datos') }}
+                                    </a>
+                                    <a class="dropdown-item" href="cuenta?id=nav-profile-tab">
+                                        {{ __('Mis Posteos') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar Sesión') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{('/cuenta')}}">
-                                       {{ __('Mi Cuenta') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -126,7 +125,7 @@
         <main class="">
             @yield('content')
         </main>
-    </div>7
+    </div>
     @yield('js')
 </body>
 </html>

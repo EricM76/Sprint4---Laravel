@@ -95,8 +95,43 @@ class AdminController extends Controller
         }
     }
 
-   public function home(){
-       dd('home');
+   public function passform(){
+    session_start();
+
+        $userAdmin = $_SESSION['userAdmin'];
+        $reg = Administrator::where('userName',$userAdmin)->first();
+        $idAdmin = $reg['id'];
+        $categorias = Category::all();
+            return view('/admin.pass',compact('userAdmin','idAdmin','productos','categoria','categorias'));
+
+   }
+
+   public function passChange(Request $datos){
+
+    $userAdmin = Administrator::find($datos['id']);
+
+    if (password_verify ( $datos['passOld'] , $userAdmin->password)) {
+
+        if ($datos['passNew']==$datos['passNew2']) {
+            $rules = [
+            "passNew" => 'required',
+            "passNew2" => 'required',
+            ];
+
+            $this->validate($datos,$rules);
+            $passHash = Hash::make($datos['passNew']);
+            $userAdmin -> password = $passHash;
+            $userAdmin -> save();
+            session_start();
+            session_destroy();
+            return redirect('/admin');
+        }else{
+            dd('la verificacion de contraseñas no coinciden');
+        }
+    }else{
+        dd('la contraseña anterior es incorrecta');
+    }
+
    }
 
     /**

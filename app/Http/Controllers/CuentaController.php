@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Category;
+use App\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 
 
@@ -23,8 +25,11 @@ class CuentaController extends Controller
      */
     public function index()
     {
+
+        $user = Auth::user();
+        $posteos = Product::where('user_id',$user->id)->get();
         $categorias = Category::all();
-        return view('cuenta',compact('categorias'));
+        return view('cuenta',compact('categorias','posteos'));
     }
 
     /**
@@ -155,5 +160,13 @@ class CuentaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function posteos()
+    {
+        $user = Auth::user();
+        $posteos = Product::where('user_id',$user->id)->get();
+        $categorias = Category::all();
+        return view('/cuenta', compact('categorias','posteos'));
     }
 }

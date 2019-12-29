@@ -24,6 +24,9 @@ Route::post('/admin', 'AdminController@show');
 Route::get('/adminReg','AdminController@form');
 Route::post('/adminReg','AdminController@store');
 
+Route::get('/admin.pass','AdminController@passForm');
+Route::post('/admin.pass','AdminController@passChange');
+
 Route::get('/cerrarAdmin/{id}','AdminController@destroy');
 
 Route::get('/admin.users','AdminController@users');
@@ -40,9 +43,14 @@ Route::get('/homeAdmin', 'HomeController@home');
 
 Route::resource('/publicar','PublicarController');
 
+Route::get('/editarProduct/{id}','EditarProductController@form');
+Route::post('/editarProduct','EditarProductController@store');
+
 Route::post('/cuenta','CuentaController@edit');
 
 Route::resource('/cuenta','CuentaController');
+
+// Route::get('/posteos','CuentaController@posteos');
 
 Route::put('/cuenta','CuentaController@update');
 

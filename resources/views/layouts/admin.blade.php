@@ -52,7 +52,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                            <a class="dropdown-item" href="#">Configuracion
+                            <a class="dropdown-item" href="/admin.pass">Cambiar contraseña
                             </a>
                         <a class="dropdown-item" href="/cerrarAdmin/{{$idAdmin}}">Cerrar Sesión
                             </a>

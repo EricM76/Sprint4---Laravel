@@ -35,12 +35,16 @@
         </div>
         <span class="review-no">visto 16 veces</span>
       </div>
+      <h4 class="price"><span>{{$productos->value}} truekoins</span></h4>
       <p class="product-description">{{$productos->description}} </p>
-      <h4 class="price"><span>{{$productos->value}}</span></h4>
+
+      <h4 class="mt-3">publicado por {{$productos->user->name." ".$productos->user->surname}}</h4>
 
       <div class="action">
-        <button class="add-to-cart btn btn-default" type="button">contactar</button>
-        <button class="like btn btn-default" type="button"><span class="fa fa-star"></span></button>
+        <button class="btn-sm btn-primary" type="button">favoritos</button>
+        <button class="btn-sm btn-success" type="button">contactar</button>
+        <button class="btn-sm btn-danger" type="button">denunciar</button>
+
       </div>
     </div>
   </div>
