@@ -29,7 +29,7 @@ class CuentaController extends Controller
         $user = Auth::user();
         $posteos = Product::where('user_id',$user->id)->get();
         $categorias = Category::all();
-        return view('cuenta',compact('categorias','posteos'));
+        return view('/cuenta',compact('categorias','posteos'));
     }
 
     /**

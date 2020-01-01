@@ -43,17 +43,117 @@
                         <div class="mt-3">
                             <label class="" for="imagen">Subir 3 fotos del producto (formato jpg/jpeg/png)</label>
 
-                            <div class="col-12 custom-file">
-                                <input name="imagen1" type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Elija el archivo</label>
-                            </div>
-                            <div class="col-12 custom-file">
-                                <input name="imagen2" type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Elija el archivo</label>
-                            </div>
-                            <div class="col-12 custom-file">
-                                <input name="imagen3" type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Elija el archivo</label>
+                            <div class="row px-1 pt-3">
+
+                                <div class="col-4 pb-4">
+                                    <div id="divInputLoad">
+                                        <div id="file-preview-zone">
+                                            <script>
+                                            window.onload = function(){
+                                                var fileUpload = document.getElementById('file-upload');
+                                                fileUpload.value = null;
+                                                var fileUpload2 = document.getElementById('file-upload2');
+                                                fileUpload2.value = null;
+                                                var fileUpload3 = document.getElementById('file-upload3');
+                                                fileUpload3.value = null;
+                                            }
+                                            </script>
+                                             <img class="img-fluid" src="" alt="" id="file-preview">
+                                        </div>
+
+                                        <div class="custom-file" id="divFileUpload">
+                                            <input class="custom-file-input" id="file-upload" type="file" accept="image/*" name="imagen1"/>
+                                            <label class="custom-file-label" for="customFile"></label>
+                                        </div>
+                                    </div>
+                                    <script lang="javascript">
+
+                                            function readFile(input) {
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    var filePreview = document.getElementById('file-preview')
+                                                    filePreview.src = e.target.result;
+                                                    console.log(e.target.result);
+                                                    var previewZone = document.getElementById('file-preview-zone');
+                                                    previewZone.appendChild(filePreview);
+                                                }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }
+                                        }
+                                        var fileUpload = document.getElementById('file-upload');
+                                        fileUpload.onchange = function (e) {
+                                            readFile(e.srcElement);
+                                        };
+                                    </script>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                    <div id="divInputLoad">
+                                        <div id="file-preview-zone2">
+                                            <img class="img-fluid" src="" alt="" id="file-preview2">
+                                        </div>
+
+                                        <div class="custom-file" id="divFileUpload">
+                                            <input class="custom-file-input" id="file-upload2" type="file" accept="image/*" name="imagen2"/>
+                                            <label class="custom-file-label" for="customFile"></label>
+                                        </div>
+                                    </div>
+                                    <script lang="javascript">
+
+                                            function readFile2(input) {
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    var filePreview2 = document.getElementById('file-preview2')
+                                                    filePreview2.src = e.target.result;
+                                                    console.log(e.target.result);
+                                                    var previewZone2 = document.getElementById('file-preview-zone2');
+                                                    previewZone2.appendChild(filePreview2);
+                                                }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }
+                                        }
+                                        var fileUpload2 = document.getElementById('file-upload2');
+                                        fileUpload2.onchange = function (e) {
+                                            readFile2(e.srcElement);
+                                        };
+                                    </script>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                    <div id="divInputLoad">
+                                        <div id="file-preview-zone3">
+                                            <img class="img-fluid" src="" alt="" id="file-preview3">
+                                        </div>
+
+                                        <div class="custom-file" id="divFileUpload">
+                                            <input class="custom-file-input" id="file-upload3" type="file" accept="image/*" name="imagen3"/>
+                                            <label class="custom-file-label" for="customFile"></label>
+                                        </div>
+                                    </div>
+                                    <script lang="javascript">
+
+                                            function readFile3(input) {
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    var filePreview3 = document.getElementById('file-preview3')
+                                                    filePreview3.src = e.target.result;
+                                                    console.log(e.target.result);
+                                                    var previewZone3 = document.getElementById('file-preview-zone3');
+                                                    previewZone3.appendChild(filePreview3);
+                                                }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }
+                                        }
+                                        var fileUpload3 = document.getElementById('file-upload3');
+                                        fileUpload3.onchange = function (e) {
+                                            readFile3(e.srcElement);
+                                        };
+                                    </script>
+                                </div>
+
                             </div>
                         </div>
                     </div>

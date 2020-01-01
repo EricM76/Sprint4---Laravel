@@ -45,6 +45,9 @@ Route::resource('/publicar','PublicarController');
 
 Route::get('/editarProduct/{id}','EditarProductController@form');
 Route::post('/editarProduct','EditarProductController@store');
+Route::post('/editarProductImg','EditarProductController@imagen');
+
+Route::get('/eliminarProduct/{id}', 'EditarProductController@destroy');
 
 Route::post('/cuenta','CuentaController@edit');
 

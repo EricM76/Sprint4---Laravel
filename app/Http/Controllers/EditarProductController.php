@@ -3,11 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Product;
 
 class EditarProductController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,24 +49,56 @@ class EditarProductController extends Controller
      */
     public function store(Request $datos)
     {
+        $producto = Product::find($datos['id']);
+
+        if ($datos['categoria']==null) {
+           $datos['categoria'] = $producto->category_id;
+        }
         $rules = [
             "titulo" => 'required|string',
             "valor" => 'required|integer',
-            "categoria" => 'required|integer',
+            "image1" => 'mimes:jpg,jpeg,png,webp',
+            "image2" => 'mimes:jpg,jpeg,png,webp',
+            "image3" => 'mimes:jpg,jpeg,png,webp',
         ];
 
         $this->validate($datos,$rules);
 
-        $producto = Product::find($datos['id']);
+
 
         $producto -> title = $datos['titulo'];
         $producto -> value = $datos['valor'];
         $producto -> category_id = $datos['categoria'];
         $producto -> description = $datos['descripcion'];
 
+        if ($datos['image1'] != null) {
+            if(file_exists('storage/images/products/'.$producto->image1)){
+                unlink('storage/images/products/'.$producto->image1);
+            }
+            $ruta = $datos -> file('image1') -> store('public/images/products');
+            $image = basename($ruta);
+            $producto -> image1 = $image;
+        }
+        if ($datos['image2'] != null) {
+            if(file_exists('storage/images/products/'.$producto->image2)){
+                unlink('storage/images/products/'.$producto->image2);
+            }
+            $ruta = $datos -> file('image2') -> store('public/images/products');
+            $image = basename($ruta);
+            $producto -> image2 = $image;
+        }
+        if ($datos['image3'] != null) {
+            if(file_exists('storage/images/products/'.$producto->image3)){
+                unlink('storage/images/products/'.$producto->image3);
+            }
+            $ruta = $datos -> file('image3') -> store('public/images/products');
+            $image = basename($ruta);
+            $producto -> image3 = $image;
+        }
+
         $producto -> save();
 
-        return redirect('/home');
+        return redirect()->back();
     }
 
     /**
@@ -75,9 +118,9 @@ class EditarProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function imagen(Request $request)
     {
-
+dd($request);
     }
 
     /**
@@ -100,6 +143,8 @@ class EditarProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $registro = Product::find($id);
+        $registro ->delete();
+        return redirect()->back();
     }
 }

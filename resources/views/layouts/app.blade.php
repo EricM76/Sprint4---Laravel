@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/posteo.css">
     <link rel="stylesheet" href="/css/posteo2.css">
+    <link rel="stylesheet" href="/css/imagenEdit.css">
+    <link rel="stylesheet" href="/css/uploadImagen.css">
 </head>
 <body>
 
@@ -99,10 +101,10 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="cuenta?id=nav-home-tab">
+                                    <a class="dropdown-item" href="/cuenta?id=nav-home-tab">
                                        {{ __('Mis Datos') }}
                                     </a>
-                                    <a class="dropdown-item" href="cuenta?id=nav-profile-tab">
+                                    <a class="dropdown-item" href="/cuenta?id=nav-profile-tab">
                                         {{ __('Mis Posteos') }}
                                     </a>
 
