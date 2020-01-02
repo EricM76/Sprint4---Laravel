@@ -67,4 +67,9 @@ Route::get('/busqueda','busquedaController@index');
 
 Route::get('/detalleCategoria/{id}','BusquedaController@indexCat');
 
+Route::get('/intereses/{interes}/{id}','HomeController@intereses');
+
+Route::get('/truekeo','TruekeoController@index');
+Route::post('/truekeo','TruekeoController@store');
+
 

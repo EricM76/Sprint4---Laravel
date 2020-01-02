@@ -162,15 +162,47 @@
                         <label for="descripcion">Descripcion</label>
                         <textarea class="form-control" name="descripcion" rows="6" placeholder="" form="producto"></textarea>
                         </div>
-                        <div class="text-danger" role="alert">
-                            @foreach ($errors->all() as $error)
-                            <li class="text-danger small">{{$error}}</li>
-                            @endforeach
+                        <div class="row">
+                            <div class="col-6">
+                                {{-- @foreach ($categorias as $categoria)
+                                <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck{{$categoria->id}}">
+                                    <label class="custom-control-label" for="customCheck{{$categoria->id}}">{{$categoria->name}}</label>
+                                </div>
+                                @endforeach --}}
+                                <select class="custom-select" multiple name="intereses[]" onclick="marcar(this)">
+                                    onclick="marcar(this)"
+                                    @foreach ($categorias as $categoria)
+                                    <option value={{$categoria->name}}>{{$categoria->name}}</option>
+                                    @endforeach
+                                </select>
+                                <script>
+                                    todos = new Array();
+                                    function marcar(s) {
+                                    cual=s.selectedIndex;
+                                        for(y=0;y<s.options.length;y++){
+                                            if(y==cual){
+                                            s.options[y].selected=(todos[y]==true)?false:true;
+                                            todos[y]=(todos[y]==true)?false:true;
+                                            }
+                                            else{
+                                            s.options[y].selected=todos[y];
+                                            }
+                                        }
+                                    }
+                                </script>
+                            </div>
+                            <div class="text-danger" role="alert">
+                                @foreach ($errors->all() as $error)
+                                <li class="text-danger small">{{$error}}</li>
+                                @endforeach
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end mt-2">
                     <div class="form-group">
                         <div class="">
                         <button value="" class="btn btn-success" name="id" type="submit">Publicar</button>

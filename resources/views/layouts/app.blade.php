@@ -71,7 +71,7 @@
                             </li>
 
                             <li class="nav-item pl-2">
-                                <a class="nav-link text-light" href="#"><i class="fas fa-heart mr-1"></i>Favoritos</a>
+                                <a class="nav-link text-light" href="#"><i class="fas fa-star mr-1"></i>Favoritos</a>
                             </li>
 
                             <li class="nav-item pl-2 dropdown">
@@ -88,7 +88,7 @@
                             </li>
 
                             <li class="nav-item pl-2">
-                                <a class="nav-link text-light" href="{{('/publicar')}}"><i class="fas fa-bullhorn mr-1"></i>Postear</a>
+                                <a class="nav-link text-light" href="{{('/publicar')}}"><i class="fas fa-bullhorn mr-1"></i>Publicar</a>
                             </li>
                         </ul>
 

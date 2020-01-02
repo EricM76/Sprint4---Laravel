@@ -43,6 +43,8 @@ class PublicarController extends Controller
      */
     public function store(Request $datos)
     {
+
+
         $rules = [
             "titulo" => 'required|string',
             "valor" => 'required|integer',
@@ -50,6 +52,7 @@ class PublicarController extends Controller
             "imagen1" => 'required|mimes:jpg,jpeg,png,webp',
             "imagen2" => 'required|mimes:jpg,jpeg,png,webp',
             "imagen3" => 'required|mimes:jpg,jpeg,png,webp',
+            "intereses" => 'required',
         ];
 
         $this->validate($datos,$rules);
@@ -71,7 +74,8 @@ class PublicarController extends Controller
         $ruta = $datos -> file('imagen3') -> store('public/images/products');
         $image = basename($ruta);
         $producto -> image3 = $image;
-
+        $intereses = implode(",",$datos["intereses"]);
+        $producto -> intereses = $intereses;
         $producto -> save();
 
         return redirect('/home');

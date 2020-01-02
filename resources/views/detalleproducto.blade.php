@@ -36,16 +36,43 @@
         <span class="review-no">visto 16 veces</span>
       </div>
       <h4 class="price"><span>{{$productos->value}} truekoins</span></h4>
-      <p class="product-description">{{$productos->description}} </p>
-
-      <h4 class="mt-3">publicado por {{$productos->user->name." ".$productos->user->surname}}</h4>
-
-      <div class="action">
-        <button class="btn-sm btn-primary" type="button">favoritos</button>
-        <button class="btn-sm btn-success" type="button">contactar</button>
-        <button class="btn-sm btn-danger" type="button">denunciar</button>
+      <h5 class="mt-3">Truekea por:</h5>
+      <div>
+          @foreach ($intereses as $interes)
+      <a href="/intereses/{{$interes}}/{{$productos->id}}"><span class="badge badge-pill badge-primary">{{$interes}}</span></a>
+          @endforeach
 
       </div>
+      <p class="product-description">DESCRIPCION: {{$productos->description}} </p>
+      <h4 class="">publicado por {{$productos->user->name." ".$productos->user->surname}}</h4>
+      <button class="btn-sm btn-danger" type="button">denunciar publicacion</button>
+
+      @if (isset($regInteres))
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th scope="col">Titulo</th>
+            <th scope="col" class="text-center">Valor</th>
+            <th scope="col" class="text-center">Agregar</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($regInteres as $registro)
+            <tr>
+            <td>{{$registro->title}}</td>
+            <td class="text-center">{{$registro->value}}</td>
+            <form action="/truekeo" method="POST">
+                @csrf
+            {{-- <td class="text-center"><input type="checkbox" name="trueke{{$registro->id}}" id="checkbox" value="{{$registro->id}}"></td> --}}
+            <td class="text-center"><input type="radio" name="truekeo" id="checkbox" value="{{$registro->id}}"></td>
+            </tr>
+            @endforeach
+        </tbody>
+      </table>
+      <button class="btn-sm btn-success" type="submit" name="producto" value={{$productos->id}}>proponer truekeo</button>
+    </form>
+      @endif
+
     </div>
   </div>
 </div>

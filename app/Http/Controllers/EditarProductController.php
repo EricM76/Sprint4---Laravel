@@ -28,7 +28,9 @@ class EditarProductController extends Controller
     {
         $categorias = Category::all();
         $producto = Product::find($id);
-        return view('/editarProduct', compact('producto','categorias'));
+        $interesesReg = $producto->intereses;
+        $intereses = explode(",",$interesesReg);
+        return view('/editarProduct', compact('producto','categorias','intereses'));
     }
 
     /**
