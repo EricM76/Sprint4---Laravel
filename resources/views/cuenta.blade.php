@@ -47,6 +47,8 @@
 
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contactos" role="tab" aria-controls="nav-contactos" aria-selected="false"><i class="fas fa-users mr-2"></i>Mis Contactos</a>
 
+                        <a class="nav-item nav-link" id="nav-localizacion-tab" data-toggle="tab" href="#nav-localizacion" role="tab" aria-controls="nav-localizacion" aria-selected="false"><i class="fas fa-users mr-2"></i>Mi Localizacion</a>
+
                     </div>
                 </nav>
                 <div class="tab-content mt-3" id="nav-tabContent">
@@ -73,21 +75,21 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-lg-6">
                                         <label class="col-form-label-sm" for="">Nombre:</label>
-                                        <input class="form-control" type="text" value="{{Auth::user()->name}}" name="nombre">
+                                        <input class="form-control" type="text" value="{{Auth::user()->name}}" name="nombre" disabled>
                                         @if ($errors->nombre)
                                         <p class="text-danger small">{{$errors->first('nombre')}}</p>
                                         @endif
                                     </div>
                                     <div class="col-sm-12 col-lg-6">
                                         <label class="col-form-label-sm" for="">Apellido:</label>
-                                        <input class="form-control" type="text" value="{{Auth::user()->surname}}" name="apellido">
+                                        <input class="form-control" type="text" value="{{Auth::user()->surname}}" name="apellido" disabled>
                                         @if ($errors->apellido)
                                         <p class="text-danger small">{{$errors->first('apellido')}}</p>
                                         @endif
                                     </div>
                                     <div class="col-6">
                                         <label class="col-form-label-sm" for="">Cumpleaños:</label>
-                                        <input class="form-control" type="date" value="{{Auth::user()->birth}}" name="fecha">
+                                        <input class="form-control" type="date" value="{{Auth::user()->birth}}" name="fecha" disabled>
                                         @if ($errors->fecha)
                                         <p class="text-danger small">{{$errors->first('fecha')}}</p>
                                         @endif
@@ -129,21 +131,246 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <label class="col-form-label-sm" for="">Domicilio:</label>
-                                        <input class="form-control" type="text" value="{{Auth::user()->home}}" name="domicilio">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label class="col-form-label-sm" for="">Direccion:</label>
+                                            </div>
+                                            <div class="col-4">
+                                                <label class="col-form-label-sm" for="">Localidad:</label>
+                                            </div>
+                                            <div class="col-4">
+                                                <label class="col-form-label-sm" for="">Provincia:</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="input-group mb-2 mr-sm-2">
+                                                    <div class="input-group-prepend">
+                                                      <button class="input-group-text" id="address" onClick="event.preventDefault(); getCoords()"><i class="fas fa-map"></i></button>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="direccion" value="{{Auth::user()->address}}" name="direccion">
+                                                  </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="input-group mb-2 mr-sm-2">
+                                                    <div class="input-group-prepend">
+                                                      <button type="button" class="input-group-text" id="city"><i class="fas fa-map"></i></button>
+                                                    </div>
+                                                    <input id="localidad" type="text" class="form-control" placeholder="localidad" value="{{Auth::user()->city}}" name="localidad">
+                                                    <select name="" id="localidades" style="display:none;">
+                                                    </select>
+                                                  </div>
+
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="input-group mb-2 mr-sm-2">
+                                                    <div class="input-group-prepend">
+                                                      <button  type="button" class="input-group-text" id="state"><i class="fas fa-map"></i></button>
+                                                    </div>
+                                                    <input id="provincia" type="text" class="form-control" placeholder="provincia" value="{{Auth::user()->state}}" name="provincia">
+                                                    <select name="" id="provincias" style="display:none;">
+                                                    </select>
+                                                  </div>
+
+ <script>
+        var state = document.getElementById('state');
+        var provinciaInput = document.getElementById('provincia');
+        var provinciasSelect = document.getElementById('provincias');
+
+        fetch('https://apis.datos.gob.ar/georef/api/provincias') //la direccion donde está la api
+
+        .then(function(provincias) //recibe los datos que vienen de la pagina antes invocada
+            {
+                return provincias.json() // retorna los datos pasados a json
+            })
+
+        .then(function(arrayProvincias) //pasa el objeto a un array
+            {
+
+                var todasProvincias = arrayProvincias.provincias
+
+                function ordenarAsc(p_array_json, p_key)
+                {
+                p_array_json.sort(function (a, b) {
+                    return a[p_key] > b[p_key];
+                });
+                }
+                ordenarAsc(todasProvincias,'nombre');
+
+                for (provincia of todasProvincias)
+                {
+				var optionProvincia = document.createElement('option') //crea el elemento
+				provinciasSelect.appendChild(optionProvincia)
+                optionProvincia.setAttribute('value',provincia.nombre)
+                optionProvincia.setAttribute('id','opProv')
+				var nombreProvincia = document.createTextNode(provincia.nombre)
+				optionProvincia.appendChild(nombreProvincia)
+				}
+			})
+
+        state.onclick = function()
+        {
+            if (provinciaInput.style.display != 'none') {
+                provinciaInput.style.display = 'none';
+                provinciasSelect.style.display = 'block';
+            } else {
+                provinciaInput.style.display = 'block';
+                provinciasSelect.style.display = 'none';
+            }
+
+        }
+
+        provincia.onclick = function()
+        {
+            provinciaInput.style.display = 'none';
+            provinciasSelect.style.display = 'block';
+        }
+
+        provinciasSelect.onchange = function()
+        {
+            var optionProvincia = provinciasSelect.options[provinciasSelect.selectedIndex].value;
+            var provinciaSel = optionProvincia
+            provinciaInput.setAttribute('value', provinciaSel)
+            provinciaInput.style.display = 'block';
+            provinciasSelect.style.display = 'none';
+
+            var select = document.getElementById("localidades");
+
+            for (let i = select.options.length; i >= 0; i--) {
+                select.remove(i);
+            }
+
+            console.log(select)
+
+    fetch('https://apis.datos.gob.ar/georef/api/localidades?formato=json&max=5000') //la direccion donde está la api
+
+    .then(function(localidades) //recibe los datos que vienen de la pagina antes invocada
+        {
+            return localidades.json() // retorna los datos pasados a json
+        })
+    .then(function(arrayLocalidades) //pasa el objeto a un array
+        {
+            var arrayCompleto = arrayLocalidades.localidades
+            // console.log(todasLocalidades[0].provincia.nombre)
+            var provincia = document.getElementById('provincia'); //atrapo el input
+            var provincia = provincia.value; //atrapo el valor del input
+            var ciudades = new Array(); //creo un nuevo array
+
+            for (localidad of arrayCompleto) //recorro el array que viene de la api
+            {
+                if(localidad.provincia.nombre == provincia) //chequeo que la localidad corresponda con la provincia
+                {
+                    ciudades.push(localidad.nombre) //voy agregando en el nuevo array las ciudades
+                }
+            }
+            ciudades.sort(); //ordeno el array
+
+            for (ciudad of ciudades) { //recorro el array para formar las opciones del select
+                var optionLocalidad = document.createElement('option') //crea el elemento
+                localidadesSelect.appendChild(optionLocalidad) //añade el option al select
+                optionLocalidad.setAttribute('value',ciudad)
+                var nombreLocalidad = document.createTextNode(ciudad)
+                optionLocalidad.appendChild(nombreLocalidad)
+            }
+
+        })
+        }
+</script>
+
+<script>
+    var state = document.getElementById('city');
+    var localidadInput = document.getElementById('localidad');
+    var localidadesSelect = document.getElementById('localidades');
+
+    fetch('https://apis.datos.gob.ar/georef/api/localidades?formato=json&max=5000') //la direccion donde está la api
+
+    .then(function(localidades) //recibe los datos que vienen de la pagina antes invocada
+        {
+            return localidades.json() // retorna los datos pasados a json
+        })
+    .then(function(arrayLocalidades) //pasa el objeto a un array
+        {
+            var arrayCompleto = arrayLocalidades.localidades
+            // console.log(todasLocalidades[0].provincia.nombre)
+            var provincia = document.getElementById('provincia'); //atrapo el input
+            var provincia = provincia.value; //atrapo el valor del input
+            var ciudades = new Array(); //creo un nuevo array
+
+            for (localidad of arrayCompleto) //recorro el array que viene de la api
+            {
+                if(localidad.provincia.nombre == provincia) //chequeo que la localidad corresponda con la provincia
+                {
+                    ciudades.push(localidad.nombre) //voy agregando en el nuevo array las ciudades
+                }
+            }
+            ciudades.sort(); //ordeno el array
+
+            for (ciudad of ciudades) { //recorro el array para formar las opciones del select
+                var optionLocalidad = document.createElement('option') //crea el elemento
+                localidadesSelect.appendChild(optionLocalidad) //añade el option al select
+                optionLocalidad.setAttribute('value',ciudad)
+                var nombreLocalidad = document.createTextNode(ciudad)
+                optionLocalidad.appendChild(nombreLocalidad)
+            }
+
+        })
+
+    city.onclick = function()
+    {
+        if (localidadInput.style.display != 'none') {
+            localidadInput.style.display = 'none';
+            localidadesSelect.style.display = 'block';
+        } else {
+            localidadInput.style.display = 'block';
+            localidadesSelect.style.display = 'none';
+        }
+
+    }
+
+    localidad.onclick = function()
+    {
+        localidadInput.style.display = 'none';
+        localidadesSelect.style.display = 'block';
+    }
+
+    localidadesSelect.onchange = function()
+    {
+
+        var optionLocalidad = localidadesSelect.options[localidadesSelect.selectedIndex].value;
+        var localidadSel = optionLocalidad
+        localidadInput.setAttribute('value', localidadSel)
+        localidadInput.style.display = 'block';
+        localidadesSelect.style.display = 'none';
+    }
+
+</script>
+                                            </div>
+                                        </div>
+
+
                                     </div>
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                        <label class="col-form-label-sm" for="">Telefono:</label>
-                                        <input class="form-control" type="text" value="{{Auth::user()->phone}}" name="telefono">
-                                    </div>
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                        <label class="col-form-label-sm" for="">Celular:</label>
-                                        <input class="form-control" type="text" value="{{Auth::user()->mobile}}" name="celular">
+                                    <div class="col-12">
+
+                                        <div class="row">
+                                            <div id="mapa" class="col-4  p-2" style="height:200px; width:270px" >
+
+                                            </div>
+
+                                            <div class="col-8">
+                                                <label class="col-form-label-sm" for="">Telefono:</label>
+                                                <input class="form-control" type="text" value="{{Auth::user()->phone}}" name="telefono">
+                                                <label class="col-form-label-sm" for="">Celular:</label>
+                                                <input class="form-control" type="text" value="{{Auth::user()->mobile}}" name="celular">
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                 </div>
                                 <div class="row d-flex justify-content-center mt-3">
-                                    <button class="btn btn-secondary m-2" type="button">Cancelar</button>
+                                    <a href="{{'/home'}}"><button class="btn btn-secondary m-2" type="button">Cerrar </button></a>
                                     <button class="btn btn-primary m-2" type="submit">Aceptar</button>
                                 </div>
 
@@ -174,9 +401,134 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-contactos" role="tabpanel" aria-labelledby="nav-contactos-tab">
-                        <h3>contactos</h3>
-                    </div>
 
+                        <div id="map" style="width:100%; height:300px">
+
+                        </div>
+
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap" async defer></script>
+
+                        <script>
+                        class Localizacion {
+                            constructor(callback){
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition((position)=>{
+                                        this.latitude = position.coords.latitude;
+                                        this.longitude = position.coords.longitude;
+                                        callback();
+                                    });
+                                } else {
+                                    alert('tu navegador no soporta geolocalización :(')
+                                }
+                            }
+                        }
+                       function initMap(){
+                           const ubicacion = new Localizacion(()=>{
+                               const options = {
+                                center:{
+                                    lat: ubicacion.latitude,
+                                    lng: ubicacion.longitude
+                                },
+                                zoom:15,
+                               }
+                            var map = document.getElementById('map');
+                            const mapa = new google.maps.Map(map,options)
+                            var marker = new google.maps.Marker({
+                                position:{
+                                    lat: ubicacion.latitude,
+                                    lng: ubicacion.longitude
+                                },
+                                map: mapa
+                            })
+
+                           });
+                       }
+
+
+                        </script>
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-localizacion" role="tabpanel" aria-labelledby="nav-localizacion-tab">
+
+
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap2" async defer></script>
+                        <script>
+                        window.onload = function(){
+                            initMap2();
+                        }
+                        </script>
+                        <script>
+                        class Localizacion2 {
+                            constructor(callback){
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition((position)=>{
+                                        this.latitude = position.coords.latitude;
+                                        this.longitude = position.coords.longitude;
+                                        callback();
+                                    });
+                                } else {
+                                    alert('tu navegador no soporta geolocalización :(')
+                                }
+                            }
+                        }
+                       function initMap2(){
+                           const ubicacion = new Localizacion2(()=>{
+                               const options = {
+                                center:{
+                                    lat: ubicacion.latitude,
+                                    lng: ubicacion.longitude
+                                },
+                                zoom:15,
+                               }
+                            var map = document.getElementById('map2');
+                            const mapa = new google.maps.Map(map,options)
+                            var marker = new google.maps.Marker({
+                                position:{
+                                    lat: ubicacion.latitude,
+                                    lng: ubicacion.longitude
+                                },
+                                map: mapa
+                            })
+
+                           });
+                       }
+
+function getCoords()
+{
+  // Creamos el objeto geodecoder
+ var geocoder = new google.maps.Geocoder();
+ console.log(geocoder)
+ address = document.getElementById('search').value;
+ if(address!='')
+ {
+  // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
+ geocoder.geocode({ 'address': address}, function(results, status)
+ {
+   if (status == 'OK')
+   {
+    var map = document.getElementById('map2');
+    marker = new google.maps.Marker({
+ position: {lat: 43.2686751, lng: -2.9340005},
+ draggable: true
+ });
+ var options = {lat: 43.2686751, lng: -2.9340005}
+ const mapa = new google.maps.Map(map,options);
+// Posicionamos el marcador en las coordenadas obtenidas
+   marker.setPosition(results[0].geometry.location);
+// Centramos el mapa en las coordenadas obtenidas
+   map.setCenter(marker.getPosition());
+   agendaForm.showMapaEventForm();
+   }
+  });
+ }
+ }
+
+                        </script>
+<input type="text" id="search"> <input type="button" value="Buscar Dirección" onClick="getCoords()">
+<div id="map2" style="width:100%; height:300px">
+
+</div>
+                    </div>
                 </div>
             </div>
         </div>

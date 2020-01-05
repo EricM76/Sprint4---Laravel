@@ -116,8 +116,14 @@ class CuentaController extends Controller
         if ($datos['genero']==null) {
            $datos['genero'] = $reg -> gender;
         }
-        if ($datos['domicilio']==null) {
-           $datos['domicilio'] = $reg -> home;
+        if ($datos['direccion']==null) {
+           $datos['direccion'] = $reg -> address;
+        }
+        if ($datos['localidad']==null) {
+           $datos['localidad'] = $reg -> city;
+        }
+        if ($datos['provincia']==null) {
+           $datos['provincia'] = $reg -> state;
         }
         if ($datos['telefono']==null) {
            $datos['telefono'] = $reg -> phone;
@@ -141,16 +147,17 @@ class CuentaController extends Controller
         $reg -> surname = $datos['apellido'];
         $reg -> birth = $datos['fecha'];
         $reg -> gender = $datos['genero'];
-        $reg -> home = $datos['domicilio'];
+        $reg -> address = $datos['direccion'];
+        $reg -> city = $datos['localidad'];
+        $reg -> state = $datos['provincia'];
         $reg -> phone = $datos['telefono'];
         $reg -> mobile = $datos['celular'];
         $reg -> profile = $reg -> profile;
 
         $reg -> save();
 
-        return redirect('/home');
+        return redirect()->back();
     }
-
     /**
      * Remove the specified resource from storage.
      *
