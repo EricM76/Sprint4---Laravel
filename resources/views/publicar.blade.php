@@ -163,7 +163,11 @@
                         <textarea class="form-control" name="descripcion" rows="6" placeholder="" form="producto"></textarea>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4 text-right">
+                                <h6 class="text-body"><strong>Me interesa truekear por:</strong> </h6>
+                                <h6 class="text-small text-secondary">(selecionar una o más categorias)</h6>
+                            </div>
+                            <div class="col-8">
                                 {{-- @foreach ($categorias as $categoria)
                                 <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customCheck{{$categoria->id}}">
