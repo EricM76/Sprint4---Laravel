@@ -63,14 +63,7 @@ class HomeController extends Controller
     ->where('category_id',$categoria)
     ->get();
 
-    $cercano = DB::table('products')
-    ->where('user_id',Auth::user()->id)
-    ->where('category_id',$categoria)
 
-    ->select(DB::raw("abs(value - $productos->value) limit 1 "))
-
-    ->get();
-    dd($cercano);
     return view('/detalleproducto',compact('categorias','productos','intereses','regInteres'));
    }
 }

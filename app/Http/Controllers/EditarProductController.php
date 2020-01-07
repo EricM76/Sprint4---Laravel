@@ -30,6 +30,7 @@ class EditarProductController extends Controller
         $producto = Product::find($id);
         $interesesReg = $producto->intereses;
         $intereses = explode(",",$interesesReg);
+
         return view('/editarProduct', compact('producto','categorias','intereses'));
     }
 
