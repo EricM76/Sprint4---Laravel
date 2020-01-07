@@ -22,10 +22,17 @@
         contenido.className = 'tab-pane fade show active'
         }
     </script>
-
         @break
     @default
 
+    <script>
+
+        window.onload = function()
+        {
+            mapa.initMap();
+
+        }
+    </script>
 @endswitch
 @endif
 
@@ -402,7 +409,11 @@
 
                     <div class="tab-pane fade" id="nav-contactos" role="tabpanel" aria-labelledby="nav-contactos-tab">
 
-                        <div id="map" style="width:100%; height:300px">
+
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-localizacion" role="tabpanel" aria-labelledby="nav-localizacion-tab">
+                    <div id="map" style="width:100%; height:300px">
 
                         </div>
 
@@ -446,88 +457,6 @@
 
 
                         </script>
-
-                    </div>
-                    <div class="tab-pane fade" id="nav-localizacion" role="tabpanel" aria-labelledby="nav-localizacion-tab">
-
-
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap2" async defer></script>
-                        <script>
-                        window.onload = function(){
-                            initMap2();
-                        }
-                        </script>
-                        <script>
-                        class Localizacion2 {
-                            constructor(callback){
-                                if (navigator.geolocation) {
-                                    navigator.geolocation.getCurrentPosition((position)=>{
-                                        this.latitude = position.coords.latitude;
-                                        this.longitude = position.coords.longitude;
-                                        callback();
-                                    });
-                                } else {
-                                    alert('tu navegador no soporta geolocalización :(')
-                                }
-                            }
-                        }
-                       function initMap2(){
-                           const ubicacion = new Localizacion2(()=>{
-                               const options = {
-                                center:{
-                                    lat: ubicacion.latitude,
-                                    lng: ubicacion.longitude
-                                },
-                                zoom:15,
-                               }
-                            var map = document.getElementById('map2');
-                            const mapa = new google.maps.Map(map,options)
-                            var marker = new google.maps.Marker({
-                                position:{
-                                    lat: ubicacion.latitude,
-                                    lng: ubicacion.longitude
-                                },
-                                map: mapa
-                            })
-
-                           });
-                       }
-
-function getCoords()
-{
-  // Creamos el objeto geodecoder
- var geocoder = new google.maps.Geocoder();
- console.log(geocoder)
- address = document.getElementById('search').value;
- if(address!='')
- {
-  // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
- geocoder.geocode({ 'address': address}, function(results, status)
- {
-   if (status == 'OK')
-   {
-    var map = document.getElementById('map2');
-    marker = new google.maps.Marker({
- position: {lat: 43.2686751, lng: -2.9340005},
- draggable: true
- });
- var options = {lat: 43.2686751, lng: -2.9340005}
- const mapa = new google.maps.Map(map,options);
-// Posicionamos el marcador en las coordenadas obtenidas
-   marker.setPosition(results[0].geometry.location);
-// Centramos el mapa en las coordenadas obtenidas
-   map.setCenter(marker.getPosition());
-   agendaForm.showMapaEventForm();
-   }
-  });
- }
- }
-
-                        </script>
-<input type="text" id="search"> <input type="button" value="Buscar Dirección" onClick="getCoords()">
-<div id="map2" style="width:100%; height:300px">
-
-</div>
                     </div>
                 </div>
             </div>

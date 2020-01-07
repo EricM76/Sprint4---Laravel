@@ -44,7 +44,12 @@
 
       </div>
       <p class="product-description">DESCRIPCION: {{$productos->description}} </p>
-      <h4 class="">publicado por {{$productos->user->name." ".$productos->user->surname}}</h4>
+      <p class="text-secondary">publicado por</p>
+
+      <img class="img-fluid" src="/storage/images/avatar/{{$productos->user->profile}}" alt="" width="50px">
+      <h4 class=""> {{$productos->user->name." ".$productos->user->surname}}</h4>
+        <h5>{{$productos->user->city}}, {{$productos->user->state}}</h5> <a href="">ver ubicacion</a>
+        <hr>
       <button class="btn-sm btn-danger" type="button">denunciar publicacion</button>
 
       @if (isset($regInteres))
@@ -61,10 +66,12 @@
             <tr>
             <td>{{$registro->title}}</td>
             <td class="text-center">{{$registro->value}}</td>
-            <form action="/truekeo" method="POST">
-                @csrf
+    <form action="/truekeo" method="POST">
+        @csrf
             {{-- <td class="text-center"><input type="checkbox" name="trueke{{$registro->id}}" id="checkbox" value="{{$registro->id}}"></td> --}}
-            <td class="text-center"><input type="radio" name="truekeo" id="checkbox" value="{{$registro->id}}"></td>
+            <td class="text-center">
+                <input type="radio" name="truekeo" id="checkbox" value="{{$registro->id}}">
+            </td>
             </tr>
             @endforeach
         </tbody>

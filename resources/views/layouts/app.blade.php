@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="/css/imagenEdit.css">
     <link rel="stylesheet" href="/css/uploadImagen.css">
 </head>
-<body>
+<body >
 
     <div id="app ">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">

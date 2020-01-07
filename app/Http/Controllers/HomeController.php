@@ -35,8 +35,8 @@ class HomeController extends Controller
 
     public function detalle($id){
       $categorias = Category::all();
-      $productos = Product::find($id);
-      $interesesReg = $productos->intereses;
+        $productos = Product::find($id);
+        $interesesReg = $productos->intereses;
       $intereses = explode(",",$interesesReg);
 
       $vac= compact('productos','categorias','intereses');
@@ -62,7 +62,15 @@ class HomeController extends Controller
     ->where('user_id',Auth::user()->id)
     ->where('category_id',$categoria)
     ->get();
-    // dd($regInteres);
+
+    $cercano = DB::table('products')
+    ->where('user_id',Auth::user()->id)
+    ->where('category_id',$categoria)
+
+    ->select(DB::raw("abs(value - $productos->value) limit 1 "))
+
+    ->get();
+    dd($cercano);
     return view('/detalleproducto',compact('categorias','productos','intereses','regInteres'));
    }
 }
