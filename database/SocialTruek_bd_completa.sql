@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.27, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: socialtruek_db3
+-- Host: localhost    Database: socialtruek_db3
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.8-MariaDB
 
@@ -16,6 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `administrators`
+--
+
+DROP TABLE IF EXISTS `administrators`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `administrators` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `fullName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birth` date NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `administrators_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `administrators`
 --
 
@@ -24,6 +47,23 @@ LOCK TABLES `administrators` WRITE;
 INSERT INTO `administrators` VALUES (1,'Eric Mena','EricM','menaeridaniel@gmail.com',NULL,'$2y$10$FfL4xmEoe9I9rUNWqWT6aO8BbSPAgKU07UxLQS4jVy5t0Ee1Be85G','1976-03-03',NULL,'2019-12-26 04:33:05','2019-12-28 13:31:20'),(2,'Lucas Mena','Lukas','lucasmena@gmail.com',NULL,'$2y$10$tnKjkYlMs8XbC5d4fce/YuGhxNMA3D2lJK4xJ4daomYuZAcQ1mqti','2004-10-13',NULL,'2019-12-26 06:21:17','2019-12-28 13:32:11'),(3,'Jorge Martinez','Jorge','jorge@hotmail.com',NULL,'$2y$10$70Ex/HdNcYa/CCxYBHyqIOtd5DatCMp5LD7LFa4hyqesfBN5CwnYe','1986-06-23',NULL,'2019-12-26 06:33:50','2019-12-26 06:33:50'),(4,'alexis veiga','aleveiga','veigalexis16@gmail.com',NULL,'$2y$10$8ePTDZct/Odol3ZeKZ9TNOCC8jy/zn4ET0esGGhZHoqvPbGaK9BRS','1994-04-28',NULL,'2020-01-07 23:03:02','2020-01-07 23:03:02');
 /*!40000 ALTER TABLE `administrators` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categories` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `categories`
@@ -36,6 +76,22 @@ INSERT INTO `categories` VALUES (1,NULL,NULL,'autos','autos.png'),(2,NULL,NULL,'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `codes`
+--
+
+DROP TABLE IF EXISTS `codes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `codes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `codes`
 --
 
@@ -46,6 +102,24 @@ INSERT INTO `codes` VALUES (1,'$2y$10$CLpcqUXm8wcq0VJJIQhZ4uvHMl5DWay.UTCrQLnCQq
 UNLOCK TABLES;
 
 --
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `failed_jobs`
 --
 
@@ -53,6 +127,21 @@ LOCK TABLES `failed_jobs` WRITE;
 /*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `migrations`
@@ -65,6 +154,21 @@ INSERT INTO `migrations` VALUES (61,'2014_10_12_000000_create_users_table',1),(6
 UNLOCK TABLES;
 
 --
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `password_resets`
 --
 
@@ -75,6 +179,35 @@ INSERT INTO `password_resets` VALUES ('menaericdaniel@gmail.com','$2y$10$XVma29D
 UNLOCK TABLES;
 
 --
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `date` date NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` int(11) NOT NULL,
+  `image1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `intereses` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_user_id_foreign` (`user_id`),
+  KEY `products_category_id_foreign` (`category_id`),
+  CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `products`
 --
 
@@ -83,6 +216,38 @@ LOCK TABLES `products` WRITE;
 INSERT INTO `products` VALUES (1,'2019-11-26 05:28:08','2020-01-01 19:06:59','2019-11-26','Fiat Palio Essence 1.6 MT 16v','Un vehículo totalmente renovado, con una linea exterior más atractiva, mayor espacio interior tanto para pasajeros como equipaje.',2901,'fwVgyeZx2Q6IrGDYToQ8xbBUegA4WZ1DZOzdMwWg.jpeg','ExD4wY7ysppMEGubHYMcHGIOG61zFVncCL5vIjT7.jpeg','1RP1xRY15PJg7yT1AvdvVBJECNyRj7G1ERocUIFZ.jpeg',1,1,'autos'),(2,'2019-11-26 13:15:14','2019-11-26 13:15:14','2019-11-26','Peugeot 208 1.6 5P ALLURE','Impecable de mecánica. Todos los service al día. Kilometraje 100% real y comprobable. Nunca tuvo un choque. Todo original. Muy buen estado interior y exterior',6590,'DgxI5PIhgmluHhSZb1nz9N6oJDWyjHmGVBO2k2kB.jpeg','pj1mbjqcfettMgNcKZf93jnnwWxZgEN33qbfgnEo.jpeg','rtop0Mfdu7vNZcABCTLeF5TCJ1MtuHdg03EFHxRY.jpeg',1,2,'autos'),(3,'2019-11-26 13:17:19','2019-11-26 13:17:19','2019-11-26','Honda HR-V 1.8 Lx 2wd Cvt','Vehículo listo para transferir. Papeles al día. Cuero original Honda. Primera mano. Todos los service oficiales hechos',8750,'gCYfv1KaC1PLA43tC0cFTu1anXuafbqnoBZloTca.jpeg','6zKm0hJGV7MjC1C5GKAaNWZArRmBowsOVEOkMWk2.jpeg','6fam7jrWAofp7B4PdZvgMhuP48DjXfjfWLrkVXEh.jpeg',1,3,'autos'),(4,'2019-11-26 13:19:17','2019-11-26 13:19:17','2019-11-26','Toyota Corolla 1.8 Xli Mt 136cv','Vehículo inmaculado. 50.000 km. Cubiertas nuevas. Asientos de cuero. Levanta vidrios eléctricos en las 4 puertas. Cierre centralizado. Alarma. Vtv y verificación policial recién hecha. Todo al día. Listo para transferir. Excelente estado general y del motor. Vale cada centavo.',4300,'IdkNRXsuSIh4gWSQCc8efsKOKXDfLKQLaicPwYE1.jpeg','ADrnQrtrKNnrabekXyhiY7Ew93GSZNecuf9oI7xI.jpeg','8XMSZHsMVFmeHedvQ3TAS3oSdqAKt08jDcY0CVz4.jpeg',1,4,'autos'),(5,'2019-11-26 16:21:31','2019-12-31 23:04:20','2019-11-26','Peugeot Partner 1.4 Furgon Confort','Peugeot Partner 1.4 Furgon Confort',4300,'7QnG89WhXBitqFRzANVsrrEmEqY6ntGsc4zjO7Qh.jpeg','PylQG338MK7jeSiNpC4WbDagoEoDpQdQzciwJ8Rw.jpeg','4pwMSdE4teFNoHHHxTjDyEtl654R1J4eyT3mhpVf.jpeg',2,5,'autos'),(6,'2019-11-26 16:22:51','2019-11-26 16:22:51','2019-11-26','Kia Sportage 2.0 Ex At 154cv 4x2','Kia Sportage 2.0 Ex At 154cv 4x2',9860,'rUPYbjfNlke0CrGK9ilOHYCyB28GqQetrVMulKMP.jpeg','PwPRDDq6o759Wcz7gpobe0CeOdBq2Zgberl8btcI.jpeg','PVOQLv9fLzOzmnyv3qntK4AACFOYOT9ZXw0f5cT2.jpeg',1,6,'autos'),(7,'2019-11-26 16:26:27','2019-11-26 16:26:27','2019-11-26','Chevrolet Spin 1.8 Ltz 7as 105cv','Chevrolet Spin 1.8 Ltz 7as 105cv',5750,'MdcTTWEW3CcKp0ujuE26CMZMvrQ3eEtAZ5HA1z0x.jpeg','AV0GYL9XLCF901duieWt6nCXUchmPukZ5ZAXaDSX.jpeg','Sul6r2P0TzdXSNQb9N9S4m2uCrH2ztulDYyOcb17.jpeg',1,7,'autos'),(8,'2019-11-26 19:06:55','2019-11-26 19:06:55','2019-11-26','Chevrolet Onix 1.4LS JOY+ 98cv','Impecable de mecánica. Todos los service al día. Kilometraje 100% real y comprobable Nunca tuvo un choque. Todo original. Muy buen estado interior y exterior',4150,'p43sSazws5TO4NI0G56fG1rAGSEo8xesa8ldO4Hn.jpeg','2sWORZqD74dklhJPnFK8vMblFf7wFGhaxyC3qlqg.jpeg','CUas1cV4U1Qz4JaGZrH3mEhvR7DdzhtOt1Wpq51r.jpeg',1,8,'autos'),(9,'2019-11-29 17:17:13','2019-11-29 17:17:13','2019-11-29','Balanza Digital','balanza digital de precisión de hasta 1 gramo',2,'I996gnomvFtX6nNq8Sgd41vYkeG3N1xsEUIZNkcP.jpeg','dRW9xuzInGFMDqbRbPSYd0CT71wnsHAFSvzpKZt7.jpeg','KIl8Iwgsb9YDN6j03BLHFZRU1jfoemO7S9hTq1ui.jpeg',5,2,'electrodomesticos'),(10,'2019-11-29 17:30:06','2019-11-29 17:30:06','2019-11-29','Vivienda multifamiliar','vivienda espaciosa para varias familias',2800,'dqNfcB2Uwhp2YJlJ3WbYMg1f3WZmhmCFSyEb3fu3.jpeg','i5S5dVGtjXt2ilqcpAfm8Ny96Fge8ffinoDSpmMR.jpeg','pCPLamNeRqzOVcE2gVfgAGcCRud8LlOvA1KExH8e.jpeg',2,1,'inmuebles'),(11,'2019-11-29 17:34:46','2019-11-29 17:34:46','2019-11-29','TEG Independencia','juego de estrategia de guerra mas famoso del mundo',10,'1W47LF25h00OeQ6R1D1r8aoesLmC7GBvjNG8ao1e.jpeg','s7lZFmAFu0UWp8xLJaEYyI4y83NAzYWdxDwKFB13.jpeg','RGOMA6xILdZJZvBt9tpO5GhSQ7D1ABBlF3XjHXvg.jpeg',7,1,'juguetes'),(12,'2019-11-29 17:36:41','2019-11-29 17:36:41','2019-11-29','Uno','juego de cartas mas divertido del mundo',3,'XsSyuVQkwkKrqtbUfPk8H6XVRfML1JhbuWJoZFQx.jpeg','wMYchVgZHktXN5w5Ii4c8TAAwf7kdyBfIADLPVNa.jpeg','osn7d5rzl8IPTkoVKz84uaPZyJ5Q3Vd0LwcnE2z3.jpeg',7,2,'juguetes'),(13,'2019-11-29 17:40:11','2019-11-29 17:40:11','2019-11-29','Amoladora angular','amoladora angular marca DeWalt',120,'0lHhT2Z7Qk4473rdZvHi7MgOX5Jg9nYLLIecByqu.jpeg','XH96NpGp3boGeBXFKMdt4OdhuRc3l1wsRJuEb5O0.jpeg','048eiTVw5MQSpfsV0u8gyazYEb0tvpw9WXoCaIOr.jpeg',4,1,'herramientas'),(14,'2019-11-29 17:42:39','2019-11-29 17:42:39','2019-11-29','POP movie Marty Mcfly','muñero de coleccion del personaje Marty Mcfly de la saga Back To te Future.',5,'o8f2oVnF7L0mUnWOf2sfzLI23BslFpbTS4MerTB9.jpeg','MJGI9Iqy8ddQQkpOqUsowFdmUHpV3UfzbfN1XnWs.jpeg','eO32DHmSFd6ROPOpzuRMyf9nI9vCiok8I44PTHki.jpeg',7,3,'juguetes'),(15,'2019-12-06 03:57:04','2019-12-06 03:57:04','2019-12-06','casa de lujo','Mansión de estilo academicista frances de principios de siglo XVIII',7000,'2xUEvQzMpiExLfXrhXRATMVsHu3QnhFpJjUIFc2A.jpeg','T8g6xt6jp3S0qeTpWm11p7ZnY0s4ksqytl2U6wO2.jpeg','855guesJvsRao4Glhf5VH3lUyhc69SZWbO3VFGU6.jpeg',2,2,'inmuebles'),(16,'2019-12-06 04:00:49','2019-12-06 04:00:49','2019-12-06','PH a estrenar','\'PH a estrenar\', \'Espectacular PH a estrenar ideal para pajeras. cocina, habitación baño, comedor y lavadero.\',',3600,'CBzVaIfIeZbKnhHdJRGnTsU7Ybtx0UAxGU3mMlmZ.jpeg','xvUgLbarJirAboaaQ40UC3zjNbBiPJGLktLo7xri.jpeg','jQ5Dv8a2zCd54kCxSxTCpjU6ZaVTkV3pjXYsoK61.jpeg',2,3,'inmuebles'),(17,'2019-12-06 04:02:20','2019-12-06 04:02:20','2019-12-06','Departamento 2 ambientes','Departamento dos ambientes. buena localizacion, cocina comedor con amueblamiento incluido y balcon con vista a la calle.',2700,'nND7ylsLJ7NufLvr3aG2egMCdEPTjMSbRvzLoyth.jpeg','7zhKOLDuhhFIPCEOGXFgNfBWBbCgzJxnGON8GuVV.jpeg','aglLnERJXL8P7iBpas8uiGUnclVEQxp92oYUB9Ms.jpeg',2,4,'inmuebles'),(18,'2019-12-06 04:05:45','2019-12-06 04:05:45','2019-12-06','Propiedad Horizontal','Propiedad apta para mediano grupo familiar. Este inmueble cuenta con cocina, comedor, 3 habitaciones y jardín frontal.',7300,'5vOgmNGED9E3OVn3THbgVlWlkFQW79OBlyosRYaa.jpeg','Z8dbc6rvfohIvHjIM17BCeEht5jVJE8ZVuhZaeAY.jpeg','CV6ADtYeWhlyJKzzo0MVyGa8xnU9Q50Asmv2Aojr.jpeg',2,5,'inmuebles'),(19,'2019-12-06 04:08:15','2019-12-06 04:08:15','2019-12-06','Casa dos Platas','Propiedad de dos plantas para grandes grupos familiartes. PB cocina y comedor con baños de servicio y lavadero. PA, dormitorios y playrooms.',2200,'4Lrkep4aQrd3y29C0XXfiCYxOm7busIEQMZnRtWG.jpeg','ErQPd5RvCOFiyCTyGHbjiRmVI17eEjoAEToF48W6.jpeg','qlkLo9JPDRWDeoDkZiPwt9nWqPs8CaFIb2tUFaxt.jpeg',2,6,'inmuebles'),(20,'2019-12-06 04:09:38','2019-12-06 04:09:38','2019-12-06','Martillo de Carpintero','Martillo de carpintero. Diferentes versiones. mango de madera y sacaclavos.',2,'Sv0JlbyucMx1HeJYPEZFK1szxixP9NZ9I9hl3xmM.jpeg','DwlEOh5IhBgCxsNzBkeXDtNJx5kyZ6qllDgBATRH.jpeg','JtFdz3tfekDli7aJnJ1elj0fRK2iIFMWlfT7HJi8.jpeg',4,2,'herramientas'),(21,'2019-12-06 04:12:25','2019-12-06 04:12:25','2019-12-06','Percutora BOSH','Percutora marca BOSH de altisima calidad. viene con estuche, mechas de diferente medida y mango estabilizador.',120,'T88Fidn6VD0iEogEMyuva8i8fuP3qFyLTvPoVaFr.jpeg','AptMrU6lgchPOa8CclYt4KuK7e2gEA8nVIdCSFF2.jpeg','LGJPvwSKYgpxD9LN9qlTH62smV6XQsnC6uga2ksU.jpeg',4,3,'herramientas'),(22,'2019-12-06 04:13:53','2019-12-06 04:13:53','2019-12-06','Sierra electrica BOSH','Sierra electrica BOSH. Este instrumento es ideal para trabajos sobre madera. Su dientes comen cualquier tipo de madera. Viene con estuche y con funda para la hoja',110,'yYKWFQaNJokFDT8Fsq6btRnMbwpftF8Xh8VvnBPh.jpeg','CkdHzRuHMp7qjte1woMkhxTqiC1UBf970HTRsQkH.jpeg','Q0HxaaVivfhYy7G20uWvpD4uMWdMAbtNKOZw9Wvs.jpeg',4,4,'herramientas'),(23,'2019-12-06 04:15:13','2019-12-06 04:15:13','2019-12-06','Juego de Llaves','Set de tubos y llaves de gran calidad. Este estuche cuenta con llaves ingles, francesas y llaves tubo de direfentes medidas.',50,'7c4KrWdIUqS6iXUaM5WKEuuiKL34RxbboD1LdYPw.jpeg','zqwwt7klbvpum2oSjRpFViVt9xq59OUJZFqO7lWy.jpeg','ookpoQZQLIpmkZy9RdSES3ae6Ue7XDYihlrjgf9A.jpeg',4,5,'herramientas'),(24,'2019-12-06 04:16:39','2019-12-06 04:16:39','2019-12-06','Nivel Laser DeWalt','Este intrumento es util para trabajos de pintureria o mampostería. con este artefacto de gran utilidad usted dejara esas incomodas mangueras para poder trabajar de una forma mas eficiente y rapida.',100,'UhzVwouTNIJSShwGxJsg1JNT6IivI2drIhbp2ykp.jpeg','clZPQSyEXwhDDamqoh90dHCT2rf2PHgHLJ8CaQTR.jpeg','cS7MNexJWqpoEv9yWUQETyfMNbKnj6HeoMAhjycH.jpeg',4,6,'herramientas'),(25,'2019-12-06 04:18:03','2019-12-06 04:18:03','2019-12-06','Lijadora Orbital DeWalt','Lijadora orbital. Este artefacto es de gran durabilidad. Se puede utilizar tanto en paredes, maderas, metales, chapas o plastico.',39,'hcEXcgF4MbhxSf25N9A1xhGuTcD9lnabvLfv6yVl.jpeg','PL9CiNLViPq0qzBRXFPv3crITpVRiqBLEykSCHB4.jpeg','rCxRgRSfNHjCNRgFRdbOBVNbu60Pg3Vlu38jj5Hj.jpeg',4,7,'herramientas'),(26,'2019-12-06 04:19:51','2019-12-06 04:19:51','2019-12-06','Cacerola Electrica Oster','- Función de sofrito que le permite sofreír alimentos antes de preparar el arroz\r\n - Tapa de vidrio refractario, con orificio de salida de exceso de vapor\r\n - Asa fría al tacto\r\n - Tapa con anillo de acero inoxidable\r\n - Olla interior removible de aluminio',79,'lMJddzhr3aByIAb1UOcI4rSojPJg2dAsLpmSUtJu.jpeg','lHvEa6YLhFiR3U4i1e9WGLOFTj9KIt20d4dB76aA.jpeg','J7xJRDbKSjFeWViglryT85DeAxdB0zN9wt3Vfisd.jpeg',5,1,'electrodomesticos'),(27,'2019-12-06 04:22:11','2019-12-06 04:22:11','2019-12-06','Heladera Whrilpool','- Heladera dos fríos,dos puertas,con freezer,con Dispenser\r\n - Volumen útil:328 litros.\r\n - Sistema Cycle Defrost.\r\n - Freezer independiente con estante divisor.\r\n - Temperatura freezer:\r\n - 18º.\r\n - Provista de cubeteras para hielo.\r\n - Descongelamiento aut.',430,'VryP8BD5iSto4O1ZO56hYyRBT7bvEQwQNfoEAt8k.jpeg','ozd8L5GC7Ek9wLx2c19XrhZzbw2UIPIpNZmcaJxn.jpeg','xAyah1bQUStk4CO6OHE8IfW02uwRAaPbI4AXR8h8.jpeg',5,2,'electrodomesticos'),(28,'2019-12-06 04:24:16','2019-12-06 04:24:16','2019-12-06','Lavarropas Automatico LG','Este innovador electrodoméstico logrará que la tarea de lavado diario sea más que sencilla. Su diseño eficaz permitirá dejar tu ropa impecable sin dañarla, optimizar tiempo y evitar los residuos de jabón.',250,'FNgMH53Jb7Sj2WIiZXGFzvxJnfK9xJXA9kK6Sgz8.jpeg','Quzcy8qfyaP7rq8bu58CMykf7744PnaiSpA2wGaR.jpeg','WEQXkly7BLb1AB0d167F0nmTC2vPv55YSdF8ne4M.jpeg',5,3,'electrodomesticos'),(29,'2019-12-06 04:26:52','2019-12-06 04:26:52','2019-12-06','Juego de Vajilla de 16 piezas','Ahora tu hogar puede ser fiel a tu estilo personal. Combina colores y estilos en tu menaje de cocina y mesa, de forma que la originalidad y la funcionalidad sean los protagonistas de tu día a día.',100,'OvJ59GHLxdmdEn34fvz1JSNQObJDBNdfskZLuE65.jpeg','nysOXD5Fg7zT4cCTQtIaJeUDiibt1ChWiVDZLAML.jpeg','ITjelc4TAsKvF7XXieIEWIjRCDa6VE0iYZFZw53F.jpeg',5,4,'electrodomesticos'),(30,'2019-12-06 04:29:22','2019-12-06 04:29:22','2019-12-06','Cocina Longvie','COCINA A GAS - LONGVIE\r\n MODELO: 13231BF - 56CM BLANCA\r\n CARACTERÍSTICAS:\r\n Eficiencia energética AA.\r\n Multigas.\r\n Horno QuickClean.\r\n 4 hornallas de tres diferentes potencias para optimizar su uso.\r\n Plancha enlozada.\r\n Puerta con visor de doble vidrio templ...',200,'cgn7I3jo4wserDVY8HnTMFYRRORLciY8eKtvF72i.jpeg','s6xlkOusIJJ8koADYAKVSwAW7fzfl9nIBKDb5XWB.jpeg','HMLJ07YFfTrWPj4FIrsdWDtFOq61gGYKYFi2Kk4l.jpeg',5,5,'electrodomesticos'),(31,'2019-12-06 04:31:04','2019-12-06 04:31:04','2019-12-06','Microondas Samsung','Variedad de funciones y programas\r\n Posee la función de descongelamiento automático, que calcula el tiempo necesario y la potencia según el tipo de alimento o según el peso. Para destacar, este microondas cuenta con diferentes niveles de cocción .',50,'FhoID3o24EL2c6ogfKCtbKwbqdAk3eNXbSPj6MWo.jpeg','5ZVKkqkc7rF3qNEQAnWDcdK0ySE8DnmDNGsFOb9R.jpeg','orv49BPwjTNzfkHr4Zay5wNnAWeILP6qAXOr9ieA.jpeg',5,6,'electrodomesticos'),(32,'2019-12-06 04:39:58','2019-12-29 04:52:54','2019-12-06','La odisea de Homero','Título del libro: La Odisea, Autor: Homero, Editorial: Del fondo, Idioma: Español,  Género del libro: Literatura y ficción,  Tipo de narración: Novela',4,'Vm90tmqsADWbpRQZj4x98hI4DSXBmvIPkp8chauD.jpeg','HggdZG5u0WcycDPK5xJp8Ejj0CMu1O9tgdBaxugH.jpeg','axoV8FfhR3LPPNF815jYB0JM8hPMdRZXAl7NWWYY.jpeg',8,1,'libros'),(33,'2019-12-06 04:41:40','2019-12-06 04:41:40','2019-12-06','Appetites de Anthony Bourdain','Título del libro:\r\n Appetites\r\n Autor:\r\n Anthony Bourdain\r\n Idioma:\r\n Español\r\n Editorial:\r\n Planeta\r\n Formato:\r\n Papel\r\n Cubierta:\r\n Blanda\r\n Género del libro:\r\n Recreación, hobbies y oficios\r\n Subgéneros:\r\n Gastronomía',9,'31bra86t0x4HJ4WwL07jZ05TKpnJCv3g8DWKN4no.jpeg','986dGYi4A8BbqEjtlmMrn2v2KJYsJgYOB2Kwrk0Z.jpeg','b539U3RZCUMKxmMNeBFtwgoPOFw6DACWXReWMB1A.jpeg',8,2,'libros'),(34,'2019-12-06 04:43:15','2019-12-06 04:43:15','2019-12-06','It','El libro que inspiró a la película homónima. ¿Quién o qué mutila y mata a los niños de un pequeño pueblo norteamericano? ¿Por qué llega cíclicamente el horror a Derry en forma d e un payaso siniestro que va sembrando la destrucción a su paso?',6,'yzDpbmHlHh72xvgI9N02scglMZ5QmzfZGRwei2Ec.jpeg','FSnc0aRELgcEGgdcqSvtj2v43zy04YzHz6qSYOE6.jpeg','rsR6wH4Yy4qu3WWwPhdFAsA7J7PoIC7GvZOJ0Chs.jpeg',8,3,'libros'),(35,'2019-12-06 04:44:52','2020-01-01 20:38:15','2019-12-06','Enciclopedia Larousse Ilustrado','Título del libro\r\n DICCIONARIO ESCOLAR LAROUSSE. NUEVA EDICION\r\n Idioma\r\n Español\r\n Editorial\r\n LAROUSSE\r\n Formato\r\n Papel\r\n Género del libro\r\n Diccionarios y enciclopedias',10,'tZYyWopfgV8jRKAY8oZBPkUGuujo5lDgiWmmbKAA.jpeg','xKBhSQA21xOlPBnDuCb2io5Zxc0ZY4l2l2P50CMF.jpeg','Upik5bpK3q2wIZsLnvFAbE823UhsYwoqQFRbawpb.png',8,4,'libros'),(36,'2019-12-06 04:46:53','2020-01-01 20:19:29','2019-12-06','Santa Biblia','Santa Biblia El libro mas importante de la historia que cambio el destino de la humanidad y de la religion',6,'F7zKrWzi26sNwun7l7WJ72I7wlj4TBlMoAFDEVBr.jpeg','QpWtVq31qTff2vAot9iLg4um9lMGY6tHnhgtH6x1.jpeg','veE89Ow3h1xWG36CXjzW98N630J1wOvyRaRItk7K.jpeg',8,5,'libros'),(37,'2019-12-06 04:48:53','2019-12-06 04:48:53','2019-12-06','Las mil y una curiosidades sobre buenos aires','Una guia de turismo de la ciudad de Buenos Aires cuenta las historias mas curiosas y mas intrigantes sobre una de las ciudades mas importantes del mundo',8,'mchT7a1OyhtvF5UhpgvlZjzBX7XGoKAt6zXvXnDS.jpeg','IJsYvTWndtvKUuPztXWtJshQ3APPfvYtnIkhotDV.jpeg','QBJJqQ6fHnEDSrIfow0opyfzJUeTLar4nEYsJUUF.jpeg',8,6,'libros'),(38,'2019-12-06 04:50:47','2019-12-06 04:50:47','2019-12-06','Night Circus','Este libro cuenta la historia de dos jovenes y adolecentes magos que deben hacer hasta lo imposible para salvar la vida de un magico circo.',3,'na9bhSnpOeh0S5VRGd5weP9IfmjMU0J92Dc5ANwl.jpeg','Ca0UerWy4cmnK0LBSgJL6za3Ya81aQYehNioi2lw.jpeg','wheyyAEdWvInNkUWvQFp1U9RogKWUHvvxCU23W1g.jpeg',8,7,'libros'),(39,'2019-12-06 05:58:27','2019-12-06 05:58:27','2019-12-06','El poder esta dentro de ti','Auto ayuda para poder encontrar dentro de uno mismo las herramientas para poder sobrepasar los problemas que nos presenta la vida',5,'QcqJryjKdQRsHUM9a97kkAMls9wBjYa0PT3da2Or.jpeg','bUD37MreHPqrMyescdJ7vTMnzNzGvM8rilqxUJsD.jpeg','MreLB7HGvo3plOIchQod2ShyuKCME4WzbQTXUvNX.jpeg',8,8,'libros'),(40,'2019-12-06 06:00:32','2019-12-06 06:00:32','2019-12-06','Muñeco Buzz LighYear','LLEGARON LOS MUÑECOS DE TOY STORY QUE ESTABAS ESPERANDO, LLEVALO CONTIGO A TODOS LADOS.\r\n MATERIAL SUAVE Y ESPONJOSO. TAMAÑO 40 CMS APROXIMADAMENTE.\r\n EDAD: 3+ AÑOS',100,'a8DU93ehG8ApX0yo38bgbLM5COYzT8eqWbxshBG5.jpeg','Uq5Q4IuiURQKoVGROeiKD5UxDJge5RkLOcUS402c.jpeg','bjHw6lsmAlfJrK4j9IPNikze7829ZaE5jLNaw5JL.jpeg',7,4,'juguetes'),(41,'2019-12-06 06:01:39','2019-12-06 06:01:39','2019-12-06','Aviones de Juguete','Varias clases de aviones para hacer volar la imaginacion de los mas pequeños',2,'XLWqkkhxD8RWFxNCRJjqmXttEfs3yCg2kABxXM55.jpeg','w1wlxy0I0TtckcdKEoV2t40cenWygJagNYfgcrae.jpeg','EeV8fjuZnsOfBIPhPEgvFp1lhO8tHlQGqvrT4RTX.jpeg',7,5,'juguetes'),(42,'2019-12-06 06:03:23','2019-12-06 06:03:23','2019-12-06','Oso iteractivo parlante','Osos con botones intecativos escondidos en las extemidades de los muñecos para fomentar la curiosidad de los bebes',2,'PdxP9m7Y813pkprUGT0nD0vu82oKqu3qaDie3Edg.jpeg','VwTWxZ0SXV7wWGb8pcXy74woaXWP9Yfh0oG0Nyq6.jpeg','3aII6zWWv1qKheaw6iYX9nDd5ZrINgltfcNpn2SP.jpeg',7,6,'juguetes'),(43,'2019-12-06 06:04:51','2019-12-06 06:04:51','2019-12-06','Monopoly Varias Versiones','Aprende a convertirte en un perfecto hombre de negocios con este famosisimo juego de mesa.',4,'qRAKxqnQDLnWEbD6jxrCmy7alGJDjNyUpnW8cmhn.jpeg','2g6pphZQ2ksR8OuxbBOuh6FI73mhKNvZIUrrPNGX.jpeg','9sLYqnXXlytrGPg9IxvZXM6bG7dNsENQFv1z4soR.jpeg',7,7,'juguetes'),(44,'2019-12-06 06:07:05','2019-12-06 06:07:05','2019-12-06','Autos Hot Wheels','Colecciona los autos mas increibles para usar en tus pistas de carreras!',10,'I3jwiLPlVI3JQODv25JYrn0eWcnNKEZO3UeUa5Yf.jpeg','9X3Vdi4EQNo7OViKnWvQxKZTvKJ6nqDvLGZCYgoU.jpeg','7VgjE96TM1vCm3LTic9TRbkmCCJPyjb0abTv1DgY.jpeg',7,8,'juguetes'),(45,'2019-12-06 15:42:15','2019-12-06 15:42:15','2019-12-06','Bicicleta Mountain Bike Fire Bird Rod.26','• Cuadro: Acero Hi-ten Y\r\n • Colores disponibles:\r\n o Negro con rojo\r\n o Amarillo con negro\r\n o Verde con negro\r\n o Azul con negro\r\n • Sistema de cambios: Power\r\n • Frenos: V-Brake\r\n • Horquilla: Suspension Fast\r\n • Llantas: doble pared\r\n • Cubiertas...',140,'7YAE7RBEHUeR9LkQSu5nxHPB3G2mbz2mvjdqnhuU.jpeg','MOWcCNOgHUdrbezRrzRTN735XxDfGzCm4QIoqSsb.jpeg','7TL8umui29B3HueftcEruPwnAisHLeKfbAaBTZYr.jpeg',9,1,'rodados'),(46,'2019-12-06 15:45:30','2019-12-06 15:45:30','2019-12-06','Bicicleta R26 Fire Bird Black Shimano','Detalle de componentes:\r\n • Cuadro: Aluminio hidroformado 6061\r\n • Horquilla: Suspension Fast R26\r\n • Sistema de cambios: Shimano Tourney de 21 velocidades\r\n • Manijas de cambio Shimano Rapid Fire\r\n • Piñón: 7 velocidades\r\n • Pata de cambio: Shim...',100,'XvUPIwSEXfF6KiobQi7j0Mt4YfiHvIjBbRJjvz1j.jpeg','gdBfms7q0WDkCC6ITDC1pxtiXSbOs3YHzxdUgEeb.jpeg','JTB9K2VKqc4lHYJnClZoa0UgQmTqU554pYMf0TAg.jpeg',9,2,'rodados'),(47,'2019-12-06 15:48:31','2019-12-06 15:48:31','2019-12-06','Bicicleta Moma Bike Peak','La marca número uno de Argentina ahora puede ser tuya. La tecnología y diseño de su cuadro, alto estándar de componentes y estricto control de calidad, hacen de MOMA la marca favorita tanto para uso urbano, freestyle, mountain bike o ruta.',500,'anL60NVeA8JFh8PR0EJzaw0uOBLruZhNnHaOJZRC.jpeg','pPF1jOc73q99gfeZhVsNqaeRyxHvaLgEqywUJxPB.jpeg','B6FEqFxR4CI5SFTU2IvZzSKLdqoyZOG6ehafEbka.jpeg',9,3,'rodados'),(49,'2019-12-06 15:51:24','2019-12-06 15:51:24','2019-12-06','Bicicleta Electrica','Chasis Monocasco en acero\r\n Potencia 5000 watt\r\n Motor Trimove PWT, sin escobillas, C.C.\r\n Batería Litio ion 30ah\r\n Celdas espaciales de alta descarga\r\n Frenos Sistema Hidráulico\r\n Disco 203mm delantero\r\n Disco 203mm trasero\r\n Suspensión delantera Horquilla d...',3000,'XdY840GB7SKDP31WUwZQL8J6zCFiChzHCfQuBFNZ.jpeg','uaHV3Aj3Ubx34dJJcxW6UVpWhL1b3CZclStQ7AyB.jpeg','FG6WW1yUqSd4zrPwVMQvUfu4OVRKsR9lM0mEOkti.jpeg',9,4,'rodados'),(50,'2019-12-06 15:53:39','2019-12-06 15:53:39','2019-12-06','Triciclo Moma','Tipo: Triciclo a pedal.\r\n o Modelo: Moma\r\n o Edad: 3 - 6 años.\r\n o Peso máximo: 50 Kg.\r\n o Incluye calcos decorativas.\r\n o Diseño robusto y versátil.\r\n o Fácil de manejar sobre todo tipo de terrenos.\r\n o Relación de pedaleo ideal para realizar ascensos s...',85,'IcMclFLn56iZIsGrCLoaUtw6yavXbDd0WV2Oi616.jpeg','wUBhutFur9tcLMvHkqvawAbZUrysGlgZuYOfZ0gh.jpeg','MLROOExeBF58AbZemmSvmv7OxWNHpmAGHEG5hD2W.jpeg',9,5,'rodados'),(51,'2019-12-06 15:55:20','2019-12-06 15:55:20','2019-12-06','Monopatin Scooter','Monopatin para uso en zonas urbanas. Otro medio de trasporte para ayudar al medio ambiente.',74,'Whn1xs9mRYaoqTFkaRyot3V7mx5y4t1XBU7UYB3B.jpeg','NR14zVznwVF3miaGF9yA7bY4Bo3qqt3mZTau5RNR.jpeg','ZY5KPXJDVduNc22Fp0QNpGDfN2lUSfv5BrJWAm9j.jpeg',9,6,'rodados'),(52,'2019-12-06 15:56:49','2019-12-06 15:56:49','2019-12-06','Cuatriciclo Yamaha YFZ 450','Yamaha yfz 450 inyeccion... Impecable estado siempre uso recreativo en la arena no conoce la tierra... Todo original nada cambiado hasta su transmisión es la original de fábrica. Solo cambios estéticos... Titular... Puedo tomar alguna permuta.',768,'vo0MShX0JvC2dQxoHwDmcBhNqGHxMyr5O49qxAyJ.jpeg','y1IyBtLl28M9bK9hgWFyNhPbsMOt3n9zWSE50ClN.jpeg','9fL0SQ81drMCGjSW8NRUSeYJRfcKUYNKMz5A1TdT.jpeg',9,7,'rodados'),(53,'2019-12-06 15:59:30','2019-12-06 15:59:30','2019-12-06','Iphone 5','IPhone 5s 16 giga 4G Nuevos Sellados Libres de fabrica OEM\r\n Únicamente color SPACE GRAY \r\n Envios gratis a todo el país por mercadoenvios (correo argentino)',200,'NFtQosOs0FAgzm6gR6OSihgz9Nt5aKVLnC3Zen5n.jpeg','KBe1u9kYXUaspHsLX2JdZ6YKDeVhakPJTwbxF9aB.jpeg','Cj75T2HHuaTo7yoEi1yeJY4pHY5QJ4J1fbBPuN3F.jpeg',10,1,'celulares'),(54,'2019-12-06 16:01:25','2019-12-06 16:01:25','2019-12-06','Huawei GW','Bateria tipoPolimero de Litio\r\n Capacidad batería3000 Amperios hora\r\n Cámara de fotos: cámaraApertura ƒ / 2.0, Enfoque automático, Geoetiquetado, HDR\r\n Resolución cámara de fotos13 Megapíxeles\r\n Resolución cámara de fotos (alto)3120 Píxeles\r\n Resol...',54,'mRdcuL6hRgvrUpaCcIjPQYRSssWp89LIzSqKkysb.jpeg','GIod8Y268yqNpcIMsoRpfjBYXO6ssTOywSN3gFVo.jpeg','N3Vzoeo4sX6udR9Egspzl4AL0xFAsouNlzGy3EE6.jpeg',10,2,'celulares'),(55,'2019-12-06 16:03:57','2019-12-06 16:03:57','2019-12-06','Xaiomi Mi 8','Acabado en degradado con efecto espejo.\r\n Un solo color no es suficiente. Tu smartphone cambia de color con la elegancia propia de una pintura impresionista. El resultado es el azul aurora y el negro medianoche, colores creados para dar rienda suelta a tu...',160,'PXxmtX5mMJpnBxBYfU8OKWpBY1wzl0TfsF7MUbeL.jpeg','LykiDNOSPwYjP8NbkTBeH3rcXctCpDoG0kQO7cid.jpeg','ioyIpLQ6w3wsJMhPs0CSBvWRDsnZIhQxbL9gdzYo.jpeg',10,3,'celulares'),(56,'2019-12-06 16:06:35','2019-12-06 16:06:35','2019-12-06','Motorola E5','Procesador de alto rendimiento\r\n Su potente procesador y memoria RAM, te permitirán ejecutar aplicaciones y realizar múltiples tareas al mismo tiempo. Su sistema operativo Android 8.0 te resultará eficiente e intuitivo.',100,'GxQjq2jv1AlNsL5TWkasEutToVsMMyZtC12gDMBa.jpeg','s1cewI7bHZKhhKkK7JNjzbwFJeJ2kNEYVvcNKucj.jpeg','iazeFEYbHlRu0gfvttjBNJV5ArEuMpZa124h2Z7e.jpeg',10,4,'celulares'),(57,'2019-12-06 16:09:56','2019-12-06 16:09:56','2019-12-06','Samsung J2','Disfrutá más con una pantalla amplia:\r\n Con un diseño que destaca, el Galaxy J2 Core cuenta con una increíble pantalla qHD de 5\" que ofrece mayor cobertura y mejor experiencia de visualización. Además, cuenta con una variedad de llamativos colores c...',80,'J9oQjUmL5CfuXlJQN2r4wof8VAzcKDjAYEPnFxg0.jpeg','b1droWozm0w0bYImMsRjMnMeEjfcfPSjqicJKJ61.jpeg','z5iPgvh0FRZTgRU7B0HWXAmIvlYzr2u0WJfBSDlB.jpeg',10,5,'celulares'),(58,'2019-12-06 16:12:00','2019-12-06 16:12:00','2019-12-06','Xaiomi Red Mi Go','Este Xiaomi Redmi GO es un móvil bastante ligero, con cuerpo de plástico y un tamaño algo más pequeño de lo normal a estas alturas. La parte trasera está muy despejada al no contar con el lector de huellas, para desbloquear este móvil tan básico ...',80,'z12pL9ylHZr9VflRuuUrpAwI9OYxtY6Ao3tPQxdo.jpeg','95k3BI79orThJia1v4tr3b3iec0yWaSQXYd71qUI.jpeg','xvOPhIbL9tpTWo4fbRGMnGEQ2NaxYdKw3d02bSdN.jpeg',10,6,'celulares'),(59,'2019-12-06 16:13:25','2019-12-06 16:13:25','2019-12-06','Iphone 7','• Pantalla Retina HD\r\n • Pantalla Multi-Touch con tecnología IPS\r\n • Pantalla panorámica de 4.7 pulgadas (en diagonal) retroiluminada por LED\r\n • Resolución de 1.334 por 750 a 326 p/p\r\n • Chip A10 Fusion con arquitectura de 64 bits',400,'SXfZORVelb4DmQC1r53Be7qUKZtPjT9d09xEJ6C0.jpeg','nYp0WAoGOAWaOVbSzxxEhOT4nBLvbPd1jZrbIPde.jpeg','LBxLg0uiQkd7OIPHsWb3mOwpiF7R1HrcDZaJwHAQ.jpeg',10,7,'celulares'),(61,'2020-01-01 19:40:39','2020-01-01 19:40:39','2020-01-01','Renault Duster 2012','Excelente estado',4000,'ALQIL3DGWyQ7DtdZA41U5T2L0ePeHnxsjgzRQOXT.jpeg','9OjECFIaboMy7zZDqX5O2Rx0Qiuv6sDdfZ4hqR9T.jpeg','UffDp9ExH36lFcz0JSzoshNG9ZpFM6SQIS87VO2T.jpeg',1,1,'autos'),(62,'2020-01-01 20:07:48','2020-01-01 20:07:48','2020-01-01','Toyota 2014','Toyota Corolla. Listo para tranferir',5000,'yvvkDp3eEsKqmXOPT0RxbG4XKUR4rFxYbinobLtK.jpeg','zZFdb1WKbv0PIyDz84Yo8e96LYLznzgfIo7UqL2p.jpeg','Xy9v9HI9bLQIx6JSRVNYZfmjMen7O4Ps4yMrQTwn.jpeg',1,1,'autos'),(63,'2020-01-02 00:04:03','2020-01-02 00:04:03','2020-01-01','GRAND THEFT AUTO 5','En la extensa y soleada ciudad de Los Santos, tres criminales muy diferentes lo arriesgarán todo en una serie de atrevidos y peligrosos atracos que marcarán sus vidas.',2,'p0Dmh3NSQmAhmRhqmkAwW3U0gZdoJxlEKa2lbrhP.webp','yjfFymZyfevtAZENbAiiJkJyTtAefZiptMhJSruu.webp','xQlIzdKrzmKQM44e5HqOgs7opwGkyTFubucEVbnq.webp',6,1,'gamers'),(64,'2020-01-02 00:08:24','2020-01-02 00:08:24','2020-01-01','The Last Of Us Ps3','¿Serás de los últimos que queden en The Last of Us™?\r\nCuando el mundo que conocemos desaparece, cuando la línea que separa el bien del mal se difumina y cuando se toman decisiones de vida o muerte a diario, ¿qué decisiones tomarías para sobrevivir?',2,'M39lBn1xTKxJZT5Dk5PyIHDtkmuTCAoGE0nFiGPM.webp','lYGdxYCn4LIFdi7LRgb3UOeOSfMkcpoubdtiK5Sz.webp','FBNkH4OXbMUAKk2QBm6zWskZAFaldkHW26TLlmMs.webp',6,1,'gamers,libros'),(65,'2020-01-02 00:13:06','2020-01-02 00:13:06','2020-01-01','Call Of Duty Ghosts I Juego Ps3','CALL OF DUTY GHOSTS',2,'KdPYZ2GBrjh3kDdnW2uhO5EGE063rbgkRev22KR5.webp','NY0ZLJvKAgL7EuSNTWzbi4O3IZcPsaq5PcMrG6h8.webp','RvcGyUQw8aayB1pXpLT4nbfchohgopq1139xKTcc.webp',6,4,'gamers,juguetes,libros'),(67,'2020-01-07 22:29:03','2020-01-07 22:29:59','2020-01-07','Auto','fgdgfdfg',5646,'z1W2fO78HA7HaQZZ8WlBdd2VkRm7mASYHtD24GLc.jpeg','Tto1T9AjXUGPCbv1WpJksGGpiZPu0eRphVHY1prH.jpeg','YAuQgPDnN3lSzqpyV4t8qNRjmhBRy9jrbpOHhRms.jpeg',1,1,'autos,inmuebles'),(68,'2020-01-07 23:31:36','2020-01-07 23:33:34','2020-01-07','libro','bdthzdjzrdth',7,'VmiQd27qypVNQnagP4UrOr0val0dFbStA3QAcKA4.jpeg','R90QLK8GbMcuYCYMv6OFzh06A4sM5S8dkAXupysS.jpeg','HbEvXqihN7hS9J4KHhzQeAyYjAG3esJABCK862B3.jpeg',8,9,'juguetes,libros');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `rol` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `surname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birth` date NOT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
@@ -103,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-07 17:56:24
+-- Dump completed on 2020-01-08  7:29:13
