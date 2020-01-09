@@ -75,7 +75,7 @@
                             </li>
 
                             <li class="nav-item pl-2 dropdown">
-                                <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Categorias</a>
+                                <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-clipboard mr-1"></i>Categorias</a>
                                 <div class="dropdown-menu">
 
                                     @foreach ($categorias as $categoria)

@@ -6,29 +6,23 @@
 
       <div class="container-fluid mt-3">
 
-         <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">producto</th>
-              <th scope="col">titulo</th>
-              <th scope="col">descripcion</th>
-              <th scope="col">valor</th>
-            </tr>
-          </thead>
-          <tbody>
-              @foreach ($productos as $producto)
-            <td>
-              <a href="/detalleproducto/{{$producto->id}}">
-                  <img class="pic-1" src="/storage/images/products/{{$producto['image1']}}" width="150px">
-              </a>
-              </td>
-              <td>{{$producto['title']}}></td>
-              <td>{{$producto['description']}}</td>
-              <td>{{$producto['value']}}</td>
-            </tr>
-              @endforeach
-          </tbody>
-         </table>
+        <div class="row">
+            @foreach ($productos as $producto)
+            <div class="col-3 mb-4">
+                <div class="card">
+                <a href="/detalleproducto/{{$producto->id}}">
+                  <img src="/storage/images/products/{{$producto->image1}}" class="card-img-top" alt="...">
+                </a>
+                  <div class="card-body">
+                      <div></div>
+                  <h5 class="card-title">{{$producto->title}}</h5>
+                  <h6>{{$producto->value}} truekoins</h6>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+        </div>
+
          </div>
       </section>
     @endsection
