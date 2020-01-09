@@ -70,6 +70,7 @@
 <div class="col-md-3 col-sm-6">
 
         <div class="product-grid6">
+
             <div class="product-image6">
                 <a href="/detalleproducto/{{$producto->id}}">
                     <img class="pic-1" src="storage/images/products/{{$producto['image1']}}" >
@@ -77,8 +78,8 @@
             </div>
             <div class="product-content">
             <h3 class="title"><a href=""></a>{{$producto['title']}}</h3>
-            <div class="price"> {{$producto['value']}} truekoins
-                </div>
+            <div class="price"> {{$producto['value']}} truekoins</div>
+            <div><p class="text-secondary">Publicado {{$producto->created_at->diffForHumans()}}</p></div>
             </div>
             <ul class="social">
                 <li><a href="/detalleproducto/{{$producto->id}}" data-tip="Más información"><i class="fa fa-search"></i></a></li>

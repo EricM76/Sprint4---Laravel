@@ -78,7 +78,7 @@ class PublicarController extends Controller
         $producto -> intereses = $intereses;
         $producto -> save();
 
-        return redirect('/home');
+        return redirect("/cuenta?id=nav-profile-tab");
     }
 
     /**

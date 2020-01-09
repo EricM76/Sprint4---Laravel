@@ -33,7 +33,8 @@
                     <div class="card-body">
                     <p class="card-title text-uppercase h4" style="line-height: 150% ">Hola, soy {{$usuario->name}}. Te propongo  <strong> TRUEKEAR</strong> tu <em class="text-danger">{{$producto->title}}</em> por mi <em class="text-danger">{{$truekeo->title}}</em>. Si estás interesado confirma el <STrong>truekeo</STrong></p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn-primary">Enviar propuesta</button>
+                    <a href="/truekeo/propuesta/{{$producto->id}}/{{$truekeo->id}}"><button class="btn btn-success">Enviar propuesta</button></a>
+
                     </div>
 
                     </div>

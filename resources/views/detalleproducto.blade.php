@@ -48,7 +48,82 @@
 
       <img class="img-fluid" src="/storage/images/avatar/{{$productos->user->profile}}" alt="" width="50px">
       <h4 class=""> {{$productos->user->name." ".$productos->user->surname}}</h4>
-        <h5>{{$productos->user->city}}, {{$productos->user->state}}</h5> <a href="">ver ubicacion</a>
+      <div>
+        <h5>{{$productos->user->city}}, {{$productos->user->state}}</h5> <a href="" data-toggle="modal" data-target="#ubicacion">ver ubicacion</a>
+      </div>
+
+
+      <script>
+
+          mapa = {
+
+
+          }
+          </script>
+
+      <!-- Modal -->
+<div class="modal fade" id="ubicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onload="mapa.initMap()">
+
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ubicacion de {{$productos->user->name." ".$productos->user->surname}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input id="ciudad" type="text" value="{{$productos->user->city}}" hidden>
+            <input id="provincia" type="text" value="{{$productos->user->state}}" hidden>
+            <div id="map" style="width:100%; height:300px"></div>
+            <div><p id="coordenadas"></p></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap" async defer></script>
+
+        <script>
+
+           function initMap()
+           {
+               // Creamos el objeto geodecoder
+                var geocoder = new google.maps.Geocoder();
+                address = document.getElementById('ciudad').value + ', ' + document.getElementById('provincia').value;
+
+                    // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
+                    geocoder.geocode({ 'address': address}, function(results, status)
+                    {
+                        if (status == 'OK')
+                        {
+                            var lat = results[0].geometry.location.lat();
+                            var lng = results[0].geometry.location.lng();
+                            const options = {
+                center:{
+                    lat: lat,
+                    lng: lng
+                    },
+                zoom:11,
+                    }
+                var map = document.getElementById('map');
+                const mapa = new google.maps.Map(map,options)
+                var marker = new google.maps.Marker({
+                position:{
+                    lat: lat,
+                    lng: lng
+                },
+                map: mapa
+                })
+                        }
+                    })
+
+
+            };
+        </script>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
         <hr>
       <button class="btn-sm btn-danger" type="button">denunciar publicacion</button>
 

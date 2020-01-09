@@ -8,6 +8,7 @@ use App\Product;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,12 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    // public function __construct()
+    // {
+
+    // }
+
+
     /**
      * Show the application dashboard.
      *
@@ -29,7 +36,7 @@ class HomeController extends Controller
     public function index()
     {
         $categorias = Category::all();
-        $productos = Product::where('user_id','!=',Auth::user()->id)->get();
+        $productos = Product::where('user_id','!=',Auth::user()->id)->orderBy('created_at', 'desc')->get();
         return view('home', compact('productos','categorias'));
     }
 

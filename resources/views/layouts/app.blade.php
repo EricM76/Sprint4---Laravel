@@ -105,7 +105,15 @@
                                        {{ __('Mis Datos') }}
                                     </a>
                                     <a class="dropdown-item" href="/cuenta?id=nav-profile-tab">
-                                        {{ __('Mis Posteos') }}
+                                        {{ __('Mis Productos') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="/cuenta">
+                                        {{ __('Mis Propuestas') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="/cuenta?id=nav-contact-tab">
+                                        {{ __('Mensajes') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

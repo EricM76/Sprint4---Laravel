@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Category;
 use App\Product;
+use App\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -27,9 +28,11 @@ class CuentaController extends Controller
     {
 
         $user = Auth::user();
-        $posteos = Product::where('user_id',$user->id)->get();
+        $posteos = Product::where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
+        $mensajes = Message::where('id_UserDestinity',$user->id)->orderBy('created_at', 'desc')->get();
         $categorias = Category::all();
-        return view('/cuenta',compact('categorias','posteos'));
+        $productos = Product::all();
+        return view('/cuenta',compact('categorias','posteos','mensajes','productos'));
     }
 
     /**

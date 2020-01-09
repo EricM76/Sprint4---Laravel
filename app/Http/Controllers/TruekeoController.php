@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Category;
 use App\Product;
 use App\User;
+use App\Message;
 
 class TruekeoController extends Controller
 {
@@ -64,9 +65,17 @@ class TruekeoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function propuesta($producto,$truekeo)
     {
-        //
+        $producto = Product::find($producto);
+        $truekeo = Product::find($truekeo);
+        $mensaje = new Message();
+        $mensaje -> id_UserOrigin = $truekeo->user_id;
+        $mensaje -> id_UserDestinity = $producto->user_id;
+        $mensaje -> truekeo = $truekeo->id;
+        $mensaje -> message = 'Hola, soy ' .$truekeo->user->name. '. Te propongo TRUEKEAR tu ' .$producto->title. ' por mi ' .$truekeo->title. '. Si estás interesado confirma el truekeo';
+        $mensaje -> save();
+        return redirect('/home');
     }
 
     /**

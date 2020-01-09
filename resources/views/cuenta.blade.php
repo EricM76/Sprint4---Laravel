@@ -23,6 +23,17 @@
         }
     </script>
         @break
+    @case('nav-contact-tab')
+    <script>
+        window.onload = function()
+        {
+        var pestaña = document.getElementById('nav-messages-tab');
+        var contenido = document.getElementById('nav-messages');
+        pestaña.className = 'nav-item nav-link active';
+        contenido.className = 'tab-pane fade show active'
+        }
+    </script>
+        @break
     @default
 
     <script>
@@ -50,9 +61,9 @@
 
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contacto" role="tab" aria-controls="nav-contacto" aria-selected="false"><i class="fas fa-users mr-2"></i>Datos de Contacto</a>
 
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-truekes" role="tab" aria-controls="nav-truekes" aria-selected="false"><i class="fas fa-bullhorn mr-2"></i>Mis Posteos</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-truekes" role="tab" aria-controls="nav-truekes" aria-selected="false"><i class="fas fa-bullhorn mr-2"></i>Mis Productos</a>
 
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contactos" role="tab" aria-controls="nav-contactos" aria-selected="false"><i class="fas fa-users mr-2"></i>Mis Contactos</a>
+                        <a class="nav-item nav-link" id="nav-messages-tab" data-toggle="tab" href="#nav-messages" role="tab" aria-controls="nav-messages" aria-selected="false"><i class="fas fa-envelope mr-2"></i>Mensajes</a>
 
                         <a class="nav-item nav-link" id="nav-localizacion-tab" data-toggle="tab" href="#nav-localizacion" role="tab" aria-controls="nav-localizacion" aria-selected="false"><i class="fas fa-users mr-2"></i>Mi Localizacion</a>
 
@@ -407,8 +418,18 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="nav-contactos" role="tabpanel" aria-labelledby="nav-contactos-tab">
-
+                    <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
+                        @foreach ($mensajes as $mensaje)
+                        <div class="card" style="width: 18rem;">
+                        <img src="storage/images/products/{{$mensaje->Product->image1}}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                <h5 class="card-title">{{$mensaje->Product->title}}</h5>
+                                  <p class="card-text">{{$mensaje->message}}</p>
+                                  <a href="#" class="btn btn-danger">Rechazar</a>
+                                  <a href="#" class="btn btn-primary">Confirmar</a>
+                                </div>
+                              </div>
+                        @endforeach
 
 
                     </div>
