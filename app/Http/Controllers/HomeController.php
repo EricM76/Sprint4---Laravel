@@ -22,13 +22,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    // public function __construct()
-    // {
-
-    // }
-
-
-    /**
+     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -36,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         $categorias = Category::all();
-        $productos = Product::where('user_id','!=',Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $productos = Product::where('user_id','!=',Auth::user()->id)->orderBy('created_at', 'desc')->paginate(12);
         return view('home', compact('productos','categorias'));
     }
 

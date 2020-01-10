@@ -66,15 +66,15 @@
                             </div>
                         </form>
                         <ul class="nav my-2">
-                            <li class="nav-item pl-2">
+                            <li class="nav-item px-2">
                             <a class="nav-link active text-light" href={{'/home'}}><i class="fas fa-home mr-1"></i>Inicio</a>
                             </li>
 
-                            <li class="nav-item pl-2">
+                            <li class="nav-item px-2">
                                 <a class="nav-link text-light" href="#"><i class="fas fa-star mr-1"></i>Favoritos</a>
                             </li>
 
-                            <li class="nav-item pl-2 dropdown">
+                            <li class="nav-item px-2 dropdown">
                                 <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-clipboard mr-1"></i>Categorias</a>
                                 <div class="dropdown-menu">
 
@@ -87,7 +87,7 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item pl-2">
+                            <li class="nav-item px-2">
                                 <a class="nav-link text-light" href="{{('/publicar')}}"><i class="fas fa-bullhorn mr-1"></i>Publicar</a>
                             </li>
                         </ul>

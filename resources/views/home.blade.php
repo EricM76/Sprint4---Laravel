@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 
-<section class="carrousel mb-0 mt-0">
+{{-- <section class="carrousel mb-0 mt-0">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -50,7 +50,7 @@
         </a>
       </div>
     </section>
-    <section>
+    <section> --}}
             {{-- <div class="row d-flex justify-content-center">
 
         @foreach ($productos as $producto)
@@ -65,7 +65,14 @@
 
         @endforeach
 </div> --}}
+<div class="d-flex justify-content-center">
+    {{$productos->links()}}
+<style>
+.pagination>li>a, .pagination>li>span {margin: 0 5px;}
+</style>
+</div>
    <div class="row d-flex justify-content-center mt-4">
+
 @foreach ($productos as $producto)
 <div class="col-md-3 col-sm-6">
 
@@ -90,6 +97,13 @@
 
     </div>
     @endforeach
+
+</div>
+<div class="d-flex justify-content-center">
+    {{$productos->links()}}
+<style>
+.pagination>li>a, .pagination>li>span {margin: 0 5px;}
+</style>
 </div>
     </section>
 </div>

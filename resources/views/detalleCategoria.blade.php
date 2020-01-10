@@ -8,7 +8,7 @@
 
         <div class="row">
             @foreach ($productos as $producto)
-            <div class="col-3 mb-4">
+            <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
                 <div class="card">
                 <a href="/detalleproducto/{{$producto->id}}">
                   <img src="/storage/images/products/{{$producto->image1}}" class="card-img-top" alt="...">
