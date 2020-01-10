@@ -30,7 +30,7 @@
 </head>
 <body >
 
-    <div id="app ">
+    <div id="app">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -131,11 +131,11 @@
                 </div>
             </div>
         </nav>
-
-        <main class="">
+    </div>
+        <main id="main">
             @yield('content')
         </main>
-    </div>
+
     @yield('js')
 </body>
 </html>
