@@ -30,8 +30,19 @@ class HomeController extends Controller
     public function index()
     {
         $categorias = Category::all();
+        $autos = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','1')->orderBy('created_at', 'desc')->paginate(4);
+        $inmuebles = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','2')->orderBy('created_at', 'desc')->paginate(4);
+        $muebles = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','3')->orderBy('created_at', 'desc')->paginate(4);
+        $herramientas = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','4')->orderBy('created_at', 'desc')->paginate(4);
+        $electrodomesticos = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','5')->orderBy('created_at', 'desc')->paginate(4);
+        $gamers = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','6')->orderBy('created_at', 'desc')->paginate(4);
+        $juguetes = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','7')->orderBy('created_at', 'desc')->paginate(4);
+        $libros = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','8')->orderBy('created_at', 'desc')->paginate(4);
+        $rodados = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','9')->orderBy('created_at', 'desc')->paginate(4);
+        $celulares = Product::where('user_id','!=',Auth::user()->id)->where('category_id','like','10')->orderBy('created_at', 'desc')->paginate(4);
         $productos = Product::where('user_id','!=',Auth::user()->id)->orderBy('created_at', 'desc')->paginate(12);
-        return view('home', compact('productos','categorias'));
+
+        return view('home', compact('productos','categorias','autos','inmuebles','muebles','herramientas','electrodomesticos','gamers','juguetes','libros','rodados','celulares'));
     }
 
     public function detalle($id){

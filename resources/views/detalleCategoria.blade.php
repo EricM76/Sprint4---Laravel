@@ -22,7 +22,10 @@
               </div>
             @endforeach
         </div>
-
+        <div class="d-flex justify-content-center">
+            {{$productos->links()}}
+            <style>.pagination>li>a, .pagination>li>span {margin: 0 5px;}</style>
+        </div>
          </div>
       </section>
 

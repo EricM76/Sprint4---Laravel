@@ -32,7 +32,7 @@ class BusquedaController extends Controller
     public function indexCat($id)
     {
       $categorias = Category::all();
-      $productos = Product::where('category_id','LIKE', $id )->get();
+      $productos = Product::where('category_id','LIKE', $id )->paginate(4);
       return view('detalleCategoria',compact('productos','categorias'));
     }
     /**
