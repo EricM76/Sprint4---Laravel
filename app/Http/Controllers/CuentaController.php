@@ -30,9 +30,10 @@ class CuentaController extends Controller
         $user = Auth::user();
         $posteos = Product::where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
         $mensajes = Message::where('id_UserDestinity',$user->id)->orderBy('created_at', 'desc')->get();
+        $propuestas = Message::where('id_UserOrigin',$user->id)->orderBy('created_at', 'desc')->get();
         $categorias = Category::all();
         $productos = Product::all();
-        return view('/cuenta',compact('categorias','posteos','mensajes','productos'));
+        return view('/cuenta',compact('categorias','posteos','mensajes','productos','propuestas'));
     }
 
     /**

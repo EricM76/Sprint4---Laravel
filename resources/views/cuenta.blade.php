@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @if (isset($_GET['id']))
 @switch($_GET['id'])
-    @case('nav-home-tab')
+    @case('nav-miPerfil-tab')
     <script>
         window.onload = function()
         {
-        var pestaña = document.getElementById('nav-home-tab');
+        var pestaña = document.getElementById('nav-miPerfil-tab');
         var contenido = document.getElementById('nav-perfil');
         pestaña.className = 'nav-item nav-link active';
         contenido.className = 'tab-pane fade show active'
@@ -34,7 +34,21 @@
         }
     </script>
         @break
+
+    @case('nav-misPropuestas-tab')
+    <script>
+        window.onload = function()
+        {
+        var pestaña = document.getElementById('nav-misPropuestas-tab');
+        var contenido = document.getElementById('nav-propuestas');
+        pestaña.className = 'nav-item nav-link active';
+        contenido.className = 'tab-pane fade show active'
+        }
+    </script>
+        @break
     @default
+
+
 
     <script>
 
@@ -57,15 +71,17 @@
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                        <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-perfil" role="tab" aria-controls="nav-perfil" aria-selected="true"><i class="fas fa-user mr-2"></i>Datos Personales</a>
+                        <a class="nav-item nav-link" id="nav-miPerfil-tab" data-toggle="tab" href="#nav-perfil" role="tab" aria-controls="nav-perfil" aria-selected="true"><i class="fas fa-user mr-2"></i>Datos Personales</a>
 
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contacto" role="tab" aria-controls="nav-contacto" aria-selected="false"><i class="fas fa-users mr-2"></i>Datos de Contacto</a>
 
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-truekes" role="tab" aria-controls="nav-truekes" aria-selected="false"><i class="fas fa-bullhorn mr-2"></i>Mis Productos</a>
 
+                        <a class="nav-item nav-link" id="nav-misPropuestas-tab" data-toggle="tab" href="#nav-propuestas" role="tab" aria-controls="nav-propuestas" aria-selected="false"><i class="fas fa-users mr-2"></i>Mis propuestas</a>
+
                         <a class="nav-item nav-link" id="nav-messages-tab" data-toggle="tab" href="#nav-messages" role="tab" aria-controls="nav-messages" aria-selected="false"><i class="fas fa-envelope mr-2"></i>Mensajes</a>
 
-                        <a class="nav-item nav-link" id="nav-localizacion-tab" data-toggle="tab" href="#nav-localizacion" role="tab" aria-controls="nav-localizacion" aria-selected="false"><i class="fas fa-users mr-2"></i>Mi Localizacion</a>
+
 
                     </div>
                 </nav>
@@ -166,9 +182,9 @@
                                             <div class="col-4">
                                                 <div class="input-group mb-2 mr-sm-2">
                                                     <div class="input-group-prepend">
-                                                      <button class="input-group-text" id="address" onClick="event.preventDefault(); getCoords()"><i class="fas fa-map"></i></button>
+                                                      <button class="input-group-text" id="address" onClick="event.preventDefault(); initMap()"><i class="fas fa-map"></i></button>
                                                     </div>
-                                                    <input type="text" class="form-control" placeholder="direccion" value="{{Auth::user()->address}}" name="direccion">
+                                                    <input id="direccion" type="text" class="form-control" placeholder="direccion" value="{{Auth::user()->address}}" name="direccion">
                                                   </div>
                                             </div>
                                             <div class="col-4">
@@ -372,7 +388,49 @@
                                     <div class="col-12">
 
                                         <div class="row">
-                                            <div id="mapa" class="col-4  p-2" style="height:200px; width:270px" >
+                                            <div class="col-4  p-2">
+                                                <div id="map" style="width:100%; height:300px"></div>
+            <div><p id="coordenadas"></p></div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap" async defer></script>
+
+        <script>
+
+           function initMap()
+           {
+               // Creamos el objeto geodecoder
+                var geocoder = new google.maps.Geocoder();
+                address = document.getElementById('direccion').value + ', ' + document.getElementById('localidad').value + ', ' + document.getElementById('provincia').value;
+
+                    // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
+                    geocoder.geocode({ 'address': address}, function(results, status)
+                    {
+                        if (status == 'OK')
+                        {
+                            var lat = results[0].geometry.location.lat();
+                            var lng = results[0].geometry.location.lng();
+                            const options = {
+                center:{
+                    lat: lat,
+                    lng: lng
+                    },
+                zoom:11,
+
+                    }
+                var map = document.getElementById('map');
+                const mapa = new google.maps.Map(map,options)
+                var marker = new google.maps.Marker({
+                position:{
+                    lat: lat,
+                    lng: lng
+                },
+                map: mapa
+                })
+                        }
+                    })
+
+
+            };
+        </script>
 
                                             </div>
 
@@ -411,6 +469,15 @@
                                   <div class="p-2 text-center">
                                     <a href="/editarProduct/{{$posteo->id}}"> <button class="btn btn-sm btn-outline-success">Editar</button></a>
                                   <a href="/eliminarProduct/{{$posteo->id}}"> <button class="btn btn-sm btn-outline-danger">Eliminar</button></a>
+                                  {{-- <a href="" onclick="event.preventDefault();preguntar({{$posteo->id}})"> <button class="btn btn-sm btn-outline-danger">Eliminar</button></a>
+                                    <script lang="javascript">
+                                        function preguntar($id)
+                                        {
+                                            if (confirm('¿Estás seguro que deseas eliminar la publicación?')) {
+                                                location.href = '/eliminarProduct/{{$posteo->id}}'
+                                            }
+                                        }
+                                    </script> --}}
                                   </div>
                                 </div>
                               </div>
@@ -419,22 +486,57 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
-                        @foreach ($mensajes as $mensaje)
-                        <div class="card" style="width: 18rem;">
-                        <img src="storage/images/products/{{$mensaje->Product->image1}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                <h5 class="card-title">{{$mensaje->Product->title}}</h5>
-                                  <p class="card-text">{{$mensaje->message}}</p>
-                                  <a href="#" class="btn btn-danger">Rechazar</a>
-                                  <a href="#" class="btn btn-primary">Confirmar</a>
-                                </div>
-                              </div>
-                        @endforeach
+                        <div class="row">
+                            @foreach ($mensajes as $mensaje)
+                            <div class="card m-2" style="width: 16rem;">
+                            <img src="storage/images/products/{{$mensaje->ProductOrigin->image1}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                    <h5 class="card-title">{{$mensaje->ProductOrigin->title}}</h5>
+                                      <p class="card-text">{{$mensaje->message}}</p>
+                                    <a href="/rechazarMensaje/{{$mensaje->id}}" class="btn btn-danger">Rechazar</a>
+                                      <a href="#" class="btn btn-primary">Confirmar</a>
+                                    </div>
+                                  </div>
+                            @endforeach
+                        </div>
+
 
 
                     </div>
-                    <div class="tab-pane fade" id="nav-localizacion" role="tabpanel" aria-labelledby="nav-localizacion-tab">
-                    <div id="map" style="width:100%; height:300px">
+                    <div class="tab-pane fade" id="nav-propuestas" role="tabpanel" aria-labelledby="nav-misPropuestas-tab">
+                        <div class="row">
+                            @foreach ($propuestas as $propuesta)
+                            <div class="card m-2" style="width: 100%;">
+                                <div class="row p-3">
+                                    <div class="col-6">
+                                        <img src="storage/images/products/{{$propuesta->ProductDestinity->image1}}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text">TRUEKEAR</p>
+
+                                        <h5 class="card-title">{{$propuesta->ProductDestinity->title}}</h5>
+                                        <hr>
+                                          <p class="card-text h5">de {{$propuesta->UserDestinity->name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="storage/images/products/{{$propuesta->ProductOrigin->image1}}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text">por mi</p>
+                                        <h5 class="card-title">{{$propuesta->ProductOrigin->title}}</h5>
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <a href="/rechazarMensaje/{{$propuesta->id}}" class="btn-sm btn-danger">Desistir</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                  </div>
+                            @endforeach
+                        </div>
+
+
+                    {{-- <div id="map" style="width:100%; height:300px">
 
                         </div>
 
@@ -477,7 +579,7 @@
                        }
 
 
-                        </script>
+                        </script> --}}
                     </div>
                 </div>
             </div>

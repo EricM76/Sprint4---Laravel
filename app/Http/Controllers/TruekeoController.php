@@ -72,22 +72,18 @@ class TruekeoController extends Controller
         $mensaje = new Message();
         $mensaje -> id_UserOrigin = $truekeo->user_id;
         $mensaje -> id_UserDestinity = $producto->user_id;
-        $mensaje -> truekeo = $truekeo->id;
+        $mensaje -> truekeoOrigin = $truekeo->id;
+        $mensaje -> truekeoDestinity = $producto->id;
         $mensaje -> message = 'Hola, soy ' .$truekeo->user->name. '. Te propongo TRUEKEAR tu ' .$producto->title. ' por mi ' .$truekeo->title. '. Si estás interesado confirma el truekeo';
         $mensaje -> save();
         return redirect('/home');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function rechaza($id)
     {
-        //
+        $registro = Message::find($id);
+        $registro ->delete();
+        return redirect()->back();
     }
 
     /**

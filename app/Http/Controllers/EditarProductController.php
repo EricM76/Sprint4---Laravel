@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\User;
 use App\Category;
 use App\Product;
+use App\Message;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class EditarProductController extends Controller
 {
@@ -31,7 +35,7 @@ class EditarProductController extends Controller
         $interesesReg = $producto->intereses;
         $intereses = explode(",",$interesesReg);
 
-        return view('/editarProduct', compact('producto','categorias','intereses'));
+        return view('/editarProduct', compact('producto','categorias','intereses','i'));
     }
 
     /**
@@ -147,7 +151,10 @@ dd($request);
     public function destroy($id)
     {
         $registro = Product::find($id);
-        $registro ->delete();
+        $registro->delete();
+
         return redirect()->back();
     }
+
+
 }

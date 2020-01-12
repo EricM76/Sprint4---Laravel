@@ -74,3 +74,5 @@ Route::post('/truekeo','TruekeoController@store');
 
 
 Route::get('/truekeo/propuesta/{product}/{truek}','TruekeoController@propuesta');
+
+Route::get('/rechazarMensaje/{id}','TruekeoController@rechaza');

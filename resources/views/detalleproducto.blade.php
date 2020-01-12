@@ -24,8 +24,9 @@
 
            </div>
     <div class="details col-sm-12 col-md-12 col-lg-6">
+
       <h3 class="product-title">{{$productos->title}}</h3>
-      <div class="rating">
+      {{-- <div class="rating">
         <div class="stars">
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -34,16 +35,9 @@
           <span class="fa fa-star"></span>
         </div>
         <span class="review-no">visto 16 veces</span>
-      </div>
+      </div> --}}
       <h4 class="price"><span>{{$productos->value}} truekoins</span></h4>
-      <h5 class="mt-3">Truekea por:</h5>
-      <div>
-          @foreach ($intereses as $interes)
-      <a href="/intereses/{{$interes}}/{{$productos->id}}"><span class="badge badge-pill badge-primary">{{$interes}}</span></a>
-          @endforeach
-
-      </div>
-      <p class="product-description">DESCRIPCION: {{$productos->description}} </p>
+      <p class="product-description">{{$productos->description}} </p>
       <p class="text-secondary">publicado por</p>
 
       <img class="img-fluid" src="/storage/images/avatar/{{$productos->user->profile}}" alt="" width="50px">
@@ -53,14 +47,14 @@
       </div>
 
 
-      <script>
 
-          mapa = {
+      <h5 class="mt-3">Truekea por:</h5>
+      <div>
+          @foreach ($intereses as $interes)
+      <a href="/intereses/{{$interes}}/{{$productos->id}}"><span class="badge badge-pill badge-primary">{{$interes}}</span></a>
+          @endforeach
 
-
-          }
-          </script>
-
+      </div>
       <!-- Modal -->
 <div class="modal fade" id="ubicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onload="mapa.initMap()">
 
@@ -81,7 +75,8 @@
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap" async defer></script>
 
         <script>
-
+            mapa = {
+            }
            function initMap()
            {
                // Creamos el objeto geodecoder
@@ -101,6 +96,7 @@
                     lng: lng
                     },
                 zoom:11,
+
                     }
                 var map = document.getElementById('map');
                 const mapa = new google.maps.Map(map,options)
@@ -124,36 +120,35 @@
     </div>
   </div>
 
-        <hr>
+  @if (isset($regInteres))
+  <table class="table" id="table">
+    <thead>
+      <tr>
+        <th scope="col">Titulo</th>
+        <th scope="col" class="text-center">Valor</th>
+        <th scope="col" class="text-center">Agregar</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach ($regInteres as $registro)
+        <tr>
+        <td>{{$registro->title}}</td>
+        <td class="text-center">{{$registro->value}}</td>
+        <form action="/truekeo" method="POST">
+            @csrf
+                {{-- <td class="text-center"><input type="checkbox" name="trueke{{$registro->id}}" id="checkbox" value="{{$registro->id}}"></td> --}}
+                <td class="text-center">
+                    <input type="radio" name="truekeo" id="checkbox" value="{{$registro->id}}" checked>
+                </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <button class="btn-sm btn-success" type="submit" name="producto" value={{$productos->id}}>proponer truekeo</button>
+        </form>
+     @endif
+    <hr>
       <button class="btn-sm btn-danger" type="button">denunciar publicacion</button>
-
-      @if (isset($regInteres))
-      <table class="table" id="table">
-        <thead>
-          <tr>
-            <th scope="col">Titulo</th>
-            <th scope="col" class="text-center">Valor</th>
-            <th scope="col" class="text-center">Agregar</th>
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($regInteres as $registro)
-            <tr>
-            <td>{{$registro->title}}</td>
-            <td class="text-center">{{$registro->value}}</td>
-    <form action="/truekeo" method="POST">
-        @csrf
-            {{-- <td class="text-center"><input type="checkbox" name="trueke{{$registro->id}}" id="checkbox" value="{{$registro->id}}"></td> --}}
-            <td class="text-center">
-                <input type="radio" name="truekeo" id="checkbox" value="{{$registro->id}}">
-            </td>
-            </tr>
-            @endforeach
-        </tbody>
-      </table>
-      <button class="btn-sm btn-success" type="submit" name="producto" value={{$productos->id}}>proponer truekeo</button>
-    </form>
-      @endif
 
     </div>
   </div>

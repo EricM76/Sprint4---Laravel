@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use Illuminate\Support\Facades\Auth;
 
 class BusquedaController extends Controller
 {
@@ -32,8 +33,11 @@ class BusquedaController extends Controller
     public function indexCat($id)
     {
       $categorias = Category::all();
-      $productos = Product::where('category_id','LIKE', $id )->paginate(4);
-      return view('detalleCategoria',compact('productos','categorias'));
+      $productos = Product::where('user_id','!=',Auth::user()->id)->where('category_id','LIKE', $id )->orderBy('created_at', 'desc')->paginate(6);
+      $categoria = Product::where('category_id',$id)->limit(1)->get();
+      $categoria = $categoria[0]->category->name;
+
+      return view('detalleCategoria',compact('productos','categorias','categoria'));
     }
     /**
      * Show the form for creating a new resource.

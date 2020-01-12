@@ -171,28 +171,21 @@
                     <div class="col-8 ml-5">
                         <div class="">
                             <h5 class="mr-2">Trukea por: </h5>
-
                             @foreach ($categorias as $categoria)
                             @foreach ($intereses as $interes)
-                            @if ($categoria['name'] == $interes)
-                            {{-- <a class="mx-1" href=""><span class="badge badge-pill badge-primary">{{$categoria['name']}}</span></a> --}}
-                            <span class="badge badge-pill badge-primary mx-1">{{$categoria['name']}}</span>
-                            @break
-                            @else
-                            {{-- <a class="mx-1" href=""><span class="badge badge-pill badge-secondary">{{$categoria['name']}}</span></a> --}}
-                            <span class="badge badge-pill badge-secondary mx-1">{{$categoria['name']}}</span>
-                            @break
+                            @if ($categoria->name == $interes)
+                            <span class="badge badge-pill badge-primary mx-1" id="interes">{{$interes}}</span>
                             @endif
                             @endforeach
                             @endforeach
-
                         </div>
 
                     </div>
 
               </div>
               <div class="text-right mr-5">
-                <a href="/cuenta?id=nav-home-tab"><button class="btn-sm btn-danger" name="id" type="button">Cancelar</button></a>
+
+                <a href="/cuenta?id=nav-home-tab"><button class="btn-sm btn-secondary" name="id" type="button">Cancelar</button></a>
                 <button value={{$producto->id}} class="btn-sm btn-primary ml-2" name="id" type="submit">Guardar</button>
             </div>
 
