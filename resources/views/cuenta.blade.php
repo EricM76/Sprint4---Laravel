@@ -457,6 +457,9 @@
 
                     <div class="tab-pane fade" id="nav-truekes" role="tabpanel" aria-labelledby="nav-truekes-tab">
                         <div class="card-columns">
+                            @if ($posteos->isNotEmpty())
+
+
                             @foreach ($posteos as $posteo)
                             <div class="col mb-4">
                                 <div class="card">
@@ -469,19 +472,12 @@
                                   <div class="p-2 text-center">
                                     <a href="/editarProduct/{{$posteo->id}}"> <button class="btn btn-sm btn-outline-success">Editar</button></a>
                                   <a href="/eliminarProduct/{{$posteo->id}}"> <button class="btn btn-sm btn-outline-danger">Eliminar</button></a>
-                                  {{-- <a href="" onclick="event.preventDefault();preguntar({{$posteo->id}})"> <button class="btn btn-sm btn-outline-danger">Eliminar</button></a>
-                                    <script lang="javascript">
-                                        function preguntar($id)
-                                        {
-                                            if (confirm('¿Estás seguro que deseas eliminar la publicación?')) {
-                                                location.href = '/eliminarProduct/{{$posteo->id}}'
-                                            }
-                                        }
-                                    </script> --}}
+
                                   </div>
                                 </div>
                               </div>
                             @endforeach
+                            @endif
                         </div>
                     </div>
 
@@ -497,7 +493,7 @@
                             <section id="team" class="">
                                 <div class="container">
                                     <div class="row">
-                                        <!-- Team member -->
+                                        @if ($mensajes ->isNotEmpty())
                                         @foreach ($mensajes as $mensaje)
                                         <div class="col-4">
                                             <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
@@ -518,7 +514,6 @@
                                                                     <li class="list-inline-item">
                                                                         <a class="" data-toggle="modal" data-target="#staticBackdrop" href="#"><button type="button" class="btn-sm btn-success">
                                                                         Ver Producto</button></a>
-
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -527,13 +522,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </section>
-
-
-                                   <!-- Modal -->
+                                                                           <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -570,7 +559,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                        @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </section>
+
+
+
                         </div>
+
 
 
 
@@ -582,6 +580,8 @@
                         </div>
                         @endif
                         <div class="row">
+                            @if ($propuestas ->isNotEmpty())
+
                             @foreach ($propuestas as $propuesta)
                             <div class="card m-2" style="width: 100%;">
                                 <div class="row p-3">
@@ -610,53 +610,10 @@
 
                                   </div>
                             @endforeach
-                        </div>
-
-
-                    {{-- <div id="map" style="width:100%; height:300px">
+                            @endif
 
                         </div>
 
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap" async defer></script>
-
-                        <script>
-                        class Localizacion {
-                            constructor(callback){
-                                if (navigator.geolocation) {
-                                    navigator.geolocation.getCurrentPosition((position)=>{
-                                        this.latitude = position.coords.latitude;
-                                        this.longitude = position.coords.longitude;
-                                        callback();
-                                    });
-                                } else {
-                                    alert('tu navegador no soporta geolocalización :(')
-                                }
-                            }
-                        }
-                       function initMap(){
-                           const ubicacion = new Localizacion(()=>{
-                               const options = {
-                                center:{
-                                    lat: ubicacion.latitude,
-                                    lng: ubicacion.longitude
-                                },
-                                zoom:15,
-                               }
-                            var map = document.getElementById('map');
-                            const mapa = new google.maps.Map(map,options)
-                            var marker = new google.maps.Marker({
-                                position:{
-                                    lat: ubicacion.latitude,
-                                    lng: ubicacion.longitude
-                                },
-                                map: mapa
-                            })
-
-                           });
-                       }
-
-
-                        </script> --}}
                     </div>
                 </div>
             </div>
