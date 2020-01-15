@@ -53,6 +53,7 @@ class PublicarController extends Controller
             "imagen2" => 'required|mimes:jpg,jpeg,png,webp',
             "imagen3" => 'required|mimes:jpg,jpeg,png,webp',
             "intereses" => 'required',
+            "descripcion" => 'required',
         ];
 
         $this->validate($datos,$rules);
