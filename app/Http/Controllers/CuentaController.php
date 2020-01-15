@@ -28,16 +28,22 @@ class CuentaController extends Controller
     {
 
         $user = Auth::user();
+
         $posteos = Product::where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
+        $sinPosteos = null;
+        if ($posteos->isEmpty()){$sinPosteos = "No tenés productos publicados";}
+
         $mensajes = Message::where('id_UserDestinity',$user->id)->orderBy('created_at', 'desc')->get();
         $sinMensajes = null;
-        if ($mensajes->isEmpty()){$sinMensajes = "No tenés mensajes";}
+        if ($mensajes->isEmpty()){$sinMensajes = "No recibiste ningún mensaje";}
+
         $propuestas = Message::where('id_UserOrigin',$user->id)->orderBy('created_at', 'desc')->get();
         $sinPropuestas = null;
         if ($propuestas->isEmpty()) { $sinPropuestas = "No has hecho propuestas de truekeo";}
+
         $categorias = Category::all();
         $productos = Product::all();
-        return view('/cuenta',compact('categorias','posteos','mensajes','productos','propuestas','sinMensajes','sinPropuestas'));
+        return view('/cuenta',compact('categorias','posteos','mensajes','productos','propuestas','sinMensajes','sinPropuestas','sinPosteos'));
     }
 
     /**

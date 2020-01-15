@@ -456,6 +456,11 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-truekes" role="tabpanel" aria-labelledby="nav-truekes-tab">
+                        @if (isset($sinPosteos))
+                        <div class="d-flex justify-content-center">
+                            <h5 class="alert-info p-2"><i class="fas fa-hand-point-right mr-1"></i>{{$sinPosteos}}</h5>
+                        </div>
+                        @endif
                         <div class="card-columns">
                             @if ($posteos->isNotEmpty())
 
