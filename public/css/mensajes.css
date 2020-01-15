@@ -1,0 +1,270 @@
+/* Category Ads */
+
+#ads {
+    margin: 30px 0 30px 0;
+
+}
+
+#ads .card-notify-badge {
+        position: absolute;
+        left: -10px;
+        top: -20px;
+        background: #f2d900;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+
+    }
+
+#ads .card-notify-year {
+        position: absolute;
+        right: -10px;
+        top: -20px;
+        background: #ff4444;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        width: 50px;
+        height: 50px;
+        padding: 15px 0 0 0;
+}
+
+
+#ads .card-detail-badge {
+        background: #f2d900;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+
+
+#ads .card:hover {
+            background: #fff;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+#ads .card-image-overlay {
+        font-size: 20px;
+
+    }
+
+
+#ads .card-image-overlay span {
+            display: inline-block;
+        }
+
+
+#ads .ad-btn {
+        text-transform: uppercase;
+        width: 100px;
+        height: 40px;
+        border-radius: 80px;
+        font-size: 12px;
+        line-height: 35px;
+        text-align: center;
+        border: 3px solid greenyellow;
+        display: block;
+        text-decoration: none;
+        margin: 20px auto 1px auto;
+        color: #000;
+        overflow: hidden;
+        position: relative;
+        background-color: greenyellow;
+    }
+
+#ads .ad-btn:hover {
+            background-color: green;
+            color: #1e1717;
+            border: 2px solid green;
+            background: transparent;
+            transition: all 0.3s ease;
+            box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+        }
+
+#ads .ad-btn2 {
+    text-transform: uppercase;
+    width: 100px;
+    height: 40px;
+    border-radius: 80px;
+    font-size: 12px;
+    line-height: 35px;
+    text-align: center;
+    border: 3px solid red;
+    display: block;
+    text-decoration: none;
+    margin: 20px auto 1px auto;
+    color:white;
+    overflow: hidden;
+    position: relative;
+    background-color: red;
+}
+
+#ads .ad-btn2:hover {
+        background-color: darkred;
+        color: #1e1717;
+        border: 2px solid darkred;
+        background: transparent;
+        transition: all 0.3s ease;
+        box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+    }
+
+#ads .ad-btn3 {
+    text-transform: uppercase;
+    width: 100px;
+    height: 40px;
+    border-radius: 80px;
+    font-size: 12px;
+    line-height: 35px;
+    text-align: center;
+    border: 3px solid blue;
+    display: block;
+    text-decoration: none;
+    margin: 20px auto 1px auto;
+    color:white;
+    overflow: hidden;
+    position: relative;
+    background-color: blue;
+}
+
+#ads .ad-btn3:hover {
+        background-color: darkblue;
+        color: #1e1717;
+        border: 2px solid darkblue;
+        background: transparent;
+        transition: all 0.3s ease;
+        box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+    }
+
+#ads .ad-title h5 {
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+    /* #team {
+        background: #eee !important;
+    } */
+
+    #team .btn-primary:hover,
+    #team .btn-primary:focus {
+        background-color: #108d6f;
+        border-color: #108d6f;
+        box-shadow: none;
+        outline: none;
+    }
+
+    /* #team .btn-primary {
+        color: #fff;
+        background-color: #007b5e;
+        border-color: #007b5e;
+    } */
+
+    section {
+        padding: 5px;
+    }
+
+    /* section .section-title {
+        text-align: center;
+        color: #007b5e;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+    } */
+
+    /* #team .card {
+        border: none;
+        background: #ffffff;
+    } */
+
+     #team .image-flip:hover .backside,
+     #team .image-flip.hover .backside {
+        -webkit-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+        border-radius: .25rem;
+    }
+
+     #team .image-flip:hover .frontside,
+     #team .image-flip.hover .frontside {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+     #team .mainflip {
+        -webkit-transition: 1s;
+        -webkit-transform-style: preserve-3d;
+        -ms-transition: 1s;
+        -moz-transition: 1s;
+        -moz-transform: perspective(1000px);
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        transition: 1s;
+        transform-style: preserve-3d;
+        position: relative;
+    }
+
+     #team .frontside {
+        position: relative;
+        -webkit-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        z-index: 2;
+        margin-bottom: 0px;
+    }
+
+     #team .backside {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
+        -webkit-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        -o-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+        -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    }
+
+     #team .frontside,
+     #team .backside {
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: 1s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transition: 1s;
+        -moz-transform-style: preserve-3d;
+        -o-transition: 1s;
+        -o-transform-style: preserve-3d;
+        -ms-transition: 1s;
+        -ms-transform-style: preserve-3d;
+        transition: 1s;
+        transform-style: preserve-3d;
+    }
+
+     #team .frontside .card,
+     #team .backside .card {
+        min-height: 312px;
+    }
+
+     #team .backside .card a {
+        font-size: 18px;
+        color: #007b5e !important;
+    }
+
+     #team .frontside .card .card-title,
+     #team .backside .card .card-title {
+        color: #007b5e !important;
+    }

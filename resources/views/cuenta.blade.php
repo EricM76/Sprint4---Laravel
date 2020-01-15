@@ -486,24 +486,101 @@
                     </div>
 
                     <div class="tab-pane fade" id="nav-messages" role="tabpanel" aria-labelledby="nav-messages-tab">
-                        <div class="row">
-                            @foreach ($mensajes as $mensaje)
-                            <div class="card m-2" style="width: 16rem;">
-                            <img src="storage/images/products/{{$mensaje->ProductOrigin->image1}}" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                    <h5 class="card-title">{{$mensaje->ProductOrigin->title}}</h5>
-                                      <p class="card-text">{{$mensaje->message}}</p>
-                                    <a href="/rechazarMensaje/{{$mensaje->id}}" class="btn btn-danger">Rechazar</a>
-                                      <a href="#" class="btn btn-primary">Confirmar</a>
+                        @if (isset($sinMensajes))
+                        <div class="d-flex justify-content-center">
+                            <h5 class="alert-success p-2"><i class="fas fa-hand-point-right mr-1"></i>{{$sinMensajes}}</h5>
+                        </div>
+                        @endif
+
+
+
+                            <section id="team" class="">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Team member -->
+                                        @foreach ($mensajes as $mensaje)
+                                        <div class="col-4">
+                                            <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                                                <div class="mainflip">
+                                                    <div class="frontside">
+                                                        <div class="card">
+                                                            <div class="card-body text-center">
+                                                                <h4><img class="img-fluid" src="/storage/images/avatar/{{$mensaje->userOrigin->profile}}">{{$mensaje->userOrigin->name}}</h4>
+                                                                <h6>TE OFRECE</h6><p class="card-text">{{$mensaje->ProductOrigin->title}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="backside">
+                                                        <div class="card">
+                                                            <div class="card-body text-center mt-4">
+                                                                <p class="card-text">{{$mensaje->message}}</p>
+                                                                <ul class="list-inline">
+                                                                    <li class="list-inline-item">
+                                                                        <a class="" data-toggle="modal" data-target="#staticBackdrop" href="#"><button type="button" class="btn-sm btn-success">
+                                                                        Ver Producto</button></a>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
-                                  </div>
-                            @endforeach
+                                </div>
+                            </section>
+
+
+                                   <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5>Truekeo tu <strong>{{$mensaje->ProductDestinity->title}}</strong> por </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container">
+                                                    <div class="row" id="ads">
+                                                        <!-- Category Card -->
+                                                        <div class="col-md-12">
+                                                            <div class="card rounded">
+                                                                <div class="card-image">
+                                                                    <span class="card-notify-badge">{{$mensaje->ProductOrigin->value}} Truekoins</span>
+                                                                    <img class="img-fluid" src="storage/images/products/{{$mensaje->ProductOrigin->image1}}" alt="Alternate Text" />
+                                                                </div>
+                                                                <div class="card-body text-center">
+                                                                    <div class="ad-title m-auto">
+                                                                        <h5>{{$mensaje->ProductOrigin->title}}</h5>
+                                                                    </div>
+                                                                    <div class="d-flex justify-content-center">
+                                                                        <a class="ad-btn" href="/detalleproducto/{{$mensaje->ProductOrigin->id}}">Más info</a>
+                                                                        <a class="ad-btn2" href="/detalleproducto/{{$mensaje->ProductOrigin->id}}">Rechazar</a>
+                                                                        <a class="ad-btn3" href="#">Aceptar</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
 
 
 
-                    </div>
+
                     <div class="tab-pane fade" id="nav-propuestas" role="tabpanel" aria-labelledby="nav-misPropuestas-tab">
+                        @if (isset($sinPropuestas))
+                        <div class="d-flex justify-content-center">
+                            <h5 class="alert-danger p-2"><i class="fas fa-hand-point-right mr-1"></i> {{$sinPropuestas}}</h5>
+                        </div>
+                        @endif
                         <div class="row">
                             @foreach ($propuestas as $propuesta)
                             <div class="card m-2" style="width: 100%;">
@@ -586,5 +663,7 @@
         </div>
     </div>
 </div>
+
+
 @include('layouts.profile')
 @endsection

@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="/css/posteo2.css">
     <link rel="stylesheet" href="/css/imagenEdit.css">
     <link rel="stylesheet" href="/css/uploadImagen.css">
+    <link rel="stylesheet" href="/css/mensajes.css">
 </head>
 <body >
 
@@ -115,6 +116,13 @@
                                     <a class="dropdown-item" href="/cuenta?id=nav-contact-tab">
                                         {{ __('Mensajes') }}
                                     </a>
+
+                                    @if (Auth::user()->rol=='admin')
+                                    <hr>
+                                    <a class="dropdown-item text-danger" href="/admin/home">
+                                        {{ __('Administración') }}
+                                    </a>
+                                    @endif
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

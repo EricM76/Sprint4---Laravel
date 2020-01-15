@@ -20,8 +20,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-
-        return view('/admin.index');
+        $categorias = Category::all();
+        return view('/admin/home',compact('categorias'));
     }
 
     /**
@@ -148,13 +148,10 @@ class AdminController extends Controller
     }
 
     public function users(){
-        session_start();
+
         $usuarios = User::all();
-        $userAdmin = $_SESSION['userAdmin'];
-        $reg = Administrator::where('userName',$userAdmin)->first();
-        $idAdmin = $reg['id'];
         $categorias = Category::all();
-            return view('/admin.users',compact('userAdmin','idAdmin','usuarios','categorias'));
+            return view('/admin.users',compact('usuarios','categorias'));
 
     }
     public function posteos($id){

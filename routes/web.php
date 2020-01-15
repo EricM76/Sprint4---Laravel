@@ -15,31 +15,31 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/admin.codes','CodesController@index');
-Route::post('/admin.codes','CodesController@store');
+// Route::get('/admin.codes','CodesController@index');
+// Route::post('/admin.codes','CodesController@store');
 
-Route::get('/admin', 'AdminController@index');
-Route::post('/admin', 'AdminController@show');
+// Route::get('/admin', 'AdminController@index');
+// Route::post('/admin', 'AdminController@show');
 
-Route::get('/adminReg','AdminController@form');
-Route::post('/adminReg','AdminController@store');
+// Route::get('/adminReg','AdminController@form');
+// Route::post('/adminReg','AdminController@store');
 
-Route::get('/admin.pass','AdminController@passForm');
-Route::post('/admin.pass','AdminController@passChange');
+// Route::get('/admin.pass','AdminController@passForm');
+// Route::post('/admin.pass','AdminController@passChange');
 
-Route::get('/cerrarAdmin/{id}','AdminController@destroy');
+// Route::get('/cerrarAdmin/{id}','AdminController@destroy');
 
 Route::get('/admin.users','AdminController@users');
 
-Route::get('/admin.posteos/{id}','AdminController@posteos');
+// Route::get('/admin.posteos/{id}','AdminController@posteos');
 
-Route::get('/admin.categorias/{id}','AdminController@categorias');
+// Route::get('/admin.categorias/{id}','AdminController@categorias');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/homeAdmin', 'HomeController@home');
+Route::get('/admin/home', 'AdminController@index');
 
 Route::resource('/publicar','PublicarController');
 
