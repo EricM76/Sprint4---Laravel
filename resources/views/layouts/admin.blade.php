@@ -7,13 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Administracion</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/solid.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/posteo.css">
+    <link rel="stylesheet" href="/css/posteo2.css">
+    <link rel="stylesheet" href="/css/imagenEdit.css">
+    <link rel="stylesheet" href="/css/uploadImagen.css">
+    <link rel="stylesheet" href="/css/mensajes.css">
 </head>
 <body>
 <header>
    <div id="app">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:SlateGray">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/admin/home') }}">
                 <img class="img-fluid" src="/images/logo-sm.png" alt="" width="100px">
@@ -21,7 +29,7 @@
 
             <div class="row collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav ml-5">
+                {{-- <ul class="nav ml-5">
 
                     <li class="nav-item pl-2 dropdown">
                         <a class="nav-link text-light dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-map-signs mr-1"></i>Usuarios</a>
@@ -39,8 +47,6 @@
                             <a class="dropdown-item" href="#">{{$categoria->name}}</a>
                             @endforeach
 
-                        {{-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a> --}}
                         </div>
                     </li>
 
@@ -59,7 +65,7 @@
                             <a class="dropdown-item" href="#">Buscar</a>
                         </div>
                     </li>
-                </ul>
+                </ul> --}}
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto mr-2 align-items-end">
@@ -81,7 +87,7 @@
 <main id="main">
     @yield('content')
 </main>
-<footer style="height:8vh; background-color:black">
+<footer style="height:8vh; background-color:LightSlateGray">
     <h5 class="h5 text-center p-3 text-light">Proyecto Integrador Digital House by <strong>Alexis Veiga - Eric Mena - Marcos Palladini</strong> </h5>
 </footer>
    <script src="/js/app.js"></script>

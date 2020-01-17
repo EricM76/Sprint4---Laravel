@@ -8,7 +8,10 @@
         <div class="card-header text-white bg-primary">{{ __('Publicar un Trueke') }}</div>
 
         <div class="card-body">
-            <form action="/publicar" method="POST" enctype="multipart/form-data" id="producto">
+            <script>
+
+            </script>
+            <form action="/publicar" method="POST" enctype="multipart/form-data" id="producto" name="formulario">
              @csrf
                 <div class="row">
 
@@ -17,24 +20,17 @@
                             <label class="control-label" for="titulo">Titulo</label>
                             <div class="">
 
-                            <input name="titulo" type="text" placeholder="titulo" class="form-control input-md @error('titulo') is-invalid @enderror" value="{{old('titulo')}}">
+                            <input name="titulo" type="text" placeholder="titulo" class="form-control input-md @error('titulo') is-invalid @enderror" value="{{old('titulo')}}" onkeyup="checkform()" id="titulo">
                             @error('titulo')
                             <p id="error1" class="text-danger small">{{$message}}</p>
                             @enderror
-                            {{-- <script>
-                                var titulo = document.getElementById('titulo');
-                            if (titulo.value.length > 0){
-                                // titulo.setAttribute('class','form-control is-valid');
-                                alert('listo');
-                            }
-                            </script> --}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-sm-12 col-md-6">
                                 <label class="control-label" for="valor">Valor</label>
                                 <div class="">
-                                <input id="valor" name="valor" type="number" placeholder="en truekoins" class="form-control input-md @error('valor') is-invalid @enderror" value="{{old('valor')}}">
+                                <input id="valor" name="valor" type="number" placeholder="en truekoins" class="form-control input-md @error('valor') is-invalid @enderror" value="{{old('valor')}}" onkeyup="checkform()" id="valor">
                                 @error('valor')
                                 <p id="error2" class="text-danger small">{{$message}}</p>
                                 @enderror
@@ -43,7 +39,7 @@
 
                             <div class="form-group col-sm-12 col-md-6">
                                 <label for="categoria">Categoria</label>
-                                <select class="form-control @error('categoria') is-invalid @enderror" id="categoria" name="categoria" value="">
+                                <select class="form-control @error('categoria') is-invalid @enderror" id="categoria" name="categoria" value="" onkeyup="checkform()">
                                 <option selected></option>
                                 @foreach ($categorias as $categoria)
                                 <option value={{$categoria['id']}}>
@@ -80,7 +76,7 @@
                                         </div>
 
                                         <div class="custom-file" id="divFileUpload">
-                                            <input class="custom-file-input @error('imagen1') is-invalid @enderror" id="file-upload" type="file" accept="image/*" name="imagen1"/>
+                                            <input class="custom-file-input @error('imagen1') is-invalid @enderror" id="file-upload" type="file" accept="image/*" name="imagen1" onkeyup="checkform()"/>
                                             <label class="custom-file-label" for="customFile"></label>
                                             @error('imagen1')
                                             <p id="error4" class="text-danger small">{{$message}}</p>
@@ -118,7 +114,7 @@
                                         </div>
 
                                         <div class="custom-file" id="divFileUpload">
-                                            <input class="custom-file-input @error('imagen2') is-invalid @enderror" id="file-upload2" type="file" accept="image/*" name="imagen2"/>
+                                            <input class="custom-file-input @error('imagen2') is-invalid @enderror" id="file-upload2" type="file" accept="image/*" name="imagen2" onkeyup="checkform()"/>
                                             <label class="custom-file-label" for="customFile"></label>
                                             @error('imagen2')
                                             <p id="error5" class="text-danger small">{{$message}}</p>
@@ -156,7 +152,7 @@
                                         </div>
 
                                         <div class="custom-file" id="divFileUpload">
-                                            <input class="custom-file-input @error('imagen3') is-invalid @enderror" id="file-upload3" type="file" accept="image/*" name="imagen3"/>
+                                            <input class="custom-file-input @error('imagen3') is-invalid @enderror" id="file-upload3" type="file" accept="image/*" name="imagen3" onkeyup="checkform()"/>
                                             <label class="custom-file-label" for="customFile"></label>
                                             @error('imagen3')
                                             <p id="error6" class="text-danger small">{{$message}}</p>
@@ -193,7 +189,7 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                         <label for="descripcion">Descripcion</label>
-                        <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" rows="6" placeholder="" form="producto">{{old('descripcion')}}</textarea>
+                        <textarea id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" rows="6" placeholder="" form="producto" onkeyup="checkform()" id="titulo">{{old('descripcion')}}</textarea>
                         @error('descripcion')
                         <p id="error7" class="text-danger small">{{$message}}</p>
                         @enderror
@@ -204,8 +200,7 @@
                                 <h6 class="text-small text-secondary">(selecionar una o más categorias)</h6>
                             </div>
                             <div class="col-8">
-                                <select class="custom-select @error('intereses') is-invalid @enderror" multiple name="intereses[]" onclick="marcar(this)">
-                                    onclick="marcar(this)"
+                                <select class="custom-select @error('intereses') is-invalid @enderror" multiple name="intereses[]" onclick="marcar(this);checkform()" required>
                                     @foreach ($categorias as $categoria)
                                     <option value={{$categoria->name}}>{{$categoria->name}}</option>
                                     @endforeach
@@ -237,7 +232,7 @@
                 <div class="d-flex justify-content-end mt-2">
                     <div class="form-group">
                         <div class="">
-                        <button id="enviar" value="" class="btn btn-success" name="id" type="submit">Publicar</button>
+                        <button id="enviar" value="" class="btn btn-success" name="id" type="submit" disabled>Publicar</button>
                         </div>
                     </div>
 
@@ -255,6 +250,16 @@
                     var imagen3 = elementos[6];
                     var descripcion = elementos[7];
                     var interes = elementos[8];
+                    var error1 = document.getElementById('error1');
+                    var error2 = document.getElementById('error2');
+                    var error3 = document.getElementById('error3');
+                    var error4 = document.getElementById('error4');
+                    var error5 = document.getElementById('error5');
+                    var error6 = document.getElementById('error6');
+                    var error7 = document.getElementById('error7');
+                    var error8 = document.getElementById('error8');
+
+                    var enviar = document.getElementById('enviar');
 
                         titulo.onchange = function(){
 
@@ -302,6 +307,24 @@
                         if (interes.value.length > 0){
                             interes.setAttribute('class', 'form-control is-valid')
                         }
+
+                        function checkform()
+                            {
+                                var f = document.forms['formulario'].elements;
+                                // var f = document.getElementById('titulo');
+
+                                var cansubmit = 1;
+                                console.log(cansubmit)
+                                for (var i = 1; i < (f.length-1); i++) {
+                                    console.log(f[i].value)
+                                    if (f[i].value.length == 0) cansubmit = 0;
+                                    console.log(cansubmit)
+                                }
+
+                                if (cansubmit == 1) {
+                                    document.getElementById('enviar').disabled = false;
+                                }
+                            }
                     </script>
                 </div>
             </form>

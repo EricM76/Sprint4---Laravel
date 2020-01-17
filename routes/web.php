@@ -18,8 +18,9 @@ Route::get('/', function () {
 // Route::get('/admin.codes','CodesController@index');
 // Route::post('/admin.codes','CodesController@store');
 
-// Route::get('/admin', 'AdminController@index');
-// Route::post('/admin', 'AdminController@show');
+Route::get('/admin2', function(){
+    return view('/layouts.admin2');
+});
 
 // Route::get('/adminReg','AdminController@form');
 // Route::post('/adminReg','AdminController@store');
@@ -33,7 +34,7 @@ Route::get('/admin.users','AdminController@users');
 
 // Route::get('/admin.posteos/{id}','AdminController@posteos');
 
-// Route::get('/admin.categorias/{id}','AdminController@categorias');
+Route::get('/admin.categorias','AdminController@categorias');
 
 Auth::routes();
 

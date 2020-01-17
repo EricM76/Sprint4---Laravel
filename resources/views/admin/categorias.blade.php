@@ -1,49 +1,70 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container-fluid mt-2 ">
-    <div class="row  mt-5">
-        <div class="col-2 text-center mt-5 p-5">
-        <img class="img-fluid" src="/images/{{$categoria->image}}" alt="">
-        <h5 class="text-capitalize alert-link mt-3">{{$categoria->name}}</h5>
+<div class="container mt-4 d-flex justify-center">
+        <section id="team" class="">
+                <div class="row">
+                    @foreach ($categorias as $categoria)
+                    <div class="col-3 my-2">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <img class="img-fluid" src="/images/{{$categoria->image}}" width="80%">
+                                            <h5 class="mt-1">id {{$categoria->id}}</h5>
+                                            <h5 class="card-text mt-2 text-uppercase alert-secondary">{{$categoria->name}}</h5>
 
-    </div>
-        <div class="col-10">
-            <table class="table" style="width:100%">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col-1">#</th>
-                    <th scope="col-2">imagen</th>
-                    <th scope="col-4">titulo</th>
-                    <th scope="col-1">valor</th>
-                    <th scope="col-3">descripcion</th>
-                    <th scope="col-1">categoria</th>
-                    <th scope="col-1">fecha</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @foreach ($productos as $producto)
-                    <tr>
-                    <th scope="row">{{$producto->id}}</th>
-                    <td><img class="img" src="/storage/images/products/{{$producto->image1}}" alt="" width="150px"></td>
-                        <td>{{$producto->title}}</td>
-                        <td>{{$producto->value}}</td>
-                    <td>{{$producto->description}}</td>
+                                            @switch($categoria->id)
+                                            @case(1)
+                                                <h5>{{$autos->count()}} publicaciones</h5>
+                                                @break
+                                            @case(2)
+                                                <h5>{{$inmuebles->count()}} publicaciones</h5>
+                                                @break
+                                            @case(3)
+                                                <h5>{{$muebles->count()}} publicaciones</h5>
+                                                @break
+                                            @case(4)
+                                                <h5>{{$herramientas->count()}} publicaciones</h5>
+                                                @break
+                                            @case(5)
+                                                <h5>{{$electro->count()}} publicaciones</h5>
+                                                @break
+                                            @case(6)
+                                                <h5>{{$gamers->count()}} publicaciones</h5>
+                                                @break
+                                            @case(7)
+                                                <h5>{{$juguetes->count()}} publicaciones</h5>
+                                                @break
+                                            @case(8)
+                                                <h5>{{$libros->count()}} publicaciones</h5>
+                                                @break
+                                            @case(9)
+                                                <h5>{{$rodados->count()}} publicaciones</h5>
+                                                @break
+                                            @case(10)
+                                                <h5>{{$celulares->count()}} publicaciones</h5>
+                                                @break
+                                            @default
+                                        @endswitch
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside p-0" style="width:250px;">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-0">
+                                            <button class="btn-sm btn-success mt-1 p-1" style="width:70%">listar productos</button>
+                                            <button class="btn-sm btn-danger mt-1 p-1" style="width:70%">eliminar categoria</button>
 
-                    <td>{{$producto->category->name}}</td>
-
-                    <td>{{$producto->date}}</td>
-
-
-                    </tr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
-
-                </tbody>
-              </table>
-        </div>
-    </div>
-
-
-
+                </div>
+        </section>
 </div>
 @endsection

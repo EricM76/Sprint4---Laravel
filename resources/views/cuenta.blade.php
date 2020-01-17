@@ -409,13 +409,13 @@
                             var lat = results[0].geometry.location.lat();
                             var lng = results[0].geometry.location.lng();
                             const options = {
-                center:{
-                    lat: lat,
-                    lng: lng
-                    },
-                zoom:11,
+                        center:{
+                            lat: lat,
+                            lng: lng
+                            },
+                        zoom:11,
 
-                    }
+                            }
                 var map = document.getElementById('map');
                 const mapa = new google.maps.Map(map,options)
                 var marker = new google.maps.Marker({

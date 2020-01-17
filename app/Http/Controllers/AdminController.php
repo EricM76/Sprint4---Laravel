@@ -151,11 +151,10 @@ class AdminController extends Controller
 
         $usuarios = User::all();
         $categorias = Category::all();
-            return view('/admin.users',compact('usuarios','categorias'));
+        return view('/admin.users',compact('usuarios','categorias'));
 
     }
     public function posteos($id){
-        session_start();
         $usuario = User::find($id);
         $productos = Product::where('user_id',$usuario->id)->get();
         $userAdmin = $_SESSION['userAdmin'];
@@ -166,15 +165,19 @@ class AdminController extends Controller
 
     }
 
-    public function categorias($id){
-        session_start();
-        $categoria = Category::where('id',$id)->first();
-        $productos = Product::where('category_id',$id)->get();
-        $userAdmin = $_SESSION['userAdmin'];
-        $reg = Administrator::where('userName',$userAdmin)->first();
-        $idAdmin = $reg['id'];
+    public function categorias(){
         $categorias = Category::all();
-            return view('/admin.categorias',compact('userAdmin','idAdmin','productos','categoria','categorias'));
+        $autos = Product::where('category_id',1)->get();
+        $inmuebles = Product::where('category_id',2)->get();
+        $muebles = Product::where('category_id',3)->get();
+        $herramientas = Product::where('category_id',4)->get();
+        $electro = Product::where('category_id',5)->get();
+        $gamers = Product::where('category_id',6)->get();
+        $juguetes = Product::where('category_id',7)->get();
+        $libros = Product::where('category_id',8)->get();
+        $rodados = Product::where('category_id',9)->get();
+        $celulares = Product::where('category_id',10)->get();
 
+        return view('/admin.categorias',compact('categorias','autos','inmuebles','muebles','herramientas','electro','gamers','juguetes','libros','rodados','celulares'));
     }
 }
