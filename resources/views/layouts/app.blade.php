@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/css/uploadImagen.css">
     <link rel="stylesheet" href="/css/mensajes.css">
 </head>
-<body >
+<body style="background-color:lavender">
 
     <div id="app">
         <nav class="menu  navbar navbar-expand-md navbar-dark shadow-sm">

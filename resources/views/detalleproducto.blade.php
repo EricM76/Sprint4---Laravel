@@ -8,11 +8,11 @@
 
     };
 </script>
-<div class="container">
+<div class="container ">
     <div class="card2 mt-1 pt-4">
       <div class="container-fluid">
         <div class="wrapper row">
-          <div class="preview col-sm-12 col-md-12 col-lg-6">
+          <div class="preview col-sm-12 col-md-12 col-lg-6 ">
 
             <div class="preview-pic tab-content">
               <div class="tab-pane active" id="pic-1"><img src="/storage/images/products/{{$productos['image1']}}" /></div>
