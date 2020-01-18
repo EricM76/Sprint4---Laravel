@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-  <!-- <link rel="stylesheet" href="css/posteo2.css"> -->
-  <div class="container">
+
+<script>
+  window.onload = function(){
+    // mapa = {}
+
+    };
+</script>
+<div class="container">
     <div class="card2 mt-1 pt-4">
       <div class="container-fluid">
         <div class="wrapper row">
@@ -46,82 +52,49 @@
         <h5>{{$productos->user->city}}, {{$productos->user->state}}</h5> <a href="" data-toggle="modal" data-target="#ubicacion">ver ubicacion</a>
       </div>
 
+        <!-- Modal -->
+        @include('/modal/modalUbicacion')
 
-
-      <h5 class="mt-3">Truekea por:</h5>
-      <div>
+      <div class="d-flex justify-content-start mt-3">
+      <h5 class="mr-2">Le interesa truekear por: </h5>
           @foreach ($intereses as $interes)
-      <a href="/intereses/{{$interes}}/{{$productos->id}}"><span class="badge badge-pill badge-primary">{{$interes}}</span></a>
+            <h4 class="badge badge-warning mx-1">{{$interes}}</h4>
           @endforeach
+      </div>
+      <div class="mt-3">
+          <button id="propone" class="btn-sm btn-success">Proponer truekeo</button>
+          <button id="cancela" class="btn-sm btn-secondary" hidden>Cancelar</button>
+          <button id="denuncia" class="btn-sm btn-danger" type="button">Denunciar publicacion</button>
 
       </div>
-      <!-- Modal -->
-<div class="modal fade" id="ubicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onload="mapa.initMap()">
-
-
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ubicacion de {{$productos->user->name." ".$productos->user->surname}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="mt-3" id="truekeo" hidden>
+          <div class="d-flex justify-content-start">
+            <h5 class="mr-2" >Elije la categoría: </h5>
+            @foreach ($intereses as $interes)
+            <a href="/intereses/{{$interes}}/{{$productos->id}}"><span class="badge badge-primary mx-1">{{$interes}}</span></a>
+            @endforeach
+          </div>
         </div>
-        <div class="modal-body">
-            <input id="ciudad" type="text" value="{{$productos->user->city}}" hidden>
-            <input id="provincia" type="text" value="{{$productos->user->state}}" hidden>
-            <div id="map" style="width:100%; height:300px"></div>
-            <div><p id="coordenadas"></p></div>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap" async defer></script>
-
-        <script>
-            mapa = {
-            }
-           function initMap()
-           {
-               // Creamos el objeto geodecoder
-                var geocoder = new google.maps.Geocoder();
-                address = document.getElementById('ciudad').value + ', ' + document.getElementById('provincia').value;
-
-                    // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
-                    geocoder.geocode({ 'address': address}, function(results, status)
-                    {
-                        if (status == 'OK')
-                        {
-                            var lat = results[0].geometry.location.lat();
-                            var lng = results[0].geometry.location.lng();
-                            const options = {
-                center:{
-                    lat: lat,
-                    lng: lng
-                    },
-                zoom:11,
-
-                    }
-                var map = document.getElementById('map');
-                const mapa = new google.maps.Map(map,options)
-                var marker = new google.maps.Marker({
-                position:{
-                    lat: lat,
-                    lng: lng
-                },
-                map: mapa
-                })
-                        }
-                    })
+      <script>
+        var propone = document.getElementById('propone');
+        var cancela = document.getElementById('cancela');
+        var truekeo = document.getElementById('truekeo');
+        propone.onclick = function(){
+            truekeo.removeAttribute('hidden');
+            cancela.removeAttribute('hidden');
+            propone.setAttribute('hidden','true');
+        };
+        cancela.onclick = function(){
+            truekeo.setAttribute('hidden','true');
+            propone.removeAttribute('hidden');
+            cancela.setAttribute('hidden','true');
+        };
+      </script>
 
 
-            };
-        </script>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  @if (isset($regInteres))
-  <table class="table" id="table">
+  @if (isset($regInteres) && $regInteres->isNotEmpty())
+      <div id="table">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Titulo</th>
@@ -144,11 +117,36 @@
                 @endforeach
             </tbody>
         </table>
-        <button class="btn-sm btn-success" type="submit" name="producto" value={{$productos->id}}>proponer truekeo</button>
+        <div class="d-flex justify-content-end">
+            <button class="btn-sm btn-success" type="submit" name="producto" value={{$productos->id}}>Proponer truekeo</button>
+
+        </div>
         </form>
+    </div>
+        <script>
+            var propone = document.getElementById('propone');
+            var cancela = document.getElementById('cancela');
+            var truekeo = document.getElementById('truekeo');
+            var table = document.getElementById('table')
+            cancela.removeAttribute('hidden');
+            propone.setAttribute('hidden','true');
+            propone.onclick = function(){
+                truekeo.removeAttribute('hidden');
+                cancela.removeAttribute('hidden');
+                propone.setAttribute('hidden','true');
+            };
+            cancela.onclick = function(){
+                truekeo.setAttribute('hidden','true');
+                table.setAttribute('hidden','true');
+                propone.removeAttribute('hidden');
+                cancela.setAttribute('hidden','true');
+            };
+          </script>
      @endif
-    <hr>
-      <button class="btn-sm btn-danger" type="button">denunciar publicacion</button>
+     @if (isset($regInteres) && $regInteres->isEmpty())
+     <h5 class="alert-danger mt-3">no tenés publicado ningún producto que corresponda a esa categoría</h5>
+     @endif
+
 
     </div>
   </div>

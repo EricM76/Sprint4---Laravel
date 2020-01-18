@@ -65,7 +65,7 @@ class HomeController extends Controller
    public function intereses($interes,$id)
    {
     $categorias = Category::all();
-      $productos = Product::find($id);
+    $productos = Product::find($id);
       $interesesReg = $productos->intereses;
       $intereses = explode(",",$interesesReg);
     $categoria = Category::where('name',$interes)->get();

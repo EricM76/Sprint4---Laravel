@@ -15,11 +15,12 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('status');
             $table->bigInteger('id_UserOrigin')->unsigned();
             $table->bigInteger('id_UserDestinity')->unsigned();
             $table->bigInteger('truekeoOrigin')->unsigned();
             $table->bigInteger('truekeoDestinity')->unsigned();
-            $table->string('message');
+            $table->string('message',500);
             $table->foreign('id_UserOrigin')->references('id')->on('users');
             $table->foreign('truekeoOrigin')->references('id')->on('products');
             $table->foreign('id_UserDestinity')->references('id')->on('users');

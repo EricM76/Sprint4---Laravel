@@ -70,20 +70,38 @@ class TruekeoController extends Controller
         $producto = Product::find($producto);
         $truekeo = Product::find($truekeo);
         $mensaje = new Message();
+        $mensaje -> status = 'propuesto';
         $mensaje -> id_UserOrigin = $truekeo->user_id;
         $mensaje -> id_UserDestinity = $producto->user_id;
         $mensaje -> truekeoOrigin = $truekeo->id;
         $mensaje -> truekeoDestinity = $producto->id;
         $mensaje -> message = 'Hola, soy ' .$truekeo->user->name. '. Te propongo TRUEKEAR tu ' .$producto->title. ' por mi ' .$truekeo->title. '. Si estás interesado confirma el truekeo';
         $mensaje -> save();
-        return redirect('/home');
+        return redirect('/cuenta?id=nav-misPropuestas-tab');
     }
 
     public function rechaza($id)
     {
         $registro = Message::find($id);
+
+        $mensaje = new Message();
+        $mensaje -> status = 'rechazado';
+        $mensaje -> id_UserOrigin = $registro->id_UserDestinity;
+        $mensaje -> id_UserDestinity = $registro->id_UserOrigin;
+        $mensaje -> truekeoOrigin = $registro->truekeoDestinity;
+        $mensaje -> truekeoDestinity = $registro->truekeoOrigin;
+        $mensaje -> message = 'Hola, soy '.$registro->userDestinity->name. '. Agradezco tu propuesta de truekear tu '.$registro->ProductOrigin->title. ' por mi '.$registro->ProductDestinity->title. ', pero por ahora no estoy interesado';
+
+        $mensaje -> save();
+        $registro->delete();
+        return redirect('/cuenta?id=nav-contact-tab');
+    }
+
+    public function desiste($id)
+    {
+        $registro = Message::find($id);
         $registro ->delete();
-        return redirect()->back();
+        return redirect('/cuenta?id=nav-misPropuestas-tab');
     }
 
     /**
@@ -92,8 +110,10 @@ class TruekeoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function elimina($id)
     {
-        //
+        $registro = Message::find($id);
+        $registro ->delete();
+        return redirect('/cuenta?id=nav-contact-tab');
     }
 }

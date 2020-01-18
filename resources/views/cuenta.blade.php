@@ -63,7 +63,7 @@
 
 @section('content')
 <div class="container mt-4 d-flex justify-content-center">
-    <div class=" col-sm-12 col-md-12 col-lg-10">
+    <div class=" col-sm-12 col-md-12 col-lg-12">
         <div class="card ">
             <div class="card-header h3 text-white bg-primary"><i class="fas fa-user-circle mr-3"></i>{{ __('Mi Cuenta') }}
             </div>
@@ -208,178 +208,8 @@
                                                     </select>
                                                   </div>
 
- <script>
-        var state = document.getElementById('state');
-        var provinciaInput = document.getElementById('provincia');
-        var provinciasSelect = document.getElementById('provincias');
+                                                  @include('/apis/apiUbicacion')
 
-        fetch('https://apis.datos.gob.ar/georef/api/provincias') //la direccion donde está la api
-
-        .then(function(provincias) //recibe los datos que vienen de la pagina antes invocada
-            {
-                return provincias.json() // retorna los datos pasados a json
-            })
-
-        .then(function(arrayProvincias) //pasa el objeto a un array
-            {
-
-                var todasProvincias = arrayProvincias.provincias
-
-                function ordenarAsc(p_array_json, p_key)
-                {
-                p_array_json.sort(function (a, b) {
-                    return a[p_key] > b[p_key];
-                });
-                }
-                ordenarAsc(todasProvincias,'nombre');
-
-                for (provincia of todasProvincias)
-                {
-				var optionProvincia = document.createElement('option') //crea el elemento
-				provinciasSelect.appendChild(optionProvincia)
-                optionProvincia.setAttribute('value',provincia.nombre)
-                optionProvincia.setAttribute('id','opProv')
-				var nombreProvincia = document.createTextNode(provincia.nombre)
-				optionProvincia.appendChild(nombreProvincia)
-				}
-			})
-
-        state.onclick = function()
-        {
-            if (provinciaInput.style.display != 'none') {
-                provinciaInput.style.display = 'none';
-                provinciasSelect.style.display = 'block';
-            } else {
-                provinciaInput.style.display = 'block';
-                provinciasSelect.style.display = 'none';
-            }
-
-        }
-
-        provincia.onclick = function()
-        {
-            provinciaInput.style.display = 'none';
-            provinciasSelect.style.display = 'block';
-        }
-
-        provinciasSelect.onchange = function()
-        {
-            var optionProvincia = provinciasSelect.options[provinciasSelect.selectedIndex].value;
-            var provinciaSel = optionProvincia
-            provinciaInput.setAttribute('value', provinciaSel)
-            provinciaInput.style.display = 'block';
-            provinciasSelect.style.display = 'none';
-
-            var select = document.getElementById("localidades");
-
-            for (let i = select.options.length; i >= 0; i--) {
-                select.remove(i);
-            }
-
-            console.log(select)
-
-    fetch('https://apis.datos.gob.ar/georef/api/localidades?formato=json&max=5000') //la direccion donde está la api
-
-    .then(function(localidades) //recibe los datos que vienen de la pagina antes invocada
-        {
-            return localidades.json() // retorna los datos pasados a json
-        })
-    .then(function(arrayLocalidades) //pasa el objeto a un array
-        {
-            var arrayCompleto = arrayLocalidades.localidades
-            // console.log(todasLocalidades[0].provincia.nombre)
-            var provincia = document.getElementById('provincia'); //atrapo el input
-            var provincia = provincia.value; //atrapo el valor del input
-            var ciudades = new Array(); //creo un nuevo array
-
-            for (localidad of arrayCompleto) //recorro el array que viene de la api
-            {
-                if(localidad.provincia.nombre == provincia) //chequeo que la localidad corresponda con la provincia
-                {
-                    ciudades.push(localidad.nombre) //voy agregando en el nuevo array las ciudades
-                }
-            }
-            ciudades.sort(); //ordeno el array
-
-            for (ciudad of ciudades) { //recorro el array para formar las opciones del select
-                var optionLocalidad = document.createElement('option') //crea el elemento
-                localidadesSelect.appendChild(optionLocalidad) //añade el option al select
-                optionLocalidad.setAttribute('value',ciudad)
-                var nombreLocalidad = document.createTextNode(ciudad)
-                optionLocalidad.appendChild(nombreLocalidad)
-            }
-
-        })
-        }
-</script>
-
-<script>
-    var state = document.getElementById('city');
-    var localidadInput = document.getElementById('localidad');
-    var localidadesSelect = document.getElementById('localidades');
-
-    fetch('https://apis.datos.gob.ar/georef/api/localidades?formato=json&max=5000') //la direccion donde está la api
-
-    .then(function(localidades) //recibe los datos que vienen de la pagina antes invocada
-        {
-            return localidades.json() // retorna los datos pasados a json
-        })
-    .then(function(arrayLocalidades) //pasa el objeto a un array
-        {
-            var arrayCompleto = arrayLocalidades.localidades
-            // console.log(todasLocalidades[0].provincia.nombre)
-            var provincia = document.getElementById('provincia'); //atrapo el input
-            var provincia = provincia.value; //atrapo el valor del input
-            var ciudades = new Array(); //creo un nuevo array
-
-            for (localidad of arrayCompleto) //recorro el array que viene de la api
-            {
-                if(localidad.provincia.nombre == provincia) //chequeo que la localidad corresponda con la provincia
-                {
-                    ciudades.push(localidad.nombre) //voy agregando en el nuevo array las ciudades
-                }
-            }
-            ciudades.sort(); //ordeno el array
-
-            for (ciudad of ciudades) { //recorro el array para formar las opciones del select
-                var optionLocalidad = document.createElement('option') //crea el elemento
-                localidadesSelect.appendChild(optionLocalidad) //añade el option al select
-                optionLocalidad.setAttribute('value',ciudad)
-                var nombreLocalidad = document.createTextNode(ciudad)
-                optionLocalidad.appendChild(nombreLocalidad)
-            }
-
-        })
-
-    city.onclick = function()
-    {
-        if (localidadInput.style.display != 'none') {
-            localidadInput.style.display = 'none';
-            localidadesSelect.style.display = 'block';
-        } else {
-            localidadInput.style.display = 'block';
-            localidadesSelect.style.display = 'none';
-        }
-
-    }
-
-    localidad.onclick = function()
-    {
-        localidadInput.style.display = 'none';
-        localidadesSelect.style.display = 'block';
-    }
-
-    localidadesSelect.onchange = function()
-    {
-
-        var optionLocalidad = localidadesSelect.options[localidadesSelect.selectedIndex].value;
-        var localidadSel = optionLocalidad
-        localidadInput.setAttribute('value', localidadSel)
-        localidadInput.style.display = 'block';
-        localidadesSelect.style.display = 'none';
-    }
-
-</script>
                                             </div>
                                         </div>
 
@@ -390,47 +220,9 @@
                                         <div class="row">
                                             <div class="col-4  p-2">
                                                 <div id="map" style="width:100%; height:300px"></div>
-            <div><p id="coordenadas"></p></div>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk7DaloVrcQYh25UegCc460Fh46uniE24&callback=initMap" async defer></script>
+                                                <div><p id="coordenadas"></p></div>
 
-        <script>
-
-           function initMap()
-           {
-               // Creamos el objeto geodecoder
-                var geocoder = new google.maps.Geocoder();
-                address = document.getElementById('direccion').value + ', ' + document.getElementById('localidad').value + ', ' + document.getElementById('provincia').value;
-
-                    // Llamamos a la función geodecode pasandole la dirección que hemos introducido en la caja de texto.
-                    geocoder.geocode({ 'address': address}, function(results, status)
-                    {
-                        if (status == 'OK')
-                        {
-                            var lat = results[0].geometry.location.lat();
-                            var lng = results[0].geometry.location.lng();
-                            const options = {
-                        center:{
-                            lat: lat,
-                            lng: lng
-                            },
-                        zoom:11,
-
-                            }
-                var map = document.getElementById('map');
-                const mapa = new google.maps.Map(map,options)
-                var marker = new google.maps.Marker({
-                position:{
-                    lat: lat,
-                    lng: lng
-                },
-                map: mapa
-                })
-                        }
-                    })
-
-
-            };
-        </script>
+                                                @include('/apis/apiGeocoordenadas')
 
                                             </div>
 
@@ -492,15 +284,14 @@
                             <h5 class="alert-success p-2"><i class="fas fa-hand-point-right mr-1"></i>{{$sinMensajes}}</h5>
                         </div>
                         @endif
-
-
-
                             <section id="team" class="">
                                 <div class="container">
                                     <div class="row">
                                         @if ($mensajes ->isNotEmpty())
                                         @foreach ($mensajes as $mensaje)
-                                        <div class="col-4">
+                                        @if ($mensaje->status == 'propuesto')
+
+                                        <div class="col-3">
                                             <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                                                 <div class="mainflip">
                                                     <div class="frontside">
@@ -527,56 +318,43 @@
                                                 </div>
                                             </div>
                                         </div>
-                                                                           <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5>Truekeo tu <strong>{{$mensaje->ProductDestinity->title}}</strong> por </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="container">
-                                                    <div class="row" id="ads">
-                                                        <!-- Category Card -->
-                                                        <div class="col-md-12">
-                                                            <div class="card rounded">
-                                                                <div class="card-image">
-                                                                    <span class="card-notify-badge">{{$mensaje->ProductOrigin->value}} Truekoins</span>
-                                                                    <img class="img-fluid" src="storage/images/products/{{$mensaje->ProductOrigin->image1}}" alt="Alternate Text" />
-                                                                </div>
-                                                                <div class="card-body text-center">
-                                                                    <div class="ad-title m-auto">
-                                                                        <h5>{{$mensaje->ProductOrigin->title}}</h5>
-                                                                    </div>
-                                                                    <div class="d-flex justify-content-center">
-                                                                        <a class="ad-btn" href="/detalleproducto/{{$mensaje->ProductOrigin->id}}">Más info</a>
-                                                                        <a class="ad-btn2" href="/detalleproducto/{{$mensaje->ProductOrigin->id}}">Rechazar</a>
-                                                                        <a class="ad-btn3" href="#">Aceptar</a>
-                                                                    </div>
-                                                                </div>
+                                        @endif
+                                        @if ($mensaje->status == 'rechazado')
+                                        <div class="col-3">
+                                            <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                                                <div class="mainflip">
+                                                    <div class="frontside">
+                                                        <div class="card">
+                                                            <div class="card-body text-center">
+                                                                <h4><img class="img-fluid" src="/storage/images/avatar/{{$mensaje->userOrigin->profile}}">{{$mensaje->userOrigin->name}}</h4>
+                                                                <h6>RECHAZÓ TU PROPUESTA DE TRUEKEO</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="backside">
+                                                        <div class="card">
+                                                            <div class="card-body text-center mt-4">
+                                                                <p class="card-text">{{$mensaje->message}}</p>
+                                                                <ul class="list-inline">
+                                                                    <li class="list-inline-item">
+                                                                        <a class="" href="/rechazarMensaje/{{$mensaje->id}}"><button type="button" class="btn-sm btn-danger">
+                                                                        Borrar Mensaje</button></a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        @endif
+                                        @include('/modal/modalMensajes')
                                         @endforeach
                                         @endif
                                     </div>
                                 </div>
                             </section>
-
-
-
                         </div>
-
-
-
-
 
                     <div class="tab-pane fade" id="nav-propuestas" role="tabpanel" aria-labelledby="nav-misPropuestas-tab">
                         @if (isset($sinPropuestas))
@@ -584,39 +362,46 @@
                             <h5 class="alert-danger p-2"><i class="fas fa-hand-point-right mr-1"></i> {{$sinPropuestas}}</h5>
                         </div>
                         @endif
+                        <section id="team" class="">
+                            <div class="container">
                         <div class="row">
                             @if ($propuestas ->isNotEmpty())
-
                             @foreach ($propuestas as $propuesta)
-                            <div class="card m-2" style="width: 100%;">
-                                <div class="row p-3">
-                                    <div class="col-6">
-                                        <img src="storage/images/products/{{$propuesta->ProductDestinity->image1}}" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-text">TRUEKEAR</p>
-
-                                        <h5 class="card-title">{{$propuesta->ProductDestinity->title}}</h5>
-                                        <hr>
-                                          <p class="card-text h5">de {{$propuesta->UserDestinity->name}}</p>
+                            <div class="col-4">
+                                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                                    <div class="mainflip">
+                                        <div class="frontside">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                    <p class="text-secondary mb-2 text-right">{{$propuesta->created_at->diffForHumans()}}</p>
+                                                    <img class="img-fluid" src="/storage/images/products/{{$propuesta->ProductOrigin->image1}}">
+                                                    <h5 class="mt-2">Truekeo mi</h5>
+                                                    <h4 class="">{{$propuesta->ProductOrigin->title}}</h4>
+                                                    <h5>de {{$propuesta->ProductOrigin->value}} truekoins</h5>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <img src="storage/images/products/{{$propuesta->ProductOrigin->image1}}" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <p class="card-text">por mi</p>
-                                        <h5 class="card-title">{{$propuesta->ProductOrigin->title}}</h5>
+                                        <div class="backside">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                    <img class="img-fluid" src="/storage/images/products/{{$propuesta->ProductDestinity->image1}}">
+                                                    <h5 class="mt-1">{{$propuesta->ProductDestinity->title}}</h5>
+                                                    <h5 class="text-primary">{{$propuesta->ProductDestinity->value}} TRUEKOINS</h5>
+                                                    <h6>publicado por {{$propuesta->UserDestinity->name}}</h6>
+                                                    <div>
+                                                        <a href="/detalleproducto/{{$propuesta->ProductDestinity->id}}"><button class="btn btn-sm btn-success">Más info</button></a>
+                                                        <a href="/desistirPropuesta/{{$propuesta->id}}"><button class="btn btn-sm btn-danger">Desistir</button></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="d-flex justify-content-end">
-                                            <a href="/rechazarMensaje/{{$propuesta->id}}" class="btn-sm btn-danger">Desistir</a>
-                                        </div>
-
                                     </div>
                                 </div>
-
-                                  </div>
+                            </div>
                             @endforeach
                             @endif
-
+                            </div>
+                            </section>
                         </div>
 
                     </div>
