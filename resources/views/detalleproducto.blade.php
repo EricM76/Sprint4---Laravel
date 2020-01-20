@@ -55,8 +55,8 @@
         <!-- Modal -->
         @include('/modal/modalUbicacion')
 
-      <div class="d-flex justify-content-start mt-3">
-      <h5 class="mr-2">Le interesa truekear por: </h5>
+      <div class="text-left mt-3">
+      <h6 class="mr">Le interesa truekear por: </h6>
           @foreach ($intereses as $interes)
             <h4 class="badge badge-warning mx-1">{{$interes}}</h4>
           @endforeach

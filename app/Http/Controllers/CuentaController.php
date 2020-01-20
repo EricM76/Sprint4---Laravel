@@ -37,13 +37,15 @@ class CuentaController extends Controller
         $sinMensajes = null;
         if ($mensajes->isEmpty()){$sinMensajes = "No recibiste ningún mensaje";}
 
-        $propuestas = Message::where('id_UserOrigin',$user->id)->orderBy('created_at', 'desc')->get();
+        $propuestas = Message::where('id_UserOrigin',$user->id)->where('status','propuesto')->orderBy('created_at', 'desc')->get();
         $sinPropuestas = null;
         if ($propuestas->isEmpty()) { $sinPropuestas = "No has hecho propuestas de truekeo";}
 
+        $rechazos = Message::where('id_UserOrigin',$user->id)->where('status','rechazo')->orderBy('created_at','desc')->get();
+
         $categorias = Category::all();
         $productos = Product::all();
-        return view('/cuenta',compact('categorias','posteos','mensajes','productos','propuestas','sinMensajes','sinPropuestas','sinPosteos'));
+        return view('/cuenta',compact('categorias','posteos','mensajes','productos','propuestas','sinMensajes','sinPropuestas','sinPosteos','rechazos'));
     }
 
     /**

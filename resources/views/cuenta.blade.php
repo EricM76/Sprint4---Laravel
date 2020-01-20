@@ -288,6 +288,7 @@
                                 <div class="container">
                                     <div class="row">
                                         @if ($mensajes ->isNotEmpty())
+                                        <script>var i = 0;</script>
                                         @foreach ($mensajes as $mensaje)
                                         @if ($mensaje->status == 'propuesto')
 
@@ -308,7 +309,8 @@
                                                                 <p class="card-text">{{$mensaje->message}}</p>
                                                                 <ul class="list-inline">
                                                                     <li class="list-inline-item">
-                                                                        <a class="" data-toggle="modal" data-target="#staticBackdrop" href="#"><button type="button" class="btn-sm btn-success">
+                                                                        <a id="masInfo" class="masinfo" href="/modal/modalMensajes/{{$mensaje->id}}">
+                                                                        <button type="button" class="btn-sm btn-success">
                                                                         Ver Producto</button></a>
                                                                     </li>
                                                                 </ul>
@@ -337,7 +339,7 @@
                                                                 <p class="card-text">{{$mensaje->message}}</p>
                                                                 <ul class="list-inline">
                                                                     <li class="list-inline-item">
-                                                                        <a class="" href="/rechazarMensaje/{{$mensaje->id}}"><button type="button" class="btn-sm btn-danger">
+                                                                        <a class="" href="/eliminarMensaje/{{$mensaje->id}}"><button type="button" class="btn-sm btn-danger">
                                                                         Borrar Mensaje</button></a>
                                                                     </li>
                                                                 </ul>
@@ -348,9 +350,11 @@
                                             </div>
                                         </div>
                                         @endif
-                                        @include('/modal/modalMensajes')
+
+
                                         @endforeach
                                         @endif
+                                        {{-- @include('/modal/modalMensajes') --}}
                                     </div>
                                 </div>
                             </section>
@@ -367,6 +371,7 @@
                         <div class="row">
                             @if ($propuestas ->isNotEmpty())
                             @foreach ($propuestas as $propuesta)
+                            @if ($propuesta->status == 'propuesto')
                             <div class="col-4">
                                 <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                                     <div class="mainflip">
@@ -389,8 +394,13 @@
                                                     <h5 class="text-primary">{{$propuesta->ProductDestinity->value}} TRUEKOINS</h5>
                                                     <h6>publicado por {{$propuesta->UserDestinity->name}}</h6>
                                                     <div>
-                                                        <a href="/detalleproducto/{{$propuesta->ProductDestinity->id}}"><button class="btn btn-sm btn-success">Más info</button></a>
-                                                        <a href="/desistirPropuesta/{{$propuesta->id}}"><button class="btn btn-sm btn-danger">Desistir</button></a>
+                                                        <ul class="list-inline">
+                                                            <li class="list-inline-item">
+                                                                <a class="" href="/modal/modalPropuesta/{{$propuesta->id}}"><button type="button" class="btn-sm btn-success">
+                                                                Más Info</button></a>
+                                                                <a href="/desistirPropuesta/{{$propuesta->id}}"><button class="btn btn-sm btn-danger">Desistir</button></a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -398,6 +408,8 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
+                            {{-- @include('/modal/modalPropuestas') --}}
                             @endforeach
                             @endif
                             </div>

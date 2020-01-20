@@ -14,8 +14,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5>Truekeo tu <strong>{{$mensaje->ProductDestinity->title}}</strong> por </h5>
-                <a href="/cuenta?id=nav-contact-tab"><button type="button"><span aria-hidden="true">&times;</span>
+                <h5>Ofrezco mi <strong>{{$mensaje->ProductOrigin->title}}</strong> por </h5>
+                <a href="/cuenta?id=nav-misPropuestas-tab"><button type="button"><span aria-hidden="true">&times;</span>
                 </button></a>
 
             </div>
@@ -26,33 +26,32 @@
                         <div class="col-md-12">
                             <div class="card rounded">
                                 <div class="card-image">
-                                    <span class="card-notify-badge">{{$mensaje->ProductOrigin->value}} Truekoins</span>
-                                    <img id="marco" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductOrigin->image1}}" alt="Alternate Text" />
+                                    <span class="card-notify-badge">{{$mensaje->ProductDestinity->value}} Truekoins</span>
+                                    <img id="marco" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductDestinity->image1}}" alt="Alternate Text" />
                                 </div>
                                 <div class="card-body text-center">
                                     <div class="ad-title m-auto">
-                                        <h5>{{$mensaje->ProductOrigin->title}}</h5>
+                                        <h5>{{$mensaje->ProductDestinity->title}}</h5>
                                     </div>
                                     <div id="info" hidden>
                                         <div class="row">
                                             <div class="col-4">
-                                                <a href=""> <img id="img1" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductOrigin->image1}}" alt=""></a>
+                                                <a href=""> <img id="img1" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductDestinity->image1}}" alt=""></a>
                                             </div>
                                             <div class="col-4">
-                                                <a href=""> <img id="img2" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductOrigin->image2}}" alt=""></a>
+                                                <a href=""> <img id="img2" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductDestinity->image2}}" alt=""></a>
                                             </div>
                                             <div class="col-4">
-                                                <a href=""> <img id="img3" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductOrigin->image3}}" alt=""></a>
+                                                <a href=""> <img id="img3" class="img-fluid" src="/storage/images/products/{{$mensaje->ProductDestinity->image3}}" alt=""></a>
                                             </div>
                                         </div>
-                                        {{$mensaje->ProductOrigin->description}}
+                                        {{$mensaje->ProductDestinity->description}}
 
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <a id="botonInfo" class="ad-btn" href="#">+ info</a>
                                         <a id="botonInfo2" class="ad-btn" href="#" hidden>- info</a>
-                                        <a class="ad-btn2" href="/rechazarMensaje/{{$mensaje->id}}">Rechazar</a>
-                                        <a class="ad-btn3" href="/aceptarMensaje/{{$mensaje->id}}">Aceptar</a>
+                                        <a class="ad-btn2" href="/desistirPropuesta/{{$mensaje->id}}">Desistir Truekeo</a>
                                     </div>
                                     <script>
                                         var marco = document.getElementById('marco');
@@ -74,15 +73,15 @@
                                         }
                                         img1.onclick = function(){
                                             event.preventDefault();
-                                            marco.setAttribute('src','/storage/images/products/{{$mensaje->ProductOrigin->image1}}')
+                                            marco.setAttribute('src','/storage/images/products/{{$mensaje->ProductDestinity->image1}}')
                                         }
                                         img2.onclick = function(){
                                             event.preventDefault();
-                                            marco.setAttribute('src','/storage/images/products/{{$mensaje->ProductOrigin->image2}}')
+                                            marco.setAttribute('src','/storage/images/products/{{$mensaje->ProductDestinity->image2}}')
                                         }
                                         img3.onclick = function(){
                                             event.preventDefault();
-                                            marco.setAttribute('src','/storage/images/products/{{$mensaje->ProductOrigin->image3}}')
+                                            marco.setAttribute('src','/storage/images/products/{{$mensaje->ProductDestinity->image3}}')
                                         }
                                     </script>
                                 </div>

@@ -78,3 +78,7 @@ Route::get('/truekeo/propuesta/{product}/{truek}','TruekeoController@propuesta')
 
 Route::get('/desistirPropuesta/{id}','TruekeoController@desiste');
 Route::get('/rechazarMensaje/{id}','TruekeoController@rechaza');
+Route::get('/eliminarMensaje/{id}','TruekeoController@elimina');
+
+Route::get('/modal/modalMensajes/{id}','ModalController@index');
+Route::get('/modal/modalPropuesta/{id}','ModalController@propuesta');

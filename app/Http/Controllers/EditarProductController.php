@@ -105,7 +105,7 @@ class EditarProductController extends Controller
 
         $producto -> save();
 
-        return redirect()->back();
+        return redirect('/cuenta?id=nav-profile-tab');
     }
 
     /**
