@@ -71,7 +71,7 @@ Route::get('/detalleCategoria/{id}','BusquedaController@indexCat');
 Route::get('/intereses/{interes}/{id}','HomeController@intereses');
 
 Route::get('/truekeo','TruekeoController@index');
-Route::post('/truekeo','TruekeoController@store');
+Route::post('/truekeo','TruekeoController@store')->name('truekeo');
 
 
 Route::get('/truekeo/propuesta/{product}/{truek}','TruekeoController@propuesta');
@@ -79,6 +79,9 @@ Route::get('/truekeo/propuesta/{product}/{truek}','TruekeoController@propuesta')
 Route::get('/desistirPropuesta/{id}','TruekeoController@desiste');
 Route::get('/rechazarMensaje/{id}','TruekeoController@rechaza');
 Route::get('/eliminarMensaje/{id}','TruekeoController@elimina');
+Route::get('/aceptaPropuesta/{producto}/{truekeo}','TruekeoController@acepta');
+
 
 Route::get('/modal/modalMensajes/{id}','ModalController@index');
 Route::get('/modal/modalPropuesta/{id}','ModalController@propuesta');
+

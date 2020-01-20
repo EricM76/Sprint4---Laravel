@@ -13,7 +13,7 @@
 
                     <img src="/storage/images/products/{{$producto->image1}}" alt="" class="img-fluid img-thumbnail">
                     <hr>
-                    <h5 class="text-secondary">Producto ofrecido</h5>
+                    <h5 class="text-secondary">Producto deseado</h5>
                     <h4 class="card-title">{{$producto->title}}</h4>
                     <h6>{{$producto->value}} truekoins</h6>
                 </div>
@@ -21,7 +21,7 @@
 
                     <img src="/storage/images/products/{{$truekeo->image1}}" alt="" class="img-fluid img-thumbnail">
                     <hr>
-                    <h5 class="text-secondary">Producto deseado</h5>
+                    <h5 class="text-secondary">Producto ofrecido</h5>
                     <h4 class="card-title">{{$truekeo->title}}</h4>
                     <h6>{{$truekeo->value}} truekoins</h6>
                 </div>
@@ -35,7 +35,15 @@
                 </div>
 
             </div>
+            @if (isset($mensaje))
+                <h4 class="alert-danger text-center">{{$mensaje}}</h4>
+                <div class="d-flex justify-content-center">
+                    <a class="mx-3 btn-sm btn-info" href="/home">Volver al home</a>
+                    <a class="mx-3 btn-sm btn-warning" href="/cuenta?id=nav-misPropuestas-tab">Ir a propuestas</a>
 
+                </div>
+
+            @endif
         </div>
     </div>
 </div>

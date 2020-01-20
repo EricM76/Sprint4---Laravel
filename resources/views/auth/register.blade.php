@@ -56,6 +56,12 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                    {{-- <script>
+                                    var email = document.getElementById('email');
+                                    email.on = function(){
+                                        email.setAttribute('class', 'form-control is-valid')
+                                    }
+                                    </script> --}}
                             </div>
                         </div>
 

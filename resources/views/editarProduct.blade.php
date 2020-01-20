@@ -185,7 +185,7 @@
               </div>
               <div class="text-right mr-5">
 
-                <a href="/cuenta?id=nav-home-tab"><button class="btn-sm btn-secondary" name="id" type="button">Cancelar</button></a>
+                <a href="/cuenta?id=nav-profile-tab"><button class="btn-sm btn-secondary" name="id" type="button">Cancelar</button></a>
                 <button value={{$producto->id}} class="btn-sm btn-primary ml-2" name="id" type="submit">Guardar</button>
             </div>
 

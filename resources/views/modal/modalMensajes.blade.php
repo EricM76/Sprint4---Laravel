@@ -52,7 +52,7 @@
                                         <a id="botonInfo" class="ad-btn" href="#">+ info</a>
                                         <a id="botonInfo2" class="ad-btn" href="#" hidden>- info</a>
                                         <a class="ad-btn2" href="/rechazarMensaje/{{$mensaje->id}}">Rechazar</a>
-                                        <a class="ad-btn3" href="/aceptarMensaje/{{$mensaje->id}}">Aceptar</a>
+                                        <a class="ad-btn3" href="#">Aceptar</a>
                                     </div>
                                     <script>
                                         var marco = document.getElementById('marco');

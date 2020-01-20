@@ -85,17 +85,23 @@
                 </div>
             </div>
         </div>
+        <di class="row">
+            <div class="col-4">
+
+            </div>
+        </di>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
+
                 <div class="top-right links">
                     @auth
                     <a href="{{ url('/home') }}"><button class="btn btn-outline-primary">Volver al Sitio</button></a>
 
-                    <a  href="{{ route('logout') }}"
+                    {{-- <a  href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><button class="btn btn-outline-primary">{{ __('Administrador') }} </button>
 
-                    </a>
+                    </a> --}}
                     <form id="logout-form" action="#" method="GET" style="display: none;">
                         @csrf
                     </form>
@@ -118,10 +124,10 @@
             <a class="m-1" href=""data-toggle="modal" data-target="#datos">Politica de datos</a>
             <a class="m-1" href=""data-toggle="modal" data-target="#cookies">Policita de cookies</a>
         </div>
-        <div class="container text-center">
+        {{-- <div class="container text-center">
             <a class="m-1 text-danger" href="{{'/admin'}}">Acceso administradores</a>
 
-        </div>
+        </div> --}}
     @include('footer')
     </body>
 </html>

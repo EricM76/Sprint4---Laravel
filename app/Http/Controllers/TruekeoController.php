@@ -67,8 +67,17 @@ class TruekeoController extends Controller
      */
     public function propuesta($producto,$truekeo)
     {
+        $usuario = Auth::user();
+        $categorias = Category::all();
         $producto = Product::find($producto);
         $truekeo = Product::find($truekeo);
+        $checkeo = Message::where('truekeoOrigin',$truekeo->id)->where('truekeoDestinity',$producto->id)->get();
+
+        if ($checkeo->isNotEmpty()) {
+
+            return view('/truekeo',compact('producto','truekeo','usuario','categorias'))->with('mensaje','¡Tenés una propuesta en curso con '.$producto->user->name. ' con este producto!');
+        }
+
         $mensaje = new Message();
         $mensaje -> status = 'propuesto';
         $mensaje -> id_UserOrigin = $truekeo->user_id;
@@ -115,5 +124,10 @@ class TruekeoController extends Controller
         $registro = Message::find($id);
         $registro ->delete();
         return redirect('/cuenta?id=nav-contact-tab');
+    }
+
+    public function acepta()
+    {
+
     }
 }
